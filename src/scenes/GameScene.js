@@ -13,7 +13,7 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
-    new Player(this, 100, 100);
+    new Player(this, 100, 100, 0);
   }
 }
 
