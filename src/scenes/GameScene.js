@@ -14,8 +14,9 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
-    new Player(this, 100, 100);
     new Hammer(this, 200, 200,'HammerSprite');
+    new Player(this, 100, 100, 0);
+    new Player(this, 100, 100, 1);
   }
 }
 
