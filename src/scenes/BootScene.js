@@ -8,6 +8,7 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
+    console.log('loading boot');
     //this.load.image('name', 'path.png');
   }
 

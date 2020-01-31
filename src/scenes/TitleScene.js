@@ -8,9 +8,11 @@ class TitleScene extends Phaser.Scene {
   }
 
   preload() {
+    console.log('loading title');
   }
 
   create() {
+    this.scene.start('GameScene');
   }
 }
 
