@@ -11,8 +11,6 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
-    
-
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x444444, 0.8);
