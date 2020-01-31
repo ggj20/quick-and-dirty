@@ -5,8 +5,11 @@
 ## With Docker
 
 `make image`
+
 `make install`
+
 `make start`
+
 `make build`
 
 ## Without Docker
@@ -14,5 +17,7 @@
 Get node.js
 
 `npm install`
+
 `npm start`
+
 `npm build`
