@@ -11,7 +11,7 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image(HammerSprite, 'HammerSprite');
+    
 
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
@@ -36,6 +36,7 @@ class BootScene extends Phaser.Scene {
     console.log('loading boot');
     //this.load.image('name', 'path.png');
     this.load.image('PlayerSprite', PlayerSprite);
+    this.load.image('HammerSprite', HammerSprite);
   }
 
   create() {
