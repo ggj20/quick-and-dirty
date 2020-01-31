@@ -12,6 +12,9 @@ var config = {
   physics: {
     default: 'arcade',
   },
+  input: {
+    gamepad: true
+  },
   scene: [
     BootScene,
     TitleScene,
