@@ -8,6 +8,9 @@ class Player extends Phaser.GameObjects.Container {
 
     this.playerSprite = scene.add.image(0, 0, 'PlayerSprite');
     this.add(this.playerSprite);
+
+	this.playerText = scene.add.text(-this.playerSprite.width, -this.playerSprite.height, 'Player ' + (this.playerId + 1), {fixedWidth: this.playerSprite.width * 2, align: 'center'});
+	this.add(this.playerText);
   }
 
   preUpdate(time, delta) {
