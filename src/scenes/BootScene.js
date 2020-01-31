@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+import PlayerSprite from "../assets/player.png";
+
+
 class BootScene extends Phaser.Scene {
   constructor() {
     super({
@@ -8,7 +11,6 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
-<<<<<<< HEAD
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x444444, 0.8);
@@ -29,10 +31,9 @@ class BootScene extends Phaser.Scene {
       progressBox.destroy();
       console.log('complete');
     });
-=======
     console.log('loading boot');
->>>>>>> add some logs to scenes
     //this.load.image('name', 'path.png');
+    this.load.image('PlayerSprite', PlayerSprite);
   }
 
   create() {
