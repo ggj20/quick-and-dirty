@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import PlayerSprite from "../assets/player.png";
-
+import HammerSprite from "../assets/hammer.png";
 
 class BootScene extends Phaser.Scene {
   constructor() {
@@ -11,6 +11,8 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image(HammerSprite, 'HammerSprite');
+
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x444444, 0.8);
