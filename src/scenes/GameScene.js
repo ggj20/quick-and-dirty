@@ -8,6 +8,7 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
+    console.log('loading game');
   }
 
   create() {
