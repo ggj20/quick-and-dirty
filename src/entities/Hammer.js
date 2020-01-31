@@ -5,7 +5,7 @@ class Hammer extends Tool {
         super(scene, x, y, texture, frame);
     }
     use() {
-        console.log(this.constructor.name)
+        console.log("used hammer!")
     }
 }
   
