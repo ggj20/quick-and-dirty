@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 
+import PlayerSprite from "../assets/player.png";
+
+
 class BootScene extends Phaser.Scene {
   constructor() {
     super({
@@ -9,7 +12,7 @@ class BootScene extends Phaser.Scene {
 
   preload() {
     console.log('loading boot');
-    //this.load.image('name', 'path.png');
+    this.load.image('PlayerSprite', PlayerSprite);
   }
 
   create() {
