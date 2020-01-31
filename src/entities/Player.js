@@ -48,13 +48,13 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   preUpdate(time, delta) {
-    let pad = this.scene.input.gamepad.getPad(this.playerId);
-    if(!pad) {
+    if(!this.pad) {
+      this.pad = this.scene.input.gamepad.getPad(this.playerId);
       return;
     }
 
-    this.x += delta * this.speed * pad.axes[0].getValue();
-    this.y += delta * this.speed * pad.axes[1].getValue();
+    this.x += delta * this.speed * this.pad.axes[0].getValue();
+    this.y += delta * this.speed * this.pad.axes[1].getValue();
     //sprite.flipX = (axisH > 0);
   }
 }
