@@ -21,7 +21,23 @@ class TitleScene extends Phaser.Scene {
       origin: { x: 0.5, y: 0.5 },
       add: true
     });
+
+    this.playerTexts = [];
+
+    for(let i = 0; i < this.playerCount; i++) {
+      this.playerTexts.push(this.createPlayerText(i));
+    }
     this.scene.start('GameScene');
+  }
+
+  createPlayerText(playerId) {
+    return this.make.text({
+      x: 100,
+      y: 400 + 100 * playerId,
+      text: "Player " + (playerId + 1),
+      style: { font: "50px Arial", fill: "#CCC", align: "left"},
+      add: true
+    });
   }
 }
 
