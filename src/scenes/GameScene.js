@@ -34,7 +34,7 @@ class GameScene extends Phaser.Scene {
     }
 
     //debug objects
-    this.hammer = new Hammer(this, 400, 400,'HammerSprite');
+    this.hammer = new Hammer(this, 400, 400);
     this.toolGroup.add(this.hammer)
     this.physics.world.enable(this.hammer);
     this.leak = new Leak(this, 500, 300,'LeakSprite');
