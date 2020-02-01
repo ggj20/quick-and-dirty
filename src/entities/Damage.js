@@ -14,7 +14,7 @@ class Damage extends Phaser.GameObjects.Container  {
         this.add(this.progressBar);
         this.add(this.progressBox);
         this.progressBox.fillStyle(0x222222, 0.6);
-        this.progressBox.fillRect(- this.damageSprite.width/1.5, - this.damageSprite.height/1.5, this.damageSprite.width * 1.5, this.damageSprite.height / 5); // ToDo set position symmetrical
+        this.progressBox.fillRect(- this.damageSprite.width*0.75, - this.damageSprite.height/1.5, this.damageSprite.width * 1.5, this.damageSprite.height / 5);
         this.progressBox.setVisible(false);
 
         this.damageType = damageType;
@@ -38,7 +38,7 @@ class Damage extends Phaser.GameObjects.Container  {
         
         this.progressBar.clear();
         this.progressBar.fillStyle(0xffffff, 1);
-        this.progressBar.fillRect(- this.damageSprite.width/1.5, - this.damageSprite.height/1.5, (this.damageSprite.width * 1.5) * Math.abs(this.status/100. - 1), this.damageSprite.height / 5);
+        this.progressBar.fillRect(- this.damageSprite.width*0.75, - this.damageSprite.height/1.5, (this.damageSprite.width * 1.5) * Math.abs(this.status/100. - 1), this.damageSprite.height / 5);
     }
 }
 
