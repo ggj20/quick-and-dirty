@@ -28,12 +28,12 @@ class Player extends Phaser.GameObjects.Container {
       return; // Ignore other controllers
     }
     else if(button.index == 2) { // X
-      if(this.tool != null) {
+      if(this.activeTool != null) {
         this.useTool();
       }
     }
     else if(button.index == 0) { // A
-      if(this.tool == null) {
+      if(this.activeTool == null) {
         this.pickupTool(this.scene);
       } else {
         this.dropTool();
@@ -47,24 +47,28 @@ class Player extends Phaser.GameObjects.Container {
       this.physics.arcade.overlap(this.activeTool, this.damageGroup, this.handleTool, null, this );
       this.activeTool.use();
     }
-  }
+  } 
 
-  handleTool(tool, damage) {
-    console.log("tool is"+tool+ "damage is "+damage);
+  handleToolPickup(player, tool) {
+    console.log("Player is"+player+ "tool is "+tool);
+    this.add(tool);
+    this.activeTool = tool;
   }
 
   dropTool() {
     console.log(this.playerId, 'drop tool');
+    this.scene.add(this.activeTool);
+    this.activeTool = null;
+    
     // Todo detach
   }
 
-  pickupTool(scene) {
+  pickupTool() {
     console.log(this.activeTool);
     if (this.activeTool == null) {
       console.log("do overlap "+this.toolGroup)
-      this.scene.physics.overlap(this, this.toolGroup, this.handleTool, null, this );
+      this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
     }
-    // Todo overlap test
     //ToDo attach
     console.log(this.playerId, 'pickup tool');
   }
