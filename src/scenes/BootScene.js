@@ -4,6 +4,7 @@ import PlayerSpriteSheet from "../assets/player.png";
 import HammerSprite from "../assets/hammer.png";
 import LeakSprite from "../assets/leak.png";
 import ShipSprite from "../assets/ship.png";
+import SteamParticle from "../assets/steam-particle.png";
 
 class BootScene extends Phaser.Scene {
   constructor() {
@@ -39,6 +40,7 @@ class BootScene extends Phaser.Scene {
     this.load.image('HammerSprite', HammerSprite);
     this.load.image('LeakSprite', LeakSprite);
     this.load.image('ShipSprite', ShipSprite);
+    this.load.image('SteamParticle', SteamParticle);
   }
 
   create() {
