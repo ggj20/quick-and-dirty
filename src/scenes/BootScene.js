@@ -35,7 +35,7 @@ class BootScene extends Phaser.Scene {
       progressBox.destroy();
       console.log('complete');
     });
-    this.load.spritesheet('PlayerSpriteSheet', PlayerSpriteSheet, { frameWidth: 77, frameHeight: 106, endFrame: 24 });
+    this.load.spritesheet('PlayerSpriteSheet', PlayerSpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
     this.load.image('HammerSprite', HammerSprite);
     this.load.image('LeakSprite', LeakSprite);
     this.load.image('ShipSprite', ShipSprite);
