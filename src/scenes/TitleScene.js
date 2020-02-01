@@ -22,10 +22,12 @@ class TitleScene extends Phaser.Scene {
       add: true
     });
 
+    this.readyStates = [];
     this.playerTexts = [];
 
     for(let i = 0; i < this.playerCount; i++) {
       this.playerTexts.push(this.createPlayerText(i));
+      this.readyStates.push(false);
     }
     this.scene.start('GameScene');
   }
