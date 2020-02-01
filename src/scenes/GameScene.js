@@ -78,7 +78,7 @@ class GameScene extends Phaser.Scene {
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
     var damageIndicator = Math.floor(Math.random() * 4); 
-    damageIndicator = 0; //DEBUG
+    //damageIndicator = 0; //DEBUG
     switch(damageIndicator) {
       case 0:
           this.spawnPipeDamage();
@@ -106,7 +106,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength); 
     var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength); 
 
-    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    var leak = new Leak(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
     this.damageGoup.add(leak);
   }
@@ -122,7 +122,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength); 
     var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength); 
 
-    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    var leak = new Electro(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
     this.damageGoup.add(leak);
   }
@@ -138,7 +138,23 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength); 
     var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength); 
 
-    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    var leak = new Hole(this, xCoordinate, yCoordinate);
+    this.physics.world.enable(leak);
+    this.damageGoup.add(leak);
+  }
+
+  spawnFIreDamage(){
+    if(mapAreas.fireAreas.length == 0) {
+      this.spawnRandomDamage();
+      return;
+    }
+    // area slector
+    var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length); 
+    // cooridnate selector
+    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength); 
+    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength); 
+
+    var leak = new Fire(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
     this.damageGoup.add(leak);
   }
@@ -159,21 +175,6 @@ class GameScene extends Phaser.Scene {
     this.solderingIron = new SolderingIron(this, 400, 400);
     this.toolGroup.add(this.solderingIron)
     this.physics.world.enable(this.solderingIron);
-  }
-  spawnFIreDamage(){
-    if(mapAreas.fireAreas.length == 0) {
-      this.spawnRandomDamage();
-      return;
-    }
-    // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length); 
-    // cooridnate selector
-    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength); 
-    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength); 
-
-    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
-    this.physics.world.enable(leak);
-    this.damageGoup.add(leak);
   }
 
 }
