@@ -2,7 +2,7 @@ import Damage from './Damage';
 
 class Leak extends Damage {
     constructor(scene, x, y, texture, frame) {
-        super(scene, x, y, texture, frame, "hammer", 100);
+        super(scene, x, y, texture, frame, 'HAMMER', 100);
         this.damagename = "leak"
     }
     repair() {
@@ -15,6 +15,5 @@ class Leak extends Damage {
         }
     }
 }
-  
+
 export default Leak;
-  
