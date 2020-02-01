@@ -38,7 +38,8 @@ class GameScene extends Phaser.Scene {
     this.spawnTools();
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
-      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup);
+		let emitter = this.createRunningEmitter();
+      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
     }
 
     //debug objects
@@ -81,6 +82,21 @@ class GameScene extends Phaser.Scene {
     this.solderingIron = new SolderingIron(this, 400, 400);
     this.toolGroup.add(this.solderingIron)
     this.physics.world.enable(this.solderingIron);
+  }
+
+  createRunningEmitter() {
+	  return this.add.particles('SteamParticle').createEmitter({
+		  x: 0,
+		  y: 0,
+          speed: { min: 0, max: 0 },
+          angle: { min: 0, max: 0 },
+          scale: { start: 0.6, end: 0.1 },
+          blendMode: 'NORMAL',
+          frequency: -1,
+          active: true,
+          lifespan: 1500,
+          tint: 0xDDDDDD,
+	  });
   }
 }
 
