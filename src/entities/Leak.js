@@ -15,6 +15,5 @@ class Leak extends Damage {
         }
     }
 }
-  
+
 export default Leak;
-  
