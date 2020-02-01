@@ -42,7 +42,7 @@ class Player extends Phaser.GameObjects.Container {
     if (this.activeTool != null) {
       this.scene.physics.overlap(this.activeTool, this.damageGroup, this.handleToolUse, null, this );
     }
-  } 
+  }
 
   pickupTool() {
     console.log(this.activeTool);
