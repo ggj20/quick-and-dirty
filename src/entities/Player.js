@@ -1,5 +1,5 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, x, y, playerId) {
+  constructor(scene, x, y, playerId, toolGroup, damageGroup) {
     super(scene, x, y);
     scene.add.existing(this);
 
@@ -15,6 +15,10 @@ class Player extends Phaser.GameObjects.Container {
     scene.input.gamepad.on('down', this.onButtonPress, this);
 
     this.tool = null;
+
+    this.toolGroup = toolGroup;
+    this.damageGroup = damageGroup;
+    this.activeTool = null;
   }
 
   onButtonPress(pad, button, index) {
@@ -37,13 +41,20 @@ class Player extends Phaser.GameObjects.Container {
 
   useTool() {
     console.log(this.playerId, 'use tool');
+    if (this.activeTool != null) {
+      this.physics.overlap(this.activeTool, this.damageGroup, (tool, damage) => tool.use(damage) )
+      this.activeTool.use()
+    }
   }
 
   dropTool() {
     console.log(this.playerId, 'drop tool');
+    // Todo detach
   }
 
   pickupTool() {
+    // Todo overlap test
+    //ToDo attach
     console.log(this.playerId, 'pickup tool');
   }
 
