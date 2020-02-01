@@ -5,6 +5,9 @@ import Extinguisher from '../entities/Extinguisher';
 import SolderingIron from '../entities/SolderingIron';
 import PipeWrench from '../entities/PipeWrench.js';
 import Leak from '../entities/Leak';
+import Fire from '../entities/Fire';
+import Hole from '../entities/Hole';
+import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
 
 class GameScene extends Phaser.Scene {
@@ -39,9 +42,21 @@ class GameScene extends Phaser.Scene {
     }
 
     //debug objects
-    this.leak = new Leak(this, 500, 300,'LeakSprite');
+    this.leak = new Leak(this, 500, 300);
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
+
+    this.fire = new Fire(this, 500, 400);
+    this.physics.world.enable(this.fire);
+    this.damageGoup.add(this.fire);
+
+    this.hole = new Hole(this, 500, 200);
+    this.physics.world.enable(this.hole);
+    this.damageGoup.add(this.hole);
+
+    this.electro = new Electro(this, 300, 200);
+    this.physics.world.enable(this.electro);
+    this.damageGoup.add(this.electro);
 
     // Tubes
     new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
@@ -59,7 +74,7 @@ class GameScene extends Phaser.Scene {
     this.toolGroup.add(this.extinguisher)
     this.physics.world.enable(this.extinguisher);
 
-    this.pipeWrench= new PipeWrench(this, 400, 400);
+    this.pipeWrench = new PipeWrench(this, 400, 400);
     this.toolGroup.add(this.pipeWrench)
     this.physics.world.enable(this.pipeWrench);
 

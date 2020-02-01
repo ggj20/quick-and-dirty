@@ -1,10 +1,9 @@
 class Damage extends Phaser.GameObjects.Container  {
-    constructor(scene, x, y, texture, frame, damageType, repairDebounce) {
-
+    constructor(scene, x, y, texture, damageType, repairDebounce) {
         super(scene, x, y,);
         scene.add.existing(this);
-        
-        this.damageSprite = scene.add.image(0, 0, texture,frame);
+
+        this.damageSprite = scene.add.image(0, 0, texture);
         this.add(this.damageSprite);
 
         this.setSize(this.damageSprite.width, this.damageSprite.height);
@@ -22,11 +21,16 @@ class Damage extends Phaser.GameObjects.Container  {
         this.status = 100;
 
         this.lastRepair = 0;
-
     }
 
-    repair(toolType) {
-        console.log("Repair method not implemented on damage type");
+    repair() {
+        var d = new Date();
+        var acutalRepair = d.getTime();
+        if(this.lastRepair + this.repairDebounce < acutalRepair) {
+            this.status -= 10;
+            this.setStatusBar();
+            this.lastRepair = acutalRepair;
+        }
     }
 
     setStatusBar() {
@@ -35,13 +39,11 @@ class Damage extends Phaser.GameObjects.Container  {
             this.progressBox.setVisible(true);
             this.progressBar.setVisible(true);
         }
-        
+
         this.progressBar.clear();
         this.progressBar.fillStyle(0xffffff, 1);
         this.progressBar.fillRect(- this.damageSprite.width*0.75, - this.damageSprite.height/1.5, (this.damageSprite.width * 1.5) * Math.abs(this.status/100. - 1), this.damageSprite.height / 5);
     }
 }
 
-
-  
 export default Damage;
