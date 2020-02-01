@@ -66,7 +66,7 @@ class Player extends Phaser.GameObjects.Container {
   dropTool() {
     this.scene.add.existing(this.activeTool)
     this.remove(this.activeTool)
-    this.activeTool.setPosition (this.x, this.y);
+    this.activeTool.setPosition (this.x + this.body.width / 2, this.y + 20);
     this.scene.physics.overlap(this.activeTool, this.zoneGroup, this.handleToolZone, null, this );
     this.activeTool = null;
   }
@@ -87,8 +87,8 @@ class Player extends Phaser.GameObjects.Container {
 	  if (this.activeTool == null) {
 	    this.add(tool);
 	    this.activeTool = tool;
-	    this.activeTool.setPosition (0, 0);
-	}
+	    this.activeTool.setPosition(this.body.width/2, -20);
+    }
   }
 
   handleToolZone(tool, zone) {
