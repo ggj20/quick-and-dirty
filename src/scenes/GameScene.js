@@ -7,6 +7,7 @@ import PipeWrench from '../entities/PipeWrench.js';
 import Leak from '../entities/Leak';
 import Fire from '../entities/Fire';
 import Hole from '../entities/Hole';
+import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
 
 class GameScene extends Phaser.Scene {
@@ -52,6 +53,10 @@ class GameScene extends Phaser.Scene {
     this.hole = new Hole(this, 500, 200);
     this.physics.world.enable(this.hole);
     this.damageGoup.add(this.hole);
+
+    this.electro = new Electro(this, 300, 200);
+    this.physics.world.enable(this.electro);
+    this.damageGoup.add(this.electro);
 
     // Tubes
     new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
