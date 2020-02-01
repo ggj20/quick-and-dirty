@@ -9,7 +9,7 @@ class Player extends Phaser.GameObjects.Container {
     this.speed = this.scene.game.settings.playerSpeed;
 
     this.generateAnimations();
-    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet').setOrigin(0,0);
+    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet').setOrigin(0.1, 0.5);
     this.add(this.playerSprite);
 
     this.scene.physics.world.enable(this);
