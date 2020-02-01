@@ -87,22 +87,38 @@ class Player extends Phaser.GameObjects.Container {
 
   generateAnimations() {
     this.scene.anims.create({
-      key: 'walk-down',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
-      frameRate: 60,
-      repeat: -1,
-    });
-    // #TODO: Add correct Frames
-    this.scene.anims.create({
       key: 'walk-up',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
-    // #TODO: Add correct Frames
+    this.scene.anims.create({
+      key: 'walk-up-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 24, end: 47, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-down-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 48, end: 71, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
     this.scene.anims.create({
       key: 'walk-side',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 72, end: 95, first: 0 }),
+      frameRate: 45,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-side-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 96, end: 119, first: 0 }),
+      frameRate: 45,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-down',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 120, end: 143, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
