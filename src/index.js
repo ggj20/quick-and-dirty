@@ -8,6 +8,8 @@ var settings = {
   playerSpeed: 0.1,
   playerCount: 4,
   coalSpawnDelay: 5000,
+  damageSpawnDelayInitial: 10000,
+  damageSpawnDelayMin: 1000,
   debug: true,
   difficulity: 1.1,
 };

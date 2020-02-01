@@ -70,10 +70,10 @@ class GameScene extends Phaser.Scene {
     // Coal Dispensers
     new CoalDispenser(this, 600, 200, this.toolGroup);
 
-    setTimeout(this.spawnRandomDamage(5000), 5000);
+    setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
   }
 
-  spawnRandomDamage(timer = 5000){
+  spawnRandomDamage(timer) {
     console.log("added damage: "+timer);
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
@@ -94,7 +94,7 @@ class GameScene extends Phaser.Scene {
         break;
     }
     console.log(this.game.settings.difficulity)
-    timer = Math.max(timer/this.game.settings.difficulity, 500);
+    timer = Math.max(timer/this.game.settings.difficulity, this.game.settings.damageSpawnDelayMin);
     setTimeout(() => this.spawnRandomDamage(timer), timer);
   }
 
