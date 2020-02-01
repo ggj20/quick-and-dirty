@@ -9,6 +9,7 @@ var config = {
   parent: 'game',
   width: 1920,
   height: 1080,
+  backgroundColor: '#FFF',
   physics: {
     default: 'arcade',
     arcade: {

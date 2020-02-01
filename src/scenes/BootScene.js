@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import PlayerSprite from "../assets/player.png";
 import HammerSprite from "../assets/hammer.png";
 import LeakSprite from "../assets/leak.png";
+import ShipSprite from "../assets/ship.png";
 
 class BootScene extends Phaser.Scene {
   constructor() {
@@ -37,6 +38,7 @@ class BootScene extends Phaser.Scene {
     this.load.image('PlayerSprite', PlayerSprite);
     this.load.image('HammerSprite', HammerSprite);
     this.load.image('LeakSprite', LeakSprite);
+    this.load.image('ShipSprite', ShipSprite);
   }
 
   create() {
