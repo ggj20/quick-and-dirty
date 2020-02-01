@@ -12,6 +12,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    this.playerCount = 4;
     this.make.text({
       x: this.game.config.width/2,
       y: 100,
