@@ -8,6 +8,7 @@ var settings = {
   playerSpeed: 0.1,
   playerCount: 4,
   debug: true,
+  difficulity: 1.1,
 };
 
 var config = {

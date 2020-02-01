@@ -66,14 +66,11 @@ class GameScene extends Phaser.Scene {
     new ItemTube(this, {x: 800, y: 720}, {x: 930, y: 720}, this.zoneGroup); // Bottom
 
 
-    this.spawnRandomDamage()
+    setTimeout(this.spawnRandomDamage(5000), 5000);
   }
 
-  update() {
-    
-  }
-
-  spawnRandomDamage(){
+  spawnRandomDamage(timer = 5000){
+    console.log("added damage: "+timer);
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
@@ -90,13 +87,15 @@ class GameScene extends Phaser.Scene {
         break;
       case 3:
         this.spawnFIreDamage();
-        break
+        break;
     }
+    console.log(this.game.settings.difficulity)
+    timer = Math.max(timer/this.game.settings.difficulity, 500);
+    setTimeout(() => this.spawnRandomDamage(timer), timer);
   }
 
   spawnPipeDamage(){
     if(mapAreas.pipeAreas.length == 0) {
-      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -112,7 +111,6 @@ class GameScene extends Phaser.Scene {
 
   spawnElectricityDamage(){
     if(mapAreas.electricityAreas.length == 0) {
-      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -128,7 +126,6 @@ class GameScene extends Phaser.Scene {
 
   spawnHoleDamage(){
     if(mapAreas.holeAreas.length == 0) {
-      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -144,7 +141,6 @@ class GameScene extends Phaser.Scene {
 
   spawnFIreDamage(){
     if(mapAreas.fireAreas.length == 0) {
-      this.spawnRandomDamage();
       return;
     }
     // area slector
