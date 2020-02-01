@@ -39,7 +39,7 @@ class GameScene extends Phaser.Scene {
     }
 
     //debug objects
-    this.leak = new Leak(this, 500, 300,'LeakSprite');
+    this.leak = new Leak(this, 500, 300);
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
 
