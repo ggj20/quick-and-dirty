@@ -1,20 +1,23 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, x, y, playerId) {
+  constructor(scene, x, y, playerId, toolGroup, damageGroup) {
     super(scene, x, y);
     scene.add.existing(this);
-
     this.playerId = playerId;
     this.speed = 0.2;
 
     this.playerSprite = scene.add.image(0, 0, 'PlayerSprite');
     this.add(this.playerSprite);
 
+    this.scene.physics.world.enable(this)
+
     this.playerText = scene.add.text(-this.playerSprite.width, -this.playerSprite.height, 'Player ' + (this.playerId + 1), {fixedWidth: this.playerSprite.width * 2, align: 'center'});
     this.add(this.playerText);
 
     scene.input.gamepad.on('down', this.onButtonPress, this);
 
-    this.tool = null;
+    this.toolGroup = toolGroup;
+    this.damageGroup = damageGroup;
+    this.activeTool = null;
   }
 
   onButtonPress(pad, button, index) {
@@ -22,13 +25,13 @@ class Player extends Phaser.GameObjects.Container {
       return; // Ignore other controllers
     }
     else if(button.index == 2) { // X
-      if(this.tool != null) {
+      if(this.activeTool != null) {
         this.useTool();
       }
     }
     else if(button.index == 0) { // A
-      if(this.tool == null) {
-        this.pickupTool();
+      if(this.activeTool == null) {
+        this.pickupTool(this.scene);
       } else {
         this.dropTool();
       }
@@ -36,15 +39,30 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   useTool() {
-    console.log(this.playerId, 'use tool');
+    if (this.activeTool != null) {
+      this.physics.arcade.overlap(this.activeTool, this.damageGroup, this.handleTool, null, this );
+      this.activeTool.use();
+    }
+  } 
+
+  handleToolPickup(player, tool) {
+    this.add(tool);
+    this.activeTool = tool;
+    this.activeTool.setPosition (0, 0);
   }
 
   dropTool() {
-    console.log(this.playerId, 'drop tool');
+    this.scene.add.existing(this.activeTool)
+    this.remove(this.activeTool)
+    this.activeTool.setPosition (this.x, this.y);
+    this.activeTool = null;
   }
 
   pickupTool() {
-    console.log(this.playerId, 'pickup tool');
+    console.log(this.activeTool);
+    if (this.activeTool == null) {
+      this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
+    }
   }
 
   preUpdate(time, delta) {
