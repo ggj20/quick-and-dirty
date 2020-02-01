@@ -23,7 +23,7 @@ class GameScene extends Phaser.Scene {
     this.shipSprite = this.add.image(0, 0, 'ShipSprite').setOrigin(0, 0);
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
-      new Player(this, 100, 100, i, this.toolGroup, this.damageGoup, this.zoneGroup);
+      new Player(this, [200, 200], [500, 500], i, this.toolGroup, this.damageGoup, this.zoneGroup);
     }
 
     //debug objects
@@ -34,7 +34,6 @@ class GameScene extends Phaser.Scene {
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
     this.tube1 = new ItemTube(this, {x: 810, y:370}, {x:930, y:370}, this.zoneGroup); 
-    
   }
 }
 
