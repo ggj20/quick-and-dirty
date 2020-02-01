@@ -1,12 +1,13 @@
-const dropZoneSize = 50;
+const dropZoneWidth = 50;
+const dropZoneHeight = 125;
 
 class SteamFurnace extends Phaser.GameObjects.Container {
   constructor(scene, id) {
-    super(scene, 218 - dropZoneSize, id === 1 ? 0 : 376 - 125);
+    super(scene, 218 - dropZoneWidth, id === 1 ? 0 : 376 - dropZoneHeight);
 
     this.dropZone = scene.add
-      .zone(dropZoneSize / 2, 125 / 2)
-      .setSize(dropZoneSize, 125);
+      .zone(dropZoneWidth / 2, dropZoneHeight / 2)
+      .setSize(dropZoneWidth, dropZoneHeight);
     this.add(this.dropZone);
     scene.physics.world.enable(this.dropZone, 0);
   }
