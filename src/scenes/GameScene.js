@@ -69,11 +69,16 @@ class GameScene extends Phaser.Scene {
     this.spawnRandomDamage()
   }
 
+  update() {
+    
+  }
+
   spawnRandomDamage(){
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
     var damageIndicator = Math.floor(Math.random() * 4); 
+    damageIndicator = 0; //DEBUG
     switch(damageIndicator) {
       case 0:
           this.spawnPipeDamage();
@@ -91,6 +96,9 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnPipeDamage(){
+    if(mapAreas.pipeAreas.length == 0) {
+      return;
+    }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.pipeAreas.length); 
     // cooridnate selector
@@ -103,6 +111,9 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnElectricityDamage(){
+    if(mapAreas.electricityAreas.length == 0) {
+      return;
+    }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.electricityAreas.length); 
     // cooridnate selector
@@ -115,6 +126,9 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnHoleDamage(){
+    if(mapAreas.holeAreas.length == 0) {
+      return;
+    }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.holeAreas.length); 
     // cooridnate selector
@@ -144,6 +158,9 @@ class GameScene extends Phaser.Scene {
     this.physics.world.enable(this.solderingIron);
   }
   spawnFIreDamage(){
+    if(mapAreas.fireAreas.length == 0) {
+      return;
+    }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length); 
     // cooridnate selector
