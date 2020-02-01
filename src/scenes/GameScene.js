@@ -32,11 +32,25 @@ class GameScene extends Phaser.Scene {
       [[1040, 605], [630, 350]],
     ]
 
+    this.spawnTools();
+
     for(let i = 0; i < this.game.settings.playerCount; i++) {
       new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup);
     }
 
     //debug objects
+    this.leak = new Leak(this, 500, 300,'LeakSprite');
+    this.physics.world.enable(this.leak);
+    this.damageGoup.add(this.leak);
+
+    // Tubes
+    new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
+    new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
+    new ItemTube(this, {x: 1355, y: 450}, {x: 1355, y: 630}, this.zoneGroup); // Right
+    new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
+  }
+
+  spawnTools() {
     this.hammer = new Hammer(this, 400, 400);
     this.toolGroup.add(this.hammer)
     this.physics.world.enable(this.hammer);
@@ -52,16 +66,6 @@ class GameScene extends Phaser.Scene {
     this.solderingIron = new SolderingIron(this, 400, 400);
     this.toolGroup.add(this.solderingIron)
     this.physics.world.enable(this.solderingIron);
-
-    this.leak = new Leak(this, 500, 300,'LeakSprite');
-    this.physics.world.enable(this.leak);
-    this.damageGoup.add(this.leak);
-
-    // Tubes
-    new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
-    new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
-    new ItemTube(this, {x: 1355, y: 450}, {x: 1355, y: 630}, this.zoneGroup); // Right
-    new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
   }
 }
 
