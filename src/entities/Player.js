@@ -1,8 +1,11 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, x, y, playerId, toolGroup, damageGroup, zoneGroup) {
-    super(scene, x, y);
+  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
+    super(scene, pos1[0] + (pos2[0]-pos1[0]) / 2, pos1[1] + (pos2[1]-pos1[1]) / 2);
+
     scene.add.existing(this);
     this.playerId = playerId;
+
+
     this.speed = this.scene.game.settings.playerSpeed;
 
     this.generateAnimations();
@@ -15,6 +18,12 @@ class Player extends Phaser.GameObjects.Container {
     this.add(this.playerText);
 
     scene.input.gamepad.on('down', this.onButtonPress, this);
+	scene.physics.world.enable(this);
+	this.body.setSize(this.playerSprite.width,this.playerSprite.height);
+
+	this.body.setCollideWorldBounds(true);
+    this.body.setBoundsRectangle(new Phaser.Geom.Rectangle(pos1[0], pos1[1], pos2[0], pos2[1]));
+
 
     this.toolGroup = toolGroup;
     this.damageGroup = damageGroup;
