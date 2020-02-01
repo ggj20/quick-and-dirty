@@ -2,7 +2,7 @@ import Damage from './Damage';
 
 class Leak extends Damage {
     constructor(scene, x, y) {
-        super(scene, x, y, 'LeakSprite', 'HAMMER', 100);
+        super(scene, x, y, 'LeakSprite', 'PIPE_WRENCH', 100);
     }
 }
 
