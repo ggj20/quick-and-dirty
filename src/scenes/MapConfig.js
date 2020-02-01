@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var mapAreas = {
     pipeAreas:[
         {xSource : 230, xLength: 40, ySource : 90, yLength: 80}, //Room 1
@@ -33,11 +32,5 @@ holeAreas:[
     {xSource : 270, xLength: 635, ySource : 605, yLength: 350}, //Room 3
     {xSource : 1040, xLength: 635, ySource : 605, yLength: 350} //Room 4
 ]};
-=======
-var mapAreas = {pipeAreas:[{xSource : 200, xLength: 400, ySource : 200, yLength: 400}],
-electricityAreas: [],
-fireAreas:[],
-holeAreas:[]};
->>>>>>> 143faac97b649db77a2bf5080f075fc65aff1d46
 
 export default mapAreas;
