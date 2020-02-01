@@ -74,7 +74,7 @@ class GameScene extends Phaser.Scene {
     this.toolGroup.add(this.extinguisher)
     this.physics.world.enable(this.extinguisher);
 
-    this.pipeWrench= new PipeWrench(this, 400, 400);
+    this.pipeWrench = new PipeWrench(this, 400, 400);
     this.toolGroup.add(this.pipeWrench)
     this.physics.world.enable(this.pipeWrench);
 
