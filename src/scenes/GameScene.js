@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Player from '../entities/Player';
 import Hammer from '../entities/Hammer';
+import Extinguisher from '../entities/Extinguisher';
 import Leak from '../entities/Leak';
 import ItemTube from '../entities/ItemTube';
 
@@ -37,6 +38,11 @@ class GameScene extends Phaser.Scene {
     this.hammer = new Hammer(this, 400, 400);
     this.toolGroup.add(this.hammer)
     this.physics.world.enable(this.hammer);
+
+    this.extinguisher = new Extinguisher(this, 300, 400);
+    this.toolGroup.add(this.extinguisher)
+    this.physics.world.enable(this.extinguisher);
+
     this.leak = new Leak(this, 500, 300,'LeakSprite');
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
