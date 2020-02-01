@@ -142,25 +142,22 @@ class Player extends Phaser.GameObjects.Container {
       direction = deltaY < 0 ? 'up' : 'down';
     }
 
+    let animation = false;
     if(direction == 'down') {
-      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-down') {
-        this.playerSprite.anims.play('walk-down');
-      }
+      animation = this.activeTool == null ? 'walk-down' : 'walk-down-equipped';
     } else if(direction == 'up') {
-      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-up') {
-        this.playerSprite.anims.play('walk-up');
-      }
-    } else if(direction == 'left') {
-      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-side') {
-        this.playerSprite.anims.play('walk-side');
-      }
-    } else if(direction == 'right') {
-      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-side') {
-        this.playerSprite.anims.play('walk-side');
-        //sprite.flipX = (axisH > 0);
-      }
-    } else {
+      animation = this.activeTool == null ? 'walk-up' : 'walk-up-equipped';
+    } else if(direction == 'right' || direction == 'left') {
+      animation = this.activeTool == null ? 'walk-side' : 'walk-side-equipped';
+    }
+
+    if(animation == false) {
       this.playerSprite.anims.stop();
+    } else {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
+        this.playerSprite.flipX = direction == 'left';
+        this.playerSprite.anims.play(animation);
+      }
     }
 
     this.x += deltaX;
