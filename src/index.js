@@ -13,7 +13,7 @@ var config = {
   physics: {
     default: 'arcade',
     arcade: {
-      //debug: true
+      debug: true
     }
   },
   input: {
