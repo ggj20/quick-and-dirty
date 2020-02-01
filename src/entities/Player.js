@@ -1,8 +1,8 @@
 class Player extends Phaser.GameObjects.Container {
   constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
-    super(scene, pos1[0],  pos1[1]);
-
+    super(scene, 0, 0);
     scene.add.existing(this);
+
     this.playerId = playerId;
 
     this.speed = this.scene.game.settings.playerSpeed;
