@@ -17,9 +17,10 @@ class GameScene extends Phaser.Scene {
   create() {
     this.damageGoup = this.add.group();
     this.toolGroup = this.add.group();
- 
-    new Player(this, 100, 100, 0, this.toolGroup, this.damageGoup);
-    new Player(this, 100, 100, 1, this.toolGroup, this.damageGoup);
+
+    for(let i = 0; i < this.game.settings.playerCount; i++) {
+      new Player(this, 100, 100, i, this.toolGroup, this.damageGoup);
+    }
 
     //debug objects
     this.hammer = new Hammer(this, 200, 200,'HammerSprite');

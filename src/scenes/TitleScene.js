@@ -12,7 +12,6 @@ class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    this.playerCount = 4;
     this.make.text({
       x: this.game.config.width/2,
       y: 100,
@@ -25,7 +24,7 @@ class TitleScene extends Phaser.Scene {
     this.readyStates = [];
     this.playerTexts = [];
 
-    for(let i = 0; i < this.playerCount; i++) {
+    for(let i = 0; i < this.game.settings.playerCount; i++) {
       this.playerTexts.push(this.createPlayerText(i));
       this.readyStates.push(false);
     }
