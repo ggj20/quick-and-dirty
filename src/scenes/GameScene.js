@@ -78,7 +78,6 @@ class GameScene extends Phaser.Scene {
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
     var damageIndicator = Math.floor(Math.random() * 4); 
-    //damageIndicator = 0; //DEBUG
     switch(damageIndicator) {
       case 0:
           this.spawnPipeDamage();
