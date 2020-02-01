@@ -39,7 +39,8 @@ class GameScene extends Phaser.Scene {
     this.spawnTools();
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
-      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup);
+		let emitter = this.createRunningEmitter();
+      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
     }
 
     //debug objects
@@ -74,7 +75,7 @@ class GameScene extends Phaser.Scene {
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
-    var damageIndicator = Math.floor(Math.random() * 4); 
+    var damageIndicator = Math.floor(Math.random() * 4);
     switch(damageIndicator) {
       case 0:
           this.spawnPipeDamage();
@@ -99,10 +100,10 @@ class GameScene extends Phaser.Scene {
       return;
     }
     // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.pipeAreas.length); 
+    var areaSelector = Math.floor(Math.random() * mapAreas.pipeAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength); 
-    var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength); 
+    var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength);
+    var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength);
 
     var leak = new Leak(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
@@ -114,10 +115,10 @@ class GameScene extends Phaser.Scene {
       return;
     }
     // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.electricityAreas.length); 
+    var areaSelector = Math.floor(Math.random() * mapAreas.electricityAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength); 
-    var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength); 
+    var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength);
+    var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength);
 
     var leak = new Electro(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
@@ -129,10 +130,10 @@ class GameScene extends Phaser.Scene {
       return;
     }
     // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.holeAreas.length); 
+    var areaSelector = Math.floor(Math.random() * mapAreas.holeAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength); 
-    var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength); 
+    var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength);
+    var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength);
 
     var leak = new Hole(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
@@ -144,10 +145,10 @@ class GameScene extends Phaser.Scene {
       return;
     }
     // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length); 
+    var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength); 
-    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength); 
+    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength);
+    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength);
 
     var leak = new Fire(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
@@ -172,6 +173,20 @@ class GameScene extends Phaser.Scene {
     this.physics.world.enable(this.solderingIron);
   }
 
+  createRunningEmitter() {
+	  return this.add.particles('SteamParticle').createEmitter({
+		  x: 0,
+		  y: 0,
+          speed: { min: 0, max: 0 },
+          angle: { min: 0, max: 0 },
+          scale: { start: 0.6, end: 0.1 },
+          blendMode: 'NORMAL',
+          frequency: -1,
+          active: true,
+          lifespan: 1500,
+          tint: 0xDDDDDD,
+	  });
+  }
 }
 
 export default GameScene;

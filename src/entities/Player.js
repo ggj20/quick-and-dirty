@@ -1,5 +1,5 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
+  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup, runningEmitter) {
     super(scene, 0, 0);
     scene.add.existing(this);
 
@@ -31,6 +31,11 @@ class Player extends Phaser.GameObjects.Container {
     if(this.scene.game.settings.debug) {
       this.debugDrawRoom(pos1, pos2);
     }
+
+	this.runningEmitter = runningEmitter;
+	this.runningEmitter.follow = this;
+	this.runningEmitter.followOffset.x = this.playerSprite.width / 2 - 8;
+	this.runningEmitter.followOffset.y = this.playerSprite.height / 2 - 6;
   }
 
   onButtonPress(pad, button, index) {
@@ -172,10 +177,12 @@ class Player extends Phaser.GameObjects.Container {
 
     if(animation == false) {
       this.playerSprite.anims.stop();
+	  this.runningEmitter.frequency = -1;
     } else {
       if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
         this.playerSprite.flipX = direction == 'left';
         this.playerSprite.anims.play(animation);
+		this.runningEmitter.frequency = 250;
       }
     }
 
