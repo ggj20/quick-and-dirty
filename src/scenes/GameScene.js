@@ -22,8 +22,15 @@ class GameScene extends Phaser.Scene {
 
     this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
 
+    this.rooms = [
+      [[275, 128], [630, 350]],
+      [[1040, 128], [630, 350]],
+      [[275, 605], [630, 350]],
+      [[1040, 605], [630, 350]],
+    ]
+
     for(let i = 0; i < this.game.settings.playerCount; i++) {
-      new Player(this, [200, 200], [500, 500], i, this.toolGroup, this.damageGoup, this.zoneGroup);
+      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup);
     }
 
     //debug objects
