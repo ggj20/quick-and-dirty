@@ -29,6 +29,7 @@ class GameScene extends Phaser.Scene {
 	//new Player(this, [905, 565], [500, 320], 3, this.toolGroup, this.damageGoup, this.zoneGroup);
 
 
+
     //debug objects
     this.hammer = new Hammer(this, 400, 400,'HammerSprite');
     this.toolGroup.add(this.hammer)
@@ -36,12 +37,14 @@ class GameScene extends Phaser.Scene {
     this.leak = new Leak(this, 500, 300,'LeakSprite');
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
+ 
 
     // Tubes
     new ItemTube(this, {x: 800, y:370}, {x: 930, y: 370}, this.zoneGroup); // Top
     new ItemTube(this, {x: 585, y: 474}, {x: 585, y: 600}, this.zoneGroup); // Left
     new ItemTube(this, {x: 1140, y: 470}, {x: 1140, y: 615}, this.zoneGroup); // Right
     new ItemTube(this, {x: 800, y: 720}, {x: 930, y: 720}, this.zoneGroup); // Bottom
+
   }
 }
 

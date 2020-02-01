@@ -2,6 +2,7 @@ class Player extends Phaser.GameObjects.Container {
   constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
     super(scene, pos1[0],  pos1[1]);
 
+
     scene.add.existing(this);
     this.playerId = playerId;
 
@@ -20,6 +21,7 @@ class Player extends Phaser.GameObjects.Container {
     scene.input.gamepad.on('down', this.onButtonPress, this);
 	scene.physics.world.enable(this);
 	this.body.setSize(this.playerSprite.width,this.playerSprite.height);
+
 
 	this.body.setCollideWorldBounds(true);
     this.body.setBoundsRectangle(new Phaser.Geom.Rectangle(pos1[0], pos1[1], pos2[0], pos2[1]));
