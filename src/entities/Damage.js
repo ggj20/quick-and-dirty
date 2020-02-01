@@ -7,7 +7,7 @@ class Damage extends Phaser.GameObjects.Sprite {
     }
 
     repair(toolType) {
-        console.log("Trying to repair "+this.damageType+" with"+toolType)
+        console.log("Repair method not implemented on damage type");
     }
 }
   

@@ -6,7 +6,7 @@ class Leak extends Damage {
         this.damagename = "leak"
     }
     repair() {
-        console.log("used hammer to repair leak!")
+        this.status -= 10;
     }
 }
   
