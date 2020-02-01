@@ -105,7 +105,7 @@ class GameScene extends Phaser.Scene {
     this.toolGroup.add(this.hammer);
     this.physics.world.enable(this.hammer);
 
-    this.extinguisher = new Extinguisher(this, 300, 400);
+    this.extinguisher = new Extinguisher(this, 400, 400);
     this.toolGroup.add(this.extinguisher);
     this.physics.world.enable(this.extinguisher);
 
