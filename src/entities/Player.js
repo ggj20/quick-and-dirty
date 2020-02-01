@@ -5,7 +5,8 @@ class Player extends Phaser.GameObjects.Container {
     this.playerId = playerId;
     this.speed = this.scene.game.settings.playerSpeed;
 
-    this.playerSprite = scene.add.image(0, 0, 'PlayerSprite');
+    this.generateAnimations();
+    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet');
     this.add(this.playerSprite);
 
     this.scene.physics.world.enable(this)
@@ -84,15 +85,83 @@ class Player extends Phaser.GameObjects.Container {
     zone.parentContainer.teleportTool(zone, tool);
   }
 
+  generateAnimations() {
+    this.scene.anims.create({
+      key: 'walk-up',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-up-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 24, end: 47, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-down-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 48, end: 71, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-side',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 72, end: 95, first: 0 }),
+      frameRate: 45,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-side-equipped',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 96, end: 119, first: 0 }),
+      frameRate: 45,
+      repeat: -1,
+    });
+    this.scene.anims.create({
+      key: 'walk-down',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 120, end: 143, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+  }
+
   preUpdate(time, delta) {
     if(!this.pad) {
       this.pad = this.scene.input.gamepad.getPad(this.playerId);
       return;
     }
 
-    this.x += delta * this.speed * this.pad.axes[0].getValue();
-    this.y += delta * this.speed * this.pad.axes[1].getValue();
-    //sprite.flipX = (axisH > 0);
+    let deltaX = delta * this.speed * this.pad.axes[0].getValue();
+    let deltaY = delta * this.speed * this.pad.axes[1].getValue();
+
+    let direction = 'none';
+    if(Math.abs(deltaX) + Math.abs(deltaY) == 0) {
+      direction = 'none';
+    } else if(Math.abs(deltaX) > Math.abs(deltaY)) {
+      direction = deltaX < 0 ? 'left' : 'right';
+    } else {
+      direction = deltaY < 0 ? 'up' : 'down';
+    }
+
+    let animation = false;
+    if(direction == 'down') {
+      animation = this.activeTool == null ? 'walk-down' : 'walk-down-equipped';
+    } else if(direction == 'up') {
+      animation = this.activeTool == null ? 'walk-up' : 'walk-up-equipped';
+    } else if(direction == 'right' || direction == 'left') {
+      animation = this.activeTool == null ? 'walk-side' : 'walk-side-equipped';
+    }
+
+    if(animation == false) {
+      this.playerSprite.anims.stop();
+    } else {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
+        this.playerSprite.flipX = direction == 'left';
+        this.playerSprite.anims.play(animation);
+      }
+    }
+
+    this.x += deltaX;
+    this.y += deltaY;
   }
 }
 
