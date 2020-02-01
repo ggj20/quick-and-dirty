@@ -27,6 +27,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   constructor(scene) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
 
+    // Draw area of engine sprite
     const graphics = scene.make.graphics(engineAreaWidth, engineAreaHeight);
     graphics.fillStyle(0xff0000, 0.2);
     graphics.fillRect(0, 0, engineAreaWidth, engineAreaHeight);
