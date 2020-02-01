@@ -7,6 +7,7 @@ class Leak extends Damage {
     }
     repair() {
         this.status -= 10;
+        this.setStatusBar();
     }
 }
   
