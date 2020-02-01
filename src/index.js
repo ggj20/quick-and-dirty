@@ -11,6 +11,9 @@ var config = {
   height: 1080,
   physics: {
     default: 'arcade',
+    arcade: {
+      //debug: true
+    }
   },
   input: {
     gamepad: true
