@@ -1,10 +1,12 @@
+const dropZoneSize = 50;
+
 class SteamFurnace extends Phaser.GameObjects.Container {
   constructor(scene, id) {
-    super(scene, 218 - 50, id === 1 ? 0 : 376 - 125);
+    super(scene, 218 - dropZoneSize, id === 1 ? 0 : 376 - 125);
 
-    const graphics = scene.make.graphics(50, 125);
+    const graphics = scene.make.graphics(dropZoneSize, 125);
     graphics.fillStyle(0x0000ff, 0.2);
-    graphics.fillRect(0, 0, 50, 125);
+    graphics.fillRect(0, 0, dropZoneSize, 125);
     this.add(graphics);
   }
 }
