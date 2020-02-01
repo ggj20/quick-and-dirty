@@ -5,6 +5,7 @@ class Player extends Phaser.GameObjects.Container {
     this.playerId = playerId;
     this.speed = this.scene.game.settings.playerSpeed;
 
+    this.generateAnimations();
     this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet');
     this.add(this.playerSprite);
 
@@ -82,6 +83,29 @@ class Player extends Phaser.GameObjects.Container {
     console.log("tool teleport detected");
     console.log(tool.parentContainer);
     zone.parentContainer.teleportTool(zone, tool);
+  }
+
+  generateAnimations() {
+    this.scene.anims.create({
+      key: 'walk-down',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    // #TODO: Add correct Frames
+    this.scene.anims.create({
+      key: 'walk-up',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+    // #TODO: Add correct Frames
+    this.scene.anims.create({
+      key: 'walk-side',
+      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 23 }),
+      frameRate: 60,
+      repeat: -1,
+    });
   }
 
   preUpdate(time, delta) {
