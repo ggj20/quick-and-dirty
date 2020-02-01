@@ -97,6 +97,7 @@ class GameScene extends Phaser.Scene {
 
   spawnPipeDamage(){
     if(mapAreas.pipeAreas.length == 0) {
+      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -112,6 +113,7 @@ class GameScene extends Phaser.Scene {
 
   spawnElectricityDamage(){
     if(mapAreas.electricityAreas.length == 0) {
+      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -127,6 +129,7 @@ class GameScene extends Phaser.Scene {
 
   spawnHoleDamage(){
     if(mapAreas.holeAreas.length == 0) {
+      this.spawnRandomDamage();
       return;
     }
     // area slector
@@ -159,6 +162,7 @@ class GameScene extends Phaser.Scene {
   }
   spawnFIreDamage(){
     if(mapAreas.fireAreas.length == 0) {
+      this.spawnRandomDamage();
       return;
     }
     // area slector
