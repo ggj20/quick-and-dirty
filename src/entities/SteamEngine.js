@@ -21,10 +21,14 @@ class SteamFurnace extends Phaser.GameObjects.Container {
     this.add(this.dropZone);
     scene.physics.world.enable(this.dropZone, 0);
   }
+
+  teleportTool(zone, tool) {
+    console.log('teleport to furnace', zone, tool);
+  }
 }
 
 export default class SteamEngine extends Phaser.GameObjects.Container {
-  constructor(scene) {
+  constructor(scene, zoneGroup) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
 
     // Draw area of engine sprite
@@ -35,8 +39,10 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     this.furnace1 = new SteamFurnace(scene, 1);
     this.add(this.furnace1);
+    zoneGroup.add(this.furnace1.dropZone);
     this.furnace2 = new SteamFurnace(scene, 2);
     this.add(this.furnace2);
+    zoneGroup.add(this.furnace2.dropZone);
 
     scene.add.existing(this);
   }
