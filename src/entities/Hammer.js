@@ -1,13 +1,12 @@
 import Tool from './Tool';
 
 class Hammer extends Tool {
-    constructor(scene, x, y, texture, frame) {
-        super(scene, x, y, texture, frame, "hammer");
+    constructor(scene, x, y) {
+        super(scene, x, y, 'HammerSprite', 'HAMMER');
     }
     use() {
         //ToDo animation
     }
 }
-  
+
 export default Hammer;
-  
