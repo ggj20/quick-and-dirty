@@ -36,14 +36,13 @@ class GameScene extends Phaser.Scene {
     this.leak = new Leak(this, 500, 300,'LeakSprite');
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
- 
+
 
     // Tubes
     new ItemTube(this, {x: 800, y:370}, {x: 930, y: 370}, this.zoneGroup); // Top
     new ItemTube(this, {x: 585, y: 474}, {x: 585, y: 600}, this.zoneGroup); // Left
     new ItemTube(this, {x: 1140, y: 470}, {x: 1140, y: 615}, this.zoneGroup); // Right
     new ItemTube(this, {x: 800, y: 720}, {x: 930, y: 720}, this.zoneGroup); // Bottom
-
   }
 }
 
