@@ -40,10 +40,28 @@ class Player extends Phaser.GameObjects.Container {
 
   useTool() {
     if (this.activeTool != null) {
-      this.physics.arcade.overlap(this.activeTool, this.damageGroup, this.handleTool, null, this );
-      this.activeTool.use();
+      this.scene.physics.overlap(this.activeTool, this.damageGroup, this.handleToolUse, null, this );
     }
   } 
+
+  pickupTool() {
+    console.log(this.activeTool);
+    if (this.activeTool == null) {
+      this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
+    }
+  }
+
+  handleToolUse(tool, damage) {
+    if (this.activeTool != null ) {
+      if(damage.damageType.localeCompare(tool.toolType) == 0){
+        tool.use();
+        damage.repair();
+      }
+      if(damage.status <= 0) {
+        damage.destroy();
+      }
+    }
+  }
 
   handleToolPickup(player, tool) {
     this.add(tool);
@@ -56,13 +74,6 @@ class Player extends Phaser.GameObjects.Container {
     this.remove(this.activeTool)
     this.activeTool.setPosition (this.x, this.y);
     this.activeTool = null;
-  }
-
-  pickupTool() {
-    console.log(this.activeTool);
-    if (this.activeTool == null) {
-      this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
-    }
   }
 
   preUpdate(time, delta) {

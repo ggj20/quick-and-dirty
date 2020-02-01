@@ -5,9 +5,9 @@ class Hammer extends Tool {
         super(scene, x, y, texture, frame, "hammer");
     }
     use() {
-        console.log("used hammer!")
+        //ToDo animation
     }
 }
   
-export default Tool;
+export default Hammer;
   
