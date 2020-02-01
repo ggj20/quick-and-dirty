@@ -10,6 +10,7 @@ import Hole from '../entities/Hole';
 import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
 import mapAreas from './MapConfig';
+import CoalDispenser from '../entities/CoalDispenser';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -65,6 +66,8 @@ class GameScene extends Phaser.Scene {
     new ItemTube(this, {x: 1140, y: 470}, {x: 1140, y: 615}, this.zoneGroup); // Right
     new ItemTube(this, {x: 800, y: 720}, {x: 930, y: 720}, this.zoneGroup); // Bottom
 
+    // Coal Dispensers
+    new CoalDispenser(this, 600, 200, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(5000), 5000);
   }
