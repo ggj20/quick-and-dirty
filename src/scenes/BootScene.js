@@ -2,6 +2,10 @@ import Phaser from 'phaser';
 
 import PlayerSpriteSheet from "../assets/player.png";
 import HammerSprite from "../assets/hammer.png";
+import ExtinguisherSprite from "../assets/extinguisher.png";
+import PipeWrenchSprite from "../assets/pipe-wrench.png";
+import SolderingIronSprite from "../assets/soldering-iron.png";
+import CoalSprite from "../assets/coal.png";
 import LeakSprite from "../assets/leak.png";
 import ShipSprite from "../assets/ship.png";
 import SteamParticle from "../assets/steam-particle.png";
@@ -38,6 +42,10 @@ class BootScene extends Phaser.Scene {
     });
     this.load.spritesheet('PlayerSpriteSheet', PlayerSpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
     this.load.image('HammerSprite', HammerSprite);
+    this.load.image('ExtinguisherSprite', ExtinguisherSprite);
+    this.load.image('PipeWrenchSprite', PipeWrenchSprite);
+    this.load.image('SolderingIronSprite', SolderingIronSprite);
+    this.load.image('CoalSprite', CoalSprite);
     this.load.image('LeakSprite', LeakSprite);
     this.load.image('ShipSprite', ShipSprite);
     this.load.image('SteamParticle', SteamParticle);
