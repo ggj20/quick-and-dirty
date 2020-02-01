@@ -1,9 +1,19 @@
+const engineWorldPositionX = 106;
+const engineWorldPositionY = 352;
+
+const engineAreaWidth = 218;
+const engineAreaHeight = 376;
+
 const dropZoneWidth = 50;
 const dropZoneHeight = 125;
 
 class SteamFurnace extends Phaser.GameObjects.Container {
   constructor(scene, id) {
-    super(scene, 218 - dropZoneWidth, id === 1 ? 0 : 376 - dropZoneHeight);
+    super(
+      scene,
+      engineAreaWidth - dropZoneWidth,
+      id === 1 ? 0 : engineAreaHeight - dropZoneHeight
+    );
 
     this.dropZone = scene.add
       .zone(dropZoneWidth / 2, dropZoneHeight / 2)
@@ -15,11 +25,11 @@ class SteamFurnace extends Phaser.GameObjects.Container {
 
 export default class SteamEngine extends Phaser.GameObjects.Container {
   constructor(scene) {
-    super(scene, 106, 352);
+    super(scene, engineWorldPositionX, engineWorldPositionY);
 
-    const graphics = scene.make.graphics(218, 376);
+    const graphics = scene.make.graphics(engineAreaWidth, engineAreaHeight);
     graphics.fillStyle(0xff0000, 0.2);
-    graphics.fillRect(0, 0, 218, 376);
+    graphics.fillRect(0, 0, engineAreaWidth, engineAreaHeight);
     this.add(graphics);
 
     this.furnace1 = new SteamFurnace(scene, 1);
