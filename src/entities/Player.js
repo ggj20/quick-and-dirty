@@ -74,9 +74,11 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   handleToolPickup(player, tool) {
-    this.add(tool);
-    this.activeTool = tool;
-    this.activeTool.setPosition (0, 0);
+	  if (this.activeTool == null) {
+	    this.add(tool);
+	    this.activeTool = tool;
+	    this.activeTool.setPosition (0, 0);
+	}
   }
 
   handleToolZone(tool, zone) {
