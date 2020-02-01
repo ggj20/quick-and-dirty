@@ -11,6 +11,7 @@ class BootScene extends Phaser.Scene {
   }
 
   preload() {
+    console.log('loading boot');
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x444444, 0.8);
@@ -21,25 +22,22 @@ class BootScene extends Phaser.Scene {
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
-                
+
     this.load.on('fileprogress', function (file) {
         console.log(file.src);
     });
-    
+
     this.load.on('complete', function () {
       progressBar.destroy();
       progressBox.destroy();
       console.log('complete');
     });
-    console.log('loading boot');
-    //this.load.image('name', 'path.png');
     this.load.image('PlayerSprite', PlayerSprite);
     this.load.image('HammerSprite', HammerSprite);
   }
 
   create() {
     console.log('complete Boot, changing to TitleScene');
-    // #TODO Add loading indicator
     this.scene.start('TitleScene');
   }
 }
