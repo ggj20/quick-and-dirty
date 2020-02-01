@@ -1,7 +1,10 @@
 class Player extends Phaser.GameObjects.Container {
   constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
     super(scene, pos1[0],  pos1[1]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> fitting wall hitbox
 
     scene.add.existing(this);
     this.playerId = playerId;
