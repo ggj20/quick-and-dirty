@@ -29,6 +29,9 @@ class Player extends Phaser.GameObjects.Container {
     this.zoneGroup = zoneGroup;
 
     this.activeTool = null;
+    if(this.scene.game.settings.debug) {
+      this.debugDrawRoom(pos1, pos2);
+    }
   }
 
   onButtonPress(pad, button, index) {
@@ -132,6 +135,13 @@ class Player extends Phaser.GameObjects.Container {
       frameRate: 60,
       repeat: -1,
     });
+  }
+
+  debugDrawRoom(pos1, pos2) {
+    var graphics = this.scene.add.graphics();
+    graphics.lineStyle(4, 0x00ff00, 0.5);
+    graphics.strokeRect(pos1[0], pos1[1], pos2[0], pos2[1]);
+
   }
 
   preUpdate(time, delta) {

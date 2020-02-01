@@ -4,6 +4,12 @@ import TitleScene from './scenes/TitleScene';
 import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
+var settings = {
+  playerSpeed: 0.1,
+  playerCount: 4,
+  debug: true,
+};
+
 var config = {
   type: Phaser.AUTO,
   parent: 'game',
@@ -13,7 +19,7 @@ var config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
+      debug: settings.debug,
     }
   },
   input: {
@@ -28,7 +34,4 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-game.settings = {
-  playerSpeed: 0.1,
-  playerCount: 4,
-}
+game.settings = settings;
