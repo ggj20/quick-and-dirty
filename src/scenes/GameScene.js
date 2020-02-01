@@ -21,17 +21,13 @@ class GameScene extends Phaser.Scene {
     new Player(this, 100, 100, 0, this.toolGroup, this.damageGoup);
     new Player(this, 100, 100, 1, this.toolGroup, this.damageGoup);
 
+    //debug objects
     this.hammer = new Hammer(this, 200, 200,'HammerSprite');
     this.toolGroup.add(this.hammer)
     this.physics.world.enable(this.hammer);
     this.leak = new Leak(this, 220, 220,'LeakSprite');
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
-
-    
-    
-
-
   }
 }
 

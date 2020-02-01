@@ -2,7 +2,6 @@ class Player extends Phaser.GameObjects.Container {
   constructor(scene, x, y, playerId, toolGroup, damageGroup) {
     super(scene, x, y);
     scene.add.existing(this);
-
     this.playerId = playerId;
     this.speed = 0.2;
 
@@ -15,8 +14,6 @@ class Player extends Phaser.GameObjects.Container {
     this.add(this.playerText);
 
     scene.input.gamepad.on('down', this.onButtonPress, this);
-
-    this.tool = null;
 
     this.toolGroup = toolGroup;
     this.damageGroup = damageGroup;
@@ -42,7 +39,6 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   useTool() {
-    console.log(this.playerId, 'use tool');
     if (this.activeTool != null) {
       this.physics.arcade.overlap(this.activeTool, this.damageGroup, this.handleTool, null, this );
       this.activeTool.use();
@@ -50,27 +46,23 @@ class Player extends Phaser.GameObjects.Container {
   } 
 
   handleToolPickup(player, tool) {
-    console.log("Player is"+player+ "tool is "+tool);
     this.add(tool);
     this.activeTool = tool;
+    this.activeTool.setPosition (0, 0);
   }
 
   dropTool() {
-    console.log(this.playerId, 'drop tool');
-    this.scene.add(this.activeTool);
+    this.scene.add.existing(this.activeTool)
+    this.remove(this.activeTool)
+    this.activeTool.setPosition (this.x, this.y);
     this.activeTool = null;
-    
-    // Todo detach
   }
 
   pickupTool() {
     console.log(this.activeTool);
     if (this.activeTool == null) {
-      console.log("do overlap "+this.toolGroup)
       this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
     }
-    //ToDo attach
-    console.log(this.playerId, 'pickup tool');
   }
 
   preUpdate(time, delta) {
