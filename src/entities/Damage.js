@@ -1,9 +1,9 @@
 class Damage extends Phaser.GameObjects.Container  {
-    constructor(scene, x, y, texture, frame, damageType) {
+    constructor(scene, x, y, texture, frame, damageType, repairDebounce) {
 
         super(scene, x, y,);
         scene.add.existing(this);
-
+        
         this.damageSprite = scene.add.image(0, 0, texture,frame);
         this.add(this.damageSprite);
 
@@ -17,7 +17,11 @@ class Damage extends Phaser.GameObjects.Container  {
         this.progressBox.fillRect(- this.damageSprite.width/1.5, - this.damageSprite.height/1.5, this.damageSprite.width * 1.5, this.damageSprite.height / 5); // ToDo set position symmetrical
 
         this.damageType = damageType;
+        this.repairDebounce = repairDebounce;
         this.status = 100;
+
+        this.lastRepair = 0;
+
     }
 
     repair(toolType) {
