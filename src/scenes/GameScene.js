@@ -1,25 +1,25 @@
-import Phaser from "phaser";
-import Player from "../entities/Player";
-import Hammer from "../entities/Hammer";
-import Extinguisher from "../entities/Extinguisher";
-import SolderingIron from "../entities/SolderingIron";
-import PipeWrench from "../entities/PipeWrench.js";
-import Leak from "../entities/Leak";
-import Fire from "../entities/Fire";
-import Hole from "../entities/Hole";
-import Electro from "../entities/Electro";
-import ItemTube from "../entities/ItemTube";
-import SteamEngine from "../entities/SteamEngine";
+import Phaser from 'phaser';
+import Player from '../entities/Player';
+import Hammer from '../entities/Hammer';
+import Extinguisher from '../entities/Extinguisher';
+import SolderingIron from '../entities/SolderingIron';
+import PipeWrench from '../entities/PipeWrench.js';
+import Leak from '../entities/Leak';
+import Fire from '../entities/Fire';
+import Hole from '../entities/Hole';
+import Electro from '../entities/Electro';
+import ItemTube from '../entities/ItemTube';
+import SteamEngine from '../entities/SteamEngine';
 
 class GameScene extends Phaser.Scene {
   constructor() {
     super({
-      key: "GameScene"
+      key: 'GameScene'
     });
   }
 
   preload() {
-    console.log("loading game");
+    console.log('loading game');
   }
 
   create() {
@@ -31,7 +31,7 @@ class GameScene extends Phaser.Scene {
       .image(
         this.game.config.width / 2,
         this.game.config.height / 2,
-        "ShipSprite"
+        'ShipSprite'
       )
       .setOrigin(0.5, 0.5);
 
