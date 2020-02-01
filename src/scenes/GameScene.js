@@ -9,6 +9,7 @@ import Fire from '../entities/Fire';
 import Hole from '../entities/Hole';
 import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
+import mapAreas from './MapConfig';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -59,10 +60,70 @@ class GameScene extends Phaser.Scene {
     this.damageGoup.add(this.electro);
 
     // Tubes
-    new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
-    new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
-    new ItemTube(this, {x: 1355, y: 450}, {x: 1355, y: 630}, this.zoneGroup); // Right
-    new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
+    new ItemTube(this, {x: 800, y:370}, {x: 930, y: 370}, this.zoneGroup); // Top
+    new ItemTube(this, {x: 585, y: 474}, {x: 585, y: 600}, this.zoneGroup); // Left
+    new ItemTube(this, {x: 1140, y: 470}, {x: 1140, y: 615}, this.zoneGroup); // Right
+    new ItemTube(this, {x: 800, y: 720}, {x: 930, y: 720}, this.zoneGroup); // Bottom
+
+
+    this.spawnRandomDamage()
+  }
+
+  spawnRandomDamage(){
+    // todo select player
+    //chance manipulate possibility to spawn specific effect dependant to already spawned effects
+    //detect  damage to spawn
+    var damageIndicator = Math.floor(Math.random() * 4); 
+    switch(damageIndicator) {
+      case 0:
+          this.spawnPipeDamage();
+        break;
+      case 1:
+        this.spawnElectricityDamage();
+        break;
+      case 2:
+        this.spawnHoleDamage();
+        break;
+      case 3:
+        this.spawnFIreDamage();
+        break
+    }
+  }
+
+  spawnPipeDamage(){
+    // area slector
+    var areaSelector = Math.floor(Math.random() * mapAreas.pipeAreas.length); 
+    // cooridnate selector
+    var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength); 
+    var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength); 
+
+    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    this.physics.world.enable(leak);
+    this.damageGoup.add(leak);
+  }
+
+  spawnElectricityDamage(){
+    // area slector
+    var areaSelector = Math.floor(Math.random() * mapAreas.electricityAreas.length); 
+    // cooridnate selector
+    var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength); 
+    var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength); 
+
+    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    this.physics.world.enable(leak);
+    this.damageGoup.add(leak);
+  }
+
+  spawnHoleDamage(){
+    // area slector
+    var areaSelector = Math.floor(Math.random() * mapAreas.holeAreas.length); 
+    // cooridnate selector
+    var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength); 
+    var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength); 
+
+    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    this.physics.world.enable(leak);
+    this.damageGoup.add(leak);
   }
 
   spawnTools() {
@@ -82,6 +143,18 @@ class GameScene extends Phaser.Scene {
     this.toolGroup.add(this.solderingIron)
     this.physics.world.enable(this.solderingIron);
   }
+  spawnFIreDamage(){
+    // area slector
+    var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length); 
+    // cooridnate selector
+    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength); 
+    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength); 
+
+    var leak = new Leak(this, xCoordinate, yCoordinate,'LeakSprite');
+    this.physics.world.enable(leak);
+    this.damageGoup.add(leak);
+  }
+
 }
 
 export default GameScene;
