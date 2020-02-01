@@ -1,5 +1,5 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, x, y, playerId, toolGroup, damageGroup) {
+  constructor(scene, x, y, playerId, toolGroup, damageGroup, zoneGroup) {
     super(scene, x, y);
     scene.add.existing(this);
     this.playerId = playerId;
@@ -17,6 +17,8 @@ class Player extends Phaser.GameObjects.Container {
 
     this.toolGroup = toolGroup;
     this.damageGroup = damageGroup;
+    this.zoneGroup = zoneGroup;
+
     this.activeTool = null;
   }
 
@@ -45,10 +47,17 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   pickupTool() {
-    console.log(this.activeTool);
     if (this.activeTool == null) {
       this.scene.physics.overlap(this, this.toolGroup, this.handleToolPickup, null, this );
     }
+  }
+
+  dropTool() {
+    this.scene.add.existing(this.activeTool)
+    this.remove(this.activeTool)
+    this.activeTool.setPosition (this.x, this.y);
+    this.scene.physics.overlap(this.activeTool, this.zoneGroup, this.handleToolZone, null, this );
+    this.activeTool = null;
   }
 
   handleToolUse(tool, damage) {
@@ -69,11 +78,10 @@ class Player extends Phaser.GameObjects.Container {
     this.activeTool.setPosition (0, 0);
   }
 
-  dropTool() {
-    this.scene.add.existing(this.activeTool)
-    this.remove(this.activeTool)
-    this.activeTool.setPosition (this.x, this.y);
-    this.activeTool = null;
+  handleToolZone(tool, zone) {
+    console.log("tool teleport detected");
+    console.log(tool.parentContainer);
+    zone.parentContainer.teleportTool(zone, tool);
   }
 
   preUpdate(time, delta) {
