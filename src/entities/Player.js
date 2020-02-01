@@ -5,7 +5,7 @@ class Player extends Phaser.GameObjects.Container {
     this.playerId = playerId;
     this.speed = this.scene.game.settings.playerSpeed;
 
-    this.playerSprite = scene.add.image(0, 0, 'PlayerSprite');
+    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet');
     this.add(this.playerSprite);
 
     this.scene.physics.world.enable(this)
