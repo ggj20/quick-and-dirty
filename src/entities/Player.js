@@ -1,6 +1,6 @@
 class Player extends Phaser.GameObjects.Container {
   constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup) {
-    super(scene, pos1[0] + (pos2[0]-pos1[0]) / 2, pos1[1] + (pos2[1]-pos1[1]) / 2);
+    super(scene, pos1[0],  pos1[1]);
 
     scene.add.existing(this);
     this.playerId = playerId;
@@ -9,10 +9,10 @@ class Player extends Phaser.GameObjects.Container {
     this.speed = this.scene.game.settings.playerSpeed;
 
     this.generateAnimations();
-    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet');
+    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet').setOrigin(0,0);
     this.add(this.playerSprite);
 
-    this.scene.physics.world.enable(this)
+    this.scene.physics.world.enable(this);
 
     this.playerText = scene.add.text(-this.playerSprite.width, -this.playerSprite.height, 'Player ' + (this.playerId + 1), {fixedWidth: this.playerSprite.width * 2, align: 'center'});
     this.add(this.playerText);
@@ -23,8 +23,7 @@ class Player extends Phaser.GameObjects.Container {
 
 	this.body.setCollideWorldBounds(true);
     this.body.setBoundsRectangle(new Phaser.Geom.Rectangle(pos1[0], pos1[1], pos2[0], pos2[1]));
-
-
+	this.setPosition(pos1[0]+pos2[0]/2 - this.playerSprite.width/2, pos1[1]+pos2[1]/2 - this.playerSprite.height/2);
     this.toolGroup = toolGroup;
     this.damageGroup = damageGroup;
     this.zoneGroup = zoneGroup;

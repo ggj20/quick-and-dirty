@@ -22,15 +22,18 @@ class GameScene extends Phaser.Scene {
 
     this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
 
-    for(let i = 0; i < this.game.settings.playerCount; i++) {
-      new Player(this, [200, 200], [500, 500], i, this.toolGroup, this.damageGoup, this.zoneGroup);
-    }
+
+    new Player(this, [330, 180], [500, 320], 0, this.toolGroup, this.damageGoup, this.zoneGroup);
+    //new Player(this, [905, 180], [500, 320], 1, this.toolGroup, this.damageGoup, this.zoneGroup);
+    //new Player(this, [330, 565], [500, 320], 2, this.toolGroup, this.damageGoup, this.zoneGroup);
+	//new Player(this, [905, 565], [500, 320], 3, this.toolGroup, this.damageGoup, this.zoneGroup);
+
 
     //debug objects
-    this.hammer = new Hammer(this, 200, 200,'HammerSprite');
+    this.hammer = new Hammer(this, 400, 400,'HammerSprite');
     this.toolGroup.add(this.hammer)
     this.physics.world.enable(this.hammer);
-    this.leak = new Leak(this, 220, 220,'LeakSprite');
+    this.leak = new Leak(this, 500, 300,'LeakSprite');
     this.physics.world.enable(this.leak);
     this.damageGoup.add(this.leak);
 
