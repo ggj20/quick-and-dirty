@@ -39,7 +39,6 @@ class TitleScene extends Phaser.Scene {
     this.playerTexts[pad.index].setColor('#00CC00');
     this.readyCount++;
     this.readyStates[pad.index] = true;
-    console.log(this.readyStates);
 
     // Test if all players are ready
     if(this.readyStates.reduce((a, b) => {return a && b}, true)) {
