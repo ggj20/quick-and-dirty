@@ -6,8 +6,8 @@ class ItemTube extends Phaser.GameObjects.Container {
     this.tube2 = scene.add.zone(pos2.x, pos2.y).setSize(xSize, ySize);
     this.add(this.tube1);
     this.add(this.tube2);
-    scene.physics.world.enable(this.tube1, 0); 
-    scene.physics.world.enable(this.tube2, 0); 
+    scene.physics.world.enable(this.tube1, 0);
+    scene.physics.world.enable(this.tube2, 0);
     colGroup.add(this.tube1);
     colGroup.add(this.tube2);
   }
