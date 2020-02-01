@@ -17,8 +17,10 @@ class ItemTube extends Phaser.GameObjects.Container {
   teleportTool(zone, tool) {
     if(zone == this.tube1) {
       tool.setPosition(this.tube2.x, this.tube2.y);
+      this.spawnParticleEffect(this.tube2.x, this.tube2.y)
     } else {
       tool.setPosition(this.tube1.x, this.tube1.y);
+      this.spawnParticleEffect(this.tube1.x, this.tube1.y)
     }
   }
 
@@ -39,6 +41,9 @@ class ItemTube extends Phaser.GameObjects.Container {
     });
   }
 
+  spawnParticleEffect(x, y) {
+    this.emitter.setPosition(x, y);
+    this.emitter.explode();
   }
 
 }
