@@ -9,6 +9,8 @@ class Player extends Phaser.GameObjects.Container {
     this.playerSprite = scene.add.image(0, 0, 'PlayerSprite');
     this.add(this.playerSprite);
 
+    this.scene.physics.world.enable(this)
+
     this.playerText = scene.add.text(-this.playerSprite.width, -this.playerSprite.height, 'Player ' + (this.playerId + 1), {fixedWidth: this.playerSprite.width * 2, align: 'center'});
     this.add(this.playerText);
 
@@ -59,8 +61,8 @@ class Player extends Phaser.GameObjects.Container {
   pickupTool(scene) {
     console.log(this.activeTool);
     if (this.activeTool == null) {
-
-      this.scene.physics.overlap(this.playerSprite, this.damageGroup, this.handleTool, null, this );
+      console.log("do overlap "+this.toolGroup)
+      this.scene.physics.overlap(this, this.toolGroup, this.handleTool, null, this );
     }
     // Todo overlap test
     //ToDo attach
