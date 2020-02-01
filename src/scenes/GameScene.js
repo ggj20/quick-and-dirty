@@ -20,7 +20,7 @@ class GameScene extends Phaser.Scene {
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
 
-    this.shipSprite = this.add.image(0, 0, 'ShipSprite').setOrigin(0, 0);
+    this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
       new Player(this, [200, 200], [500, 500], i, this.toolGroup, this.damageGoup, this.zoneGroup);
