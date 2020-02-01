@@ -114,9 +114,41 @@ class Player extends Phaser.GameObjects.Container {
       return;
     }
 
-    this.x += delta * this.speed * this.pad.axes[0].getValue();
-    this.y += delta * this.speed * this.pad.axes[1].getValue();
-    //sprite.flipX = (axisH > 0);
+    let deltaX = delta * this.speed * this.pad.axes[0].getValue();
+    let deltaY = delta * this.speed * this.pad.axes[1].getValue();
+
+    let direction = 'none';
+    if(Math.abs(deltaX) + Math.abs(deltaY) == 0) {
+      direction = 'none';
+    } else if(Math.abs(deltaX) > Math.abs(deltaY)) {
+      direction = deltaX < 0 ? 'left' : 'right';
+    } else {
+      direction = deltaY < 0 ? 'up' : 'down';
+    }
+
+    if(direction == 'down') {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-down') {
+        this.playerSprite.anims.play('walk-down');
+      }
+    } else if(direction == 'up') {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-up') {
+        this.playerSprite.anims.play('walk-up');
+      }
+    } else if(direction == 'left') {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-side') {
+        this.playerSprite.anims.play('walk-side');
+      }
+    } else if(direction == 'right') {
+      if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== 'walk-side') {
+        this.playerSprite.anims.play('walk-side');
+        //sprite.flipX = (axisH > 0);
+      }
+    } else {
+      this.playerSprite.anims.stop();
+    }
+
+    this.x += deltaX;
+    this.y += deltaY;
   }
 }
 
