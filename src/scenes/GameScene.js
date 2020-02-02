@@ -15,6 +15,7 @@ import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
 import HeightIndicator from '../entities/Heightindicator.js';
 import Thermometer from '../entities/Thermometer';
+import VoltageMeter from '../entities/VoltageMeter';
 
 
 class GameScene extends Phaser.Scene {
@@ -65,6 +66,9 @@ class GameScene extends Phaser.Scene {
     // Steam Engine
     new Thermometer(this, 136, 416, 21, 252);
     new SteamEngine(this, this.zoneGroup, this.damageGoup);
+
+    // Voltage indicator
+    new VoltageMeter(this, 167, 416, 21, 252);
 
     // Coal Dispensers
     new CoalDispenser(this, 1630, 160, this.toolGroup);
