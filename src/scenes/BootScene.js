@@ -15,6 +15,8 @@ import ShipSprite from "../assets/ship.png";
 import SteamParticle from "../assets/steam-particle.png";
 import EngineFlameParticle from "../assets/engine-flame.png";
 import ShadowSprite from "../assets/shadow.png";
+import ParallaxBgClouds from "../assets/parallax-bg-clouds.png";
+import ParallaxBgForest from "../assets/parallax-bg-forest.png";
 
 class BootScene extends Phaser.Scene {
   constructor() {
@@ -62,6 +64,8 @@ class BootScene extends Phaser.Scene {
     this.load.image('ShadowSprite', ShadowSprite);
     this.load.image('EngineFlameParticle', EngineFlameParticle);
     this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
+	this.load.image('ParallaxBgClouds', ParallaxBgClouds);
+	this.load.image('ParallaxBgForest', ParallaxBgForest);
   }
 
   create() {

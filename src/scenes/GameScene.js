@@ -37,6 +37,8 @@ class GameScene extends Phaser.Scene {
     this.zoneGroup = this.add.group();
     this.playerGroup = this.add.group()
 
+	this.parallaxBgForest = this.add.tileSprite(this.game.config.width/2, this.game.config.height/2, 2880*3, 1620*3, 'ParallaxBgForest').setOrigin(0.5, 0.5);
+	this.parallaxBgClouds = this.add.tileSprite(this.game.config.width/2, this.game.config.height/2, 2880*3, 1620*3, 'ParallaxBgClouds').setOrigin(0.5, 0.5);
     this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
 
     this.rooms = [
@@ -281,6 +283,10 @@ class GameScene extends Phaser.Scene {
     if(this.game.state.voltage > 100) {
       this.game.state.voltage = 100;
     }
+
+	// Move parallax background based on speed (clouds still move when standing still)
+	this.parallaxBgClouds.tilePositionX += 0.2 * this.game.state.speed - 0.5;
+	this.parallaxBgForest.tilePositionX += 0.1 * this.game.state.speed;
   }
 }
 
