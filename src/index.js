@@ -14,6 +14,13 @@ var settings = {
   difficulity: 1.1,
 };
 
+var gameState = {
+  score: 0,
+  height: 100,
+  speed: 0,
+  engineTemperature: 0,
+};
+
 var config = {
   type: Phaser.AUTO,
   parent: 'game',
@@ -39,3 +46,4 @@ var config = {
 
 var game = new Phaser.Game(config);
 game.settings = settings;
+game.state = gameState;
