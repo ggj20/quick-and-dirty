@@ -62,7 +62,8 @@ class GameScene extends Phaser.Scene {
     new SteamEngine(this, this.zoneGroup);
 
     // Coal Dispensers
-    new CoalDispenser(this, 600, 200, this.toolGroup);
+    new CoalDispenser(this, 1630, 160, this.toolGroup);
+    new CoalDispenser(this, 1630, 920, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
     this.spawnTools();
