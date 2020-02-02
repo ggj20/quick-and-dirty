@@ -26,7 +26,9 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   }
 
   teleportTool(zone, tool) {
-    console.log('teleport to furnace', zone, tool);
+    const { identifier } = zone;
+    const { toolType } = tool;
+    console.log('teleport to furnace', identifier, toolType);
   }
 
   createFurnace(identifier, scene, zoneGroup) {
@@ -40,7 +42,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     const dropZone = scene.add
       .zone(dropZoneCenterX + positionX, dropZoneCenterY + positionY)
       .setSize(dropZoneWidth, dropZoneHeight);
-    // this.dropZone.parent = this;
+    dropZone.identifier = identifier;
     this.add(dropZone);
     scene.physics.world.enable(dropZone, 0);
     zoneGroup.add(dropZone);
