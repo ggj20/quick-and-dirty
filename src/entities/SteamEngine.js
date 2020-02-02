@@ -31,7 +31,10 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     const { identifier } = zone;
     const { toolType } = tool;
 
+    const furnace = this.furnaceArray[identifier];
+
     if (toolType === 'COAL') {
+      furnace.anims.play('open-engine-door');
       console.log('feed the engine #', identifier, 'with', toolType);
       tool.destroy();
     }
@@ -40,8 +43,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     scene.anims.create({
       key: 'open-engine-door',
       frames: scene.anims.generateFrameNumbers('EngineDoorSpriteSheet', { start: 0, end: 31, first: 0 }),
-      frameRate: 60,
-      repeat: -1,
+      frameRate: 30,
+      repeat: false,
     });
   }
 
