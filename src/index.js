@@ -5,9 +5,20 @@ import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
 var settings = {
-  playerSpeed: 0.1,
+  playerSpeed: 3,
   playerCount: 4,
+  coalSpawnDelay: 5000,
+  damageSpawnDelayInitial: 10000,
+  damageSpawnDelayMin: 1000,
   debug: true,
+  difficulity: 1.1,
+};
+
+var gameState = {
+  score: 0,
+  height: 100,
+  speed: 0,
+  engineTemperature: 0,
 };
 
 var config = {
@@ -35,3 +46,4 @@ var config = {
 
 var game = new Phaser.Game(config);
 game.settings = settings;
+game.state = gameState;
