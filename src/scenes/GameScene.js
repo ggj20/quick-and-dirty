@@ -160,8 +160,7 @@ class GameScene extends Phaser.Scene {
         this.spawnFIreDamage();
         break;
     }
-    console.log(this.game.settings.difficulity)
-    timer = Math.max(timer/this.game.settings.difficulity, this.game.settings.damageSpawnDelayMin);
+    timer = Math.max(timer - this.game.settings.difficulity, this.game.settings.damageSpawnDelayMin);
     setTimeout(() => this.spawnRandomDamage(timer), timer);
   }
 
@@ -255,7 +254,7 @@ class GameScene extends Phaser.Scene {
       blendMode: 'NORMAL',
       frequency: -1,
       active: true,
-      lifespan: 1500,
+      lifespan: 600,
       tint: 0xDDDDDD,
 	  });
   }

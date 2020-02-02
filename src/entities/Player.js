@@ -195,7 +195,7 @@ class Player extends Phaser.GameObjects.Container {
       if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
         this.playerSprite.flipX = direction == 'left';
         this.playerSprite.anims.play(animation);
-		this.runningEmitter.frequency = 250;
+		this.runningEmitter.frequency = 150;
       }
     }
   }

@@ -5,16 +5,16 @@ import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
 var settings = {
-  playerSpeed: 70,
+  playerSpeed: 200,
   playerCount: 4,
   coalSpawnDelay: 5000,
   damageSpawnDelayInitial: 10000,
-  damageSpawnDelayMin: 1000,
-  debug: true,
-  difficulity: 1.1,
+  damageSpawnDelayMin: 3000,
+  debug: false,
+  difficulity: 200,
   maxShipSpeed: 100,
   engineTemperaturePerCoalDrop: 1,
-  engineTemperatureDecreaseFactor: 0.35 / 10000,
+  engineTemperatureDecreaseFactor: 0.65 / 10000,
   engineTemperatureOptimal: 4,
   engineTemperatureMaximum: 5,
   heightChange: 10 / 1000,
