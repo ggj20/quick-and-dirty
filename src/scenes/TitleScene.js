@@ -52,7 +52,7 @@ class TitleScene extends Phaser.Scene {
     return this.make.text({
       x: 100,
       y: 400 + 100 * playerId,
-      text: "Player " + (playerId + 1),
+      text: "🎮 Player " + (playerId + 1),
       style: { font: "50px Arial", fill: "#CCC", align: "left"},
       add: true
     });
