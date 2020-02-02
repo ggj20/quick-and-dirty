@@ -12,6 +12,7 @@ var settings = {
   damageSpawnDelayMin: 1000,
   debug: true,
   difficulity: 1.1,
+  maxShipSpeed: 100,
 };
 
 var gameState = {
