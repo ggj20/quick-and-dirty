@@ -34,13 +34,21 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     const timeDelta = now - this.lastUpdate;
 
     // Update global game state
-    const { engineTemperatureDecreaseFactor } = this.scene.game.settings;
+    const {
+      engineTemperatureDecreaseFactor,
+      engineTemperatureMaximum,
+    } = this.scene.game.settings;
 
     const nextEngineTemperature =
       this.scene.game.state.engineTemperature -
       timeDelta * engineTemperatureDecreaseFactor;
 
-    if (nextEngineTemperature > 0) {
+    // Clip temp between 0 and max-temp
+    if (nextEngineTemperature <= 0) {
+      this.scene.game.state.engineTemperature = 0;
+    } else if (nextEngineTemperature >= engineTemperatureMaximum) {
+      this.scene.game.state.engineTemperature = engineTemperatureMaximum;
+    } else {
       this.scene.game.state.engineTemperature = nextEngineTemperature;
     }
 
