@@ -84,6 +84,14 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 600, 200, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
+    this.setUpCamera();
+  }
+
+  setUpCamera() {
+    const fadeTime = 6000;
+    this.cameras.main.setZoom(0.4);
+    this.cameras.main.zoomTo(1.0, fadeTime);
+    this.cameras.main.pan(this.game.config.width/2 -100, this.game.config.height/2, fadeTime);
   }
 
   spawnRandomDamage(timer) {
