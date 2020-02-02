@@ -95,13 +95,16 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
   createThermometer() {
     const size = 50;
+    const thermometerPositionX =
+      engineWorldPositionX + engineAreaWidth - dropZoneWidth - size / 2;
+    const thermometerPositionY = engineWorldPositionY + engineAreaHeight / 2;
 
     const indicator = this.scene.add.rectangle(
-      engineWorldPositionX + engineAreaWidth - dropZoneWidth - size / 2,
-      engineWorldPositionY + engineAreaHeight / 2,
+      thermometerPositionX,
+      thermometerPositionY,
       size,
       size,
-      0x000000,
+      0xff0000,
     );
 
     return indicator;
@@ -112,7 +115,9 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     // engineEfficency ranges between 0 and 1.25, with 1 being optimal and 1.25 being the max overdrive
 
-    console.log(engineTemperature, engineEfficency);
+    this.thermometer.setSize(50, 100 * engineEfficency);
+
+    // console.log(engineTemperature, engineEfficency);
 
     // this.thermometer.setFillStyle(color);
   }
