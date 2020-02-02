@@ -1,6 +1,8 @@
 class Tool extends Phaser.GameObjects.Image {
-    constructor(scene, x, y, texture, toolType) {
+    constructor(scene, x, y, texture, toolType, toolGroup) {
         super(scene, x, y, texture);
+        toolGroup.add(this);
+        scene.physics.world.enable(this);
         scene.add.existing(this);
         this.toolType = toolType;
     }
