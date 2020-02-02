@@ -21,16 +21,16 @@ var mapAreas = {
     ],
 electricityAreas: [],
 fireAreas:[
-    {xSource : 270, xLength: 635, ySource : 125, yLength: 350}, //Room 1
-    {xSource : 1040, xLength: 635, ySource : 125, yLength: 350}, //Room 2
-    {xSource : 270, xLength: 635, ySource : 605, yLength: 350}, //Room 3
-    {xSource : 1040, xLength: 635, ySource : 605, yLength: 350} //Room 4
+    {xSource : 300, xLength: 570, ySource : 150, yLength: 300}, //Room 1
+    {xSource : 1070, xLength: 570, ySource : 150, yLength: 300}, //Room 2
+    {xSource : 300, xLength: 570, ySource : 630, yLength: 300}, //Room 3
+    {xSource : 1070, xLength: 570, ySource : 630, yLength: 300} //Room 4
 ],
 holeAreas:[
-    {xSource : 270, xLength: 635, ySource : 125, yLength: 350}, //Room 1
-    {xSource : 1040, xLength: 635, ySource : 125, yLength: 350}, //Room 2
-    {xSource : 270, xLength: 635, ySource : 605, yLength: 350}, //Room 3
-    {xSource : 1040, xLength: 635, ySource : 605, yLength: 350} //Room 4
+    {xSource : 300, xLength: 570, ySource : 150, yLength: 300}, //Room 1
+    {xSource : 1070, xLength: 570, ySource : 150, yLength: 300}, //Room 2
+    {xSource : 300, xLength: 570, ySource : 630, yLength: 300}, //Room 3
+    {xSource : 1070, xLength: 570, ySource : 630, yLength: 300} //Room 4
 ]};
 
 export default mapAreas;
