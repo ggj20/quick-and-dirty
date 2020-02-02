@@ -40,7 +40,6 @@ class GameScene extends Phaser.Scene {
       [[1040, 605], [630, 350]],
     ]
 
-    this.spawnTools();
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
     let emitter = this.createRunningEmitter();
@@ -88,6 +87,7 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 600, 200, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
+    this.spawnTools();
     this.setUpCamera();
   }
 
@@ -187,22 +187,20 @@ class GameScene extends Phaser.Scene {
     this.damageGoup.add(leak);
   }
 
+  getRandomPlayer() {
+    return this.playerGroup.children.entries[Math.floor(Math.random() * this.playerGroup.children.entries.length)];
+  }
+
   spawnTools() {
-    this.hammer = new Hammer(this, 400, 400);
-    this.toolGroup.add(this.hammer)
-    this.physics.world.enable(this.hammer);
-
-    this.extinguisher = new Extinguisher(this, 300, 400);
-    this.toolGroup.add(this.extinguisher)
-    this.physics.world.enable(this.extinguisher);
-
-    this.pipeWrench = new PipeWrench(this, 400, 400);
-    this.toolGroup.add(this.pipeWrench)
-    this.physics.world.enable(this.pipeWrench);
-
-    this.solderingIron = new SolderingIron(this, 400, 400);
-    this.toolGroup.add(this.solderingIron)
-    this.physics.world.enable(this.solderingIron);
+    let p = null;
+    p = this.getRandomPlayer();
+    new Hammer(this, p.x, p.y+100, this.toolGroup);
+    p = this.getRandomPlayer();
+    new Extinguisher(this, p.x, p.y+100, this.toolGroup);
+    p = this.getRandomPlayer();
+    new PipeWrench(this, p.x, p.y+100, this.toolGroup);
+    p = this.getRandomPlayer();
+    new SolderingIron(this, p.x, p.y+100, this.toolGroup);
   }
 
   createRunningEmitter() {
