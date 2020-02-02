@@ -31,8 +31,10 @@ class TitleScene extends Phaser.Scene {
 
     this.input.gamepad.on('down', this.onButtonPress, this);
 
-    // uncomment to skip lobby for testing
-    this.scene.start('GameScene');
+    // directly jump to game if debug true
+    if(this.game.settings.debug) {
+      this.scene.start('GameScene');
+    }
   }
 
   onButtonPress(pad, button, index) {
