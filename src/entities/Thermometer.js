@@ -20,5 +20,9 @@ export default class Thermometer extends Phaser.GameObjects.Container {
 
     this.rect.y = this.baseY + this.maxHeight - height;
     this.rect.height = height;
+
+    const color = Phaser.Display.Color.Interpolate.RGBWithRGB(0, 0, 255, 255, 0, 0, this.maxHeight, height);
+
+    this.rect.fillColor = Phaser.Display.Color.GetColor(color.r, color.g, color.b);
   }
 }
