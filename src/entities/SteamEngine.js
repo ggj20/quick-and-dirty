@@ -15,9 +15,6 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     this.generateAnimations(scene);
 
-    this.thermometer = this.createThermometer();
-    this.updateThermometer();
-
     this.furnaceArray = [
       this.createFurnace(0, scene, zoneGroup),
       this.createFurnace(1, scene, zoneGroup),
@@ -57,9 +54,6 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     this.scene.game.state.engineEfficency =
       this.scene.game.state.engineTemperature / engineTemperatureOptimal;
 
-    // Update temperature indicator in scene
-    this.updateThermometer();
-
     this.lastUpdate = now;
   }
 
@@ -91,35 +85,6 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       frameRate: 30,
       repeat: false,
     });
-  }
-
-  createThermometer() {
-    const size = 50;
-    const thermometerPositionX =
-      engineWorldPositionX + engineAreaWidth - dropZoneWidth - size / 2;
-    const thermometerPositionY = engineWorldPositionY + engineAreaHeight / 2;
-
-    const indicator = this.scene.add.rectangle(
-      thermometerPositionX,
-      thermometerPositionY,
-      size,
-      size,
-      0xff0000,
-    );
-
-    return indicator;
-  }
-
-  updateThermometer() {
-    const { engineTemperature, engineEfficency } = this.scene.game.state;
-
-    // engineEfficency ranges between 0 and 1.25, with 1 being optimal and 1.25 being the max overdrive
-
-    this.thermometer.setSize(50, 100 * engineEfficency);
-
-    // console.log(engineTemperature, engineEfficency);
-
-    // this.thermometer.setFillStyle(color);
   }
 
   createFurnace(identifier, scene, zoneGroup) {
