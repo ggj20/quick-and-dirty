@@ -263,6 +263,15 @@ class GameScene extends Phaser.Scene {
     if(this.game.state.height > 100) {
       this.game.state.height = 100;
     }
+
+    // Calc voltage based on sparcles
+    this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
+    if(this.game.state.voltage <= 0) {
+      this.scene.start('GameOverScene');
+    }
+    if(this.game.state.voltage > 100) {
+      this.game.state.voltage = 100;
+    }
   }
 }
 

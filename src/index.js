@@ -19,6 +19,7 @@ var settings = {
   engineTemperatureMaximum: 5,
   heightChange: 10 / 1000,
   fireSpreadChance: 0.2
+  voltageChange: 10 / 1000,
 };
 
 var gameState = {
