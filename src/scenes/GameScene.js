@@ -9,6 +9,7 @@ import Fire from '../entities/Fire';
 import Hole from '../entities/Hole';
 import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
+import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 
