@@ -27,7 +27,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     scene.add.existing(this);
 
     this.lastUpdate = new Date();
-    setInterval(() => this.updateGameLogic(), 500);
+    setTimeout(() => this.updateGameLogic(), 500);
   }
 
   updateGameLogic() {
@@ -63,6 +63,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     this.updateThermometer();
 
     this.lastUpdate = now;
+    setTimeout(() => this.updateGameLogic(), 500);
   }
 
   teleportTool(zone, tool) {
