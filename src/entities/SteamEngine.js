@@ -102,24 +102,13 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   }
 
   updateThermometer() {
-    const { engineTemperatureLowerBound, engineTemperatureUpperBound } = this.scene.game.settings;
-    const { engineTemperature } = this.scene.game.state;
+    const { engineTemperature, engineEfficency } = this.scene.game.state;
 
-    let color;
-    if (engineTemperature <= engineTemperatureLowerBound) {
-      // engine off
-      color = 0x000000;
-    } else if ( engineTemperature >= engineTemperatureUpperBound ) {
-      // engine overdrive
-      color = 0xff0000;
-    } else {
-      // engine operational
-      color = 0x00ff00;
-    }
+    // engineEfficency ranges between 0 and 1.25, with 1 being optimal and 1.25 being the max overdrive
 
-    console.log(engineTemperature, color);
+    console.log(engineTemperature, engineEfficency);
 
-    this.thermometer.setFillStyle(color);
+    // this.thermometer.setFillStyle(color);
   }
 
   createFurnace(identifier, scene, zoneGroup) {
