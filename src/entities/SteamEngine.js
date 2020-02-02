@@ -23,7 +23,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     this.furnaceArray = [
       this.createFurnace(0, scene, zoneGroup),
-      this.createFurnace(1, scene, zoneGroup)
+      this.createFurnace(1, scene, zoneGroup),
     ];
 
     scene.add.existing(this);
@@ -61,13 +61,21 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     if (toolType === 'COAL') {
       furnace.anims.play('open-engine-door');
       console.log('feed the engine #', identifier, 'with', toolType);
+
+      this.scene.game.state.engineTemperature += 1;
+
       tool.destroy();
     }
   }
+
   generateAnimations(scene) {
     scene.anims.create({
       key: 'open-engine-door',
-      frames: scene.anims.generateFrameNumbers('EngineDoorSpriteSheet', { start: 0, end: 31, first: 0 }),
+      frames: scene.anims.generateFrameNumbers('EngineDoorSpriteSheet', {
+        start: 0,
+        end: 31,
+        first: 0,
+      }),
       frameRate: 30,
       repeat: false,
     });
@@ -89,7 +97,11 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     scene.physics.world.enable(dropZone, 0);
     zoneGroup.add(dropZone);
 
-    const furnaceSprite = scene.add.sprite(positionX, positionY + dropZoneCenterY, 'EngineDoorSpriteSheet');
+    const furnaceSprite = scene.add.sprite(
+      positionX,
+      positionY + dropZoneCenterY,
+      'EngineDoorSpriteSheet',
+    );
     this.add(furnaceSprite);
     furnaceSprite.anims.play('open-engine-door');
 
