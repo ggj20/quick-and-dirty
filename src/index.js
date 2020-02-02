@@ -17,6 +17,7 @@ var settings = {
   engineTemperatureDecreaseFactor: 0.35 / 10000,
   engineTemperatureOptimal: 4,
   engineTemperatureMaximum: 5,
+  heightChange: 10 / 1000,
 };
 
 var gameState = {

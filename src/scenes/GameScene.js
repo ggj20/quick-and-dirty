@@ -248,6 +248,15 @@ class GameScene extends Phaser.Scene {
     this.game.state.speed = this.game.state.engineEfficency * this.game.settings.maxShipSpeed;
     this.game.state.score += 0.0001 * delta * this.game.state.speed;
     this.scoreText.setText("Score: " + Math.round(this.game.state.score));
+
+    // Calc height based on Holes
+    this.game.state.height -= this.game.settings.heightChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
+    if(this.game.state.height <= 0) {
+      this.scene.start('GameOverScene');
+    }
+    if(this.game.state.height > 100) {
+      this.game.state.height = 100;
+    }
   }
 }
 
