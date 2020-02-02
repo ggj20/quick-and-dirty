@@ -245,6 +245,7 @@ class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    this.game.state.speed = this.game.state.engineEfficency * this.game.settings.maxShipSpeed;
     this.game.state.score += 0.0001 * delta * this.game.state.speed;
     this.scoreText.setText("Score: " + Math.round(this.game.state.score));
   }

@@ -14,7 +14,7 @@ var settings = {
   difficulity: 1.1,
   maxShipSpeed: 100,
   engineTemperaturePerCoalDrop: 1,
-  engineTemperatureDecreaseFactor: 0.25 / 10000,
+  engineTemperatureDecreaseFactor: 0.65 / 10000,
   engineTemperatureOptimal: 4,
   engineTemperatureMaximum: 5,
 };
