@@ -98,7 +98,9 @@ class Player extends Phaser.GameObjects.Container {
 	  if (this.activeTool == null) {
 	    this.add(tool);
 	    this.activeTool = tool;
-	    this.activeTool.setPosition(this.body.width/2, -20);
+      this.activeTool.setPosition(this.body.width/2, -20);
+      this.activeTool.body.setSize(this.body.width * 1.5,this.body.height*2)
+      this.activeTool.body.setOffset(-this.body.width* 0.10 ,  this.body.height * 0.66)
     }
   }
 
