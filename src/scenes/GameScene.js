@@ -68,8 +68,21 @@ class GameScene extends Phaser.Scene {
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
     this.spawnTools();
-    this.setUpCamera();
+    this.createScoreText();
     this.spawnDebugStuff();
+    this.setUpCamera();
+  }
+
+  createScoreText() {
+    this.scoreText =  this.make.text({
+      x: -80,
+      y: 20,
+      text: "Score: ",
+      style: { font: "40px Arial", color: "#999", align: "center"},
+      origin: { x: 0, y: 0.5 },
+      add: true
+    });
+    this.scoreText.setShadow(3, 3, "#333333", 2, true, true);
   }
 
   setUpCamera() {
@@ -229,6 +242,11 @@ class GameScene extends Phaser.Scene {
           lifespan: 1500,
           tint: 0xDDDDDD,
 	  });
+  }
+
+  update(time, delta) {
+    this.game.state.score += 0.0001 * delta * this.game.state.speed;
+    this.scoreText.setText("Score: " + Math.round(this.game.state.score));
   }
 }
 
