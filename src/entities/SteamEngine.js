@@ -15,11 +15,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     this.generateAnimations(scene);
 
-    // Draw area of engine sprite
-    const graphics = scene.make.graphics(engineAreaWidth, engineAreaHeight);
-    graphics.fillStyle(0xff0000, 0.2);
-    graphics.fillRect(0, 0, engineAreaWidth, engineAreaHeight);
-    this.add(graphics);
+    this.thermometer = this.createThermometer();
 
     this.furnaceArray = [
       this.createFurnace(0, scene, zoneGroup),
@@ -80,6 +76,20 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       frameRate: 30,
       repeat: false,
     });
+  }
+
+  createThermometer() {
+    const size = 50;
+
+    const indicator = this.scene.add.rectangle(
+      engineWorldPositionX + engineAreaWidth - dropZoneWidth - size / 2,
+      engineWorldPositionY + engineAreaHeight / 2,
+      size,
+      size,
+      0xff0000,
+    );
+
+    return indicator;
   }
 
   createFurnace(identifier, scene, zoneGroup) {
