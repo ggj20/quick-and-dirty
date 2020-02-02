@@ -52,28 +52,6 @@ class GameScene extends Phaser.Scene {
     new EngineFlame(this, 110, 400);
     new EngineFlame(this, 110, 685);
 
-
-    //debug objects
-    this.leak = new Leak(this, 500, 300);
-    this.physics.world.enable(this.leak);
-    this.leak.body.setImmovable();
-    this.damageGoup.add(this.leak);
-
-    this.fire = new Fire(this, 500, 400);
-    this.physics.world.enable(this.fire);
-    this.fire.body.setImmovable();
-    this.damageGoup.add(this.fire);
-
-    this.hole = new Hole(this, 500, 200);
-    this.physics.world.enable(this.hole);
-    this.hole.body.setImmovable();
-    this.damageGoup.add(this.hole);
-
-    this.electro = new Electro(this, 300, 200);
-    this.physics.world.enable(this.electro);
-    this.electro.body.setImmovable();
-    this.damageGoup.add(this.electro);
-
     // Tubes
     new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
     new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
@@ -89,6 +67,7 @@ class GameScene extends Phaser.Scene {
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
     this.spawnTools();
     this.setUpCamera();
+    this.spawnDebugStuff();
   }
 
   setUpCamera() {
@@ -97,6 +76,38 @@ class GameScene extends Phaser.Scene {
     this.cameras.main.zoomTo(1.0, fadeTime);
     this.cameras.main.pan(this.game.config.width/2 -100, this.game.config.height/2, fadeTime);
   }
+
+  spawnDebugStuff() {
+    if(this.game.settings.debug == false) {
+      return;
+    }
+
+    this.leak = new Leak(this, 400, 200);
+    this.physics.world.enable(this.leak);
+    this.leak.body.setImmovable();
+    this.damageGoup.add(this.leak);
+    new PipeWrench(this, 400, 300, this.toolGroup);
+
+    this.fire = new Fire(this, 500, 200);
+    this.physics.world.enable(this.fire);
+    this.fire.body.setImmovable();
+    this.damageGoup.add(this.fire);
+    new Extinguisher(this, 500, 300, this.toolGroup);
+
+    this.hole = new Hole(this, 600, 200);
+    this.physics.world.enable(this.hole);
+    this.hole.body.setImmovable();
+    this.damageGoup.add(this.hole);
+    new Hammer(this, 600, 300, this.toolGroup);
+
+    this.electro = new Electro(this, 700, 200);
+    this.physics.world.enable(this.electro);
+    this.electro.body.setImmovable();
+    this.damageGoup.add(this.electro);
+    new SolderingIron(this, 700, 300, this.toolGroup);
+
+    new CoalDispenser(this, 300, 200, this.toolGroup);
+}
 
   spawnRandomDamage(timer) {
     console.log("added damage: "+timer);
