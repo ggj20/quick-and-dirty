@@ -7,23 +7,6 @@ const engineAreaHeight = 376;
 const dropZoneWidth = 50;
 const dropZoneHeight = 125;
 
-class SteamFurnace extends Phaser.GameObjects.Container {
-  constructor(scene, y) {
-    super(scene, engineAreaWidth - dropZoneWidth, y);
-
-    this.dropZone = scene.add
-      .zone(dropZoneWidth / 2, dropZoneHeight / 2)
-      .setSize(dropZoneWidth, dropZoneHeight);
-    this.dropZone.parent = this;
-    this.add(this.dropZone);
-    scene.physics.world.enable(this.dropZone, 0);
-  }
-
-  teleportTool(zone, tool) {
-    console.log('teleport to furnace', zone, zone.parent, tool);
-  }
-}
-
 export default class SteamEngine extends Phaser.GameObjects.Container {
   constructor(scene, zoneGroup) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
@@ -34,13 +17,32 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     graphics.fillRect(0, 0, engineAreaWidth, engineAreaHeight);
     this.add(graphics);
 
-    this.furnace1 = new SteamFurnace(scene, 0);
-    this.add(this.furnace1);
-    zoneGroup.add(this.furnace1.dropZone);
-    this.furnace2 = new SteamFurnace(scene, engineAreaHeight - dropZoneHeight);
-    this.add(this.furnace2);
-    zoneGroup.add(this.furnace2.dropZone);
+    this.furnaceArray = [
+      this.createFurnace(0, scene, zoneGroup),
+      this.createFurnace(1, scene, zoneGroup)
+    ];
 
     scene.add.existing(this);
+  }
+
+  teleportTool(zone, tool) {
+    console.log('teleport to furnace', zone, tool);
+  }
+
+  createFurnace(identifier, scene, zoneGroup) {
+    const positionX = engineAreaWidth - dropZoneWidth;
+    // First starts from top, the second from bottom
+    const positionY = identifier === 0 ? 0 : engineAreaHeight - dropZoneHeight;
+
+    const dropZoneCenterX = dropZoneWidth / 2;
+    const dropZoneCenterY = dropZoneHeight / 2;
+
+    const dropZone = scene.add
+      .zone(dropZoneCenterX + positionX, dropZoneCenterY + positionY)
+      .setSize(dropZoneWidth, dropZoneHeight);
+    // this.dropZone.parent = this;
+    this.add(dropZone);
+    scene.physics.world.enable(dropZone, 0);
+    zoneGroup.add(dropZone);
   }
 }
