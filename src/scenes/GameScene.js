@@ -122,7 +122,7 @@ class GameScene extends Phaser.Scene {
     new SolderingIron(this, 700, 300, this.toolGroup);
 
     new CoalDispenser(this, 300, 200, this.toolGroup);
-}
+  }
 
   spawnRandomDamage(timer) {
     console.log("added damage: "+timer);
@@ -233,14 +233,14 @@ class GameScene extends Phaser.Scene {
 	  return this.add.particles('SteamParticle').createEmitter({
 		  x: 0,
 		  y: 0,
-          speed: { min: 0, max: 0 },
-          angle: { min: 0, max: 0 },
-          scale: { start: 0.6, end: 0.1 },
-          blendMode: 'NORMAL',
-          frequency: -1,
-          active: true,
-          lifespan: 1500,
-          tint: 0xDDDDDD,
+      speed: { min: 0, max: 0 },
+      angle: { min: 0, max: 0 },
+      scale: { start: 0.6, end: 0.1 },
+      blendMode: 'NORMAL',
+      frequency: -1,
+      active: true,
+      lifespan: 1500,
+      tint: 0xDDDDDD,
 	  });
   }
 
