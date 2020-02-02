@@ -28,7 +28,11 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   teleportTool(zone, tool) {
     const { identifier } = zone;
     const { toolType } = tool;
-    console.log('teleport to furnace', identifier, toolType);
+    console.log('feed the engine #', identifier, 'with', toolType);
+
+    if (toolType === 'HAMMER') {
+      tool.destroy();
+    }
   }
 
   createFurnace(identifier, scene, zoneGroup) {
