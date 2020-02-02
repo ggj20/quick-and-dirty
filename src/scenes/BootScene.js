@@ -14,6 +14,7 @@ import FireSpriteSheet from "../assets/fire.png";
 import ShipSprite from "../assets/ship.png";
 import SteamParticle from "../assets/steam-particle.png";
 import EngineFlameParticle from "../assets/engine-flame.png";
+import ShadowSprite from "../assets/shadow.png";
 
 class BootScene extends Phaser.Scene {
   constructor() {
@@ -50,7 +51,7 @@ class BootScene extends Phaser.Scene {
     this.load.spritesheet('ElectroSpriteSheet', ElectroSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('HoleSpriteSheet', HoleSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('FireSpriteSheet', FireSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
-    
+
     this.load.image('HammerSprite', HammerSprite);
     this.load.image('ExtinguisherSprite', ExtinguisherSprite);
     this.load.image('PipeWrenchSprite', PipeWrenchSprite);
@@ -58,6 +59,7 @@ class BootScene extends Phaser.Scene {
     this.load.image('CoalSprite', CoalSprite);
     this.load.image('ShipSprite', ShipSprite);
     this.load.image('SteamParticle', SteamParticle);
+    this.load.image('ShadowSprite', ShadowSprite);
     this.load.image('EngineFlameParticle', EngineFlameParticle);
     this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
   }
