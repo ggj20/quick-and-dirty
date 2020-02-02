@@ -76,7 +76,7 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 1630, 920, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
-    new HeightIndicator(this, 975, 540);
+    new HeightIndicator(this, 974, 540);
     this.spawnTools();
     this.createScoreText();
     this.spawnDebugStuff();
