@@ -163,6 +163,9 @@ class Player extends Phaser.GameObjects.Container {
     let deltaX = delta * this.speed * this.pad.axes[0].getValue();
     let deltaY = delta * this.speed * this.pad.axes[1].getValue();
 
+    this.body.setVelocityX( deltaX);
+    this.body.setVelocityY ( deltaY);
+
     let direction = 'none';
     if(Math.abs(deltaX) + Math.abs(deltaY) == 0) {
       direction = 'none';
@@ -192,8 +195,8 @@ class Player extends Phaser.GameObjects.Container {
       }
     }
 
-    this.x += deltaX;
-    this.y += deltaY;
+    //this.x += deltaX;
+    //this.y += deltaY;
   }
 }
 

@@ -28,6 +28,7 @@ class GameScene extends Phaser.Scene {
     this.damageGoup = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
+    this.playerGroup = this.add.group()
 
     this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
 
@@ -41,28 +42,36 @@ class GameScene extends Phaser.Scene {
     this.spawnTools();
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
-		let emitter = this.createRunningEmitter();
-      new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
+    let emitter = this.createRunningEmitter();
+      let player = new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
+      this.playerGroup.add(player);
     }
+    this.physics.add.collider(this.playerGroup, this. damageGoup);
 
+    // Engine Flames
     new EngineFlame(this, 110, 400);
     new EngineFlame(this, 110, 685);
+
 
     //debug objects
     this.leak = new Leak(this, 500, 300);
     this.physics.world.enable(this.leak);
+    this.leak.body.setImmovable();
     this.damageGoup.add(this.leak);
 
     this.fire = new Fire(this, 500, 400);
     this.physics.world.enable(this.fire);
+    this.fire.body.setImmovable();
     this.damageGoup.add(this.fire);
 
     this.hole = new Hole(this, 500, 200);
     this.physics.world.enable(this.hole);
+    this.hole.body.setImmovable();
     this.damageGoup.add(this.hole);
 
     this.electro = new Electro(this, 300, 200);
     this.physics.world.enable(this.electro);
+    this.electro.body.setImmovable();
     this.damageGoup.add(this.electro);
 
     // Tubes
@@ -114,6 +123,7 @@ class GameScene extends Phaser.Scene {
 
     var leak = new Leak(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
+    leak.body.setImmovable();
     this.damageGoup.add(leak);
   }
 
@@ -129,6 +139,7 @@ class GameScene extends Phaser.Scene {
 
     var leak = new Electro(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
+    leak.body.setImmovable();
     this.damageGoup.add(leak);
   }
 
@@ -144,6 +155,7 @@ class GameScene extends Phaser.Scene {
 
     var leak = new Hole(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
+    leak.body.setImmovable();
     this.damageGoup.add(leak);
   }
 
@@ -159,6 +171,7 @@ class GameScene extends Phaser.Scene {
 
     var leak = new Fire(this, xCoordinate, yCoordinate);
     this.physics.world.enable(leak);
+    leak.body.setImmovable();
     this.damageGoup.add(leak);
   }
 
