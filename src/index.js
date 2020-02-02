@@ -12,13 +12,14 @@ var settings = {
   damageSpawnDelayMin: 1000,
   debug: true,
   difficulity: 1.1,
+  engineTemperatureDecreaseFactor: 0.25 / 10000,
 };
 
 var gameState = {
   score: 0,
   height: 100,
   speed: 0,
-  engineTemperature: 0,
+  engineTemperature: 2,
 };
 
 var config = {

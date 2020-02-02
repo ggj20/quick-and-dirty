@@ -11,6 +11,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   constructor(scene, zoneGroup) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
 
+    this.scene = scene;
+
     this.generateAnimations(scene);
 
     // Draw area of engine sprite
@@ -25,6 +27,29 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     ];
 
     scene.add.existing(this);
+
+    this.lastUpdate = new Date();
+    setInterval(() => this.updateGameLogic(), 500);
+  }
+
+  updateGameLogic() {
+    const now = new Date();
+    const timeDelta = now - this.lastUpdate;
+
+    // Update global game state
+    const { state, settings } = this.scene.game;
+
+    const nextEngineTemperature =
+      state.engineTemperature -
+      timeDelta * settings.engineTemperatureDecreaseFactor;
+
+    if (nextEngineTemperature > 0) {
+      this.scene.game.state.engineTemperature = nextEngineTemperature;
+    }
+
+    console.log(this.scene.game.state.engineTemperature);
+
+    this.lastUpdate = now;
   }
 
   teleportTool(zone, tool) {
