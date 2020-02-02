@@ -16,6 +16,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     this.generateAnimations(scene);
 
     this.thermometer = this.createThermometer();
+    this.updateThermometer();
 
     this.furnaceArray = [
       this.createFurnace(0, scene, zoneGroup),
@@ -43,8 +44,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       this.scene.game.state.engineTemperature = nextEngineTemperature;
     }
 
-    // console.log(this.scene.game.state.engineTemperature);
-    // TODO: Add and update thermometer as indicator
+    this.updateThermometer();
 
     this.lastUpdate = now;
   }
@@ -86,10 +86,31 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       engineWorldPositionY + engineAreaHeight / 2,
       size,
       size,
-      0xff0000,
+      0x000000,
     );
 
     return indicator;
+  }
+
+  updateThermometer() {
+    const { engineTemperatureLowerBound, engineTemperatureUpperBound } = this.scene.game.settings;
+    const { engineTemperature } = this.scene.game.state;
+
+    let color;
+    if (engineTemperature <= engineTemperatureLowerBound) {
+      // engine off
+      color = 0x000000;
+    } else if ( engineTemperature >= engineTemperatureUpperBound ) {
+      // engine overdrive
+      color = 0xff0000;
+    } else {
+      // engine operational
+      color = 0x00ff00;
+    }
+
+    console.log(engineTemperature, color);
+
+    this.thermometer.setFillStyle(color);
   }
 
   createFurnace(identifier, scene, zoneGroup) {

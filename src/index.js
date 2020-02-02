@@ -14,13 +14,15 @@ var settings = {
   difficulity: 1.1,
   maxShipSpeed: 100,
   engineTemperatureDecreaseFactor: 0.25 / 10000,
+  engineTemperatureLowerBound: 1,
+  engineTemperatureUpperBound: 5,
 };
 
 var gameState = {
   score: 0,
   height: 100,
   speed: 0,
-  engineTemperature: 2,
+  engineTemperature: 3,
 };
 
 var config = {
