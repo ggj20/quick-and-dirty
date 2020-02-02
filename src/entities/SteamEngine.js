@@ -55,7 +55,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     // Calculate engine efficency, ranges between 0 and 1.25
     this.scene.game.state.engineEfficency =
-      nextEngineTemperature / engineTemperatureOptimal;
+      this.scene.game.state.engineTemperature / engineTemperatureOptimal;
 
     // Update temperature indicator in scene
     this.updateThermometer();
