@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 import PlayerSpriteSheet from "../assets/player.png";
+import EngineDoorSpriteSheet from "../assets/engine-door.png";
 import HammerSprite from "../assets/hammer.png";
 import ExtinguisherSprite from "../assets/extinguisher.png";
 import PipeWrenchSprite from "../assets/pipe-wrench.png";
@@ -51,6 +52,7 @@ class BootScene extends Phaser.Scene {
     this.load.image('ShipSprite', ShipSprite);
     this.load.image('SteamParticle', SteamParticle);
     this.load.image('EngineFlameParticle', EngineFlameParticle);
+    this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
   }
 
   create() {

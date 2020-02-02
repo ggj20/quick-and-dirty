@@ -9,6 +9,7 @@ import Fire from '../entities/Fire';
 import Hole from '../entities/Hole';
 import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
+import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
@@ -79,6 +80,9 @@ class GameScene extends Phaser.Scene {
     new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
     new ItemTube(this, {x: 1355, y: 450}, {x: 1355, y: 630}, this.zoneGroup); // Right
     new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
+
+    // Steam Engine
+    new SteamEngine(this, this.zoneGroup);
 
     // Coal Dispensers
     new CoalDispenser(this, 600, 200, this.toolGroup);

@@ -18,6 +18,10 @@
     "url": "https://github.com/photonstorm/phaser3-project-template/issues"
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
