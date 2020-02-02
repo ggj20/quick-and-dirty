@@ -77,6 +77,8 @@ class Player extends Phaser.GameObjects.Container {
   dropTool() {
     this.scene.add.existing(this.activeTool)
     this.remove(this.activeTool)
+    this.activeTool.body.setSize();
+    this.activeTool.body.setOffset(0, 0);
     this.activeTool.setPosition (this.x + this.body.width / 2, this.y + 20);
     this.scene.physics.overlap(this.activeTool, this.zoneGroup, this.handleToolZone, null, this );
     this.activeTool = null;
