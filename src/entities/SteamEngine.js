@@ -11,6 +11,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   constructor(scene, zoneGroup) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
 
+    this.generateAnimations(scene);
+
     // Draw area of engine sprite
     const graphics = scene.make.graphics(engineAreaWidth, engineAreaHeight);
     graphics.fillStyle(0xff0000, 0.2);
@@ -34,6 +36,14 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       tool.destroy();
     }
   }
+  generateAnimations(scene) {
+    scene.anims.create({
+      key: 'open-engine-door',
+      frames: scene.anims.generateFrameNumbers('EngineDoorSpriteSheet', { start: 0, end: 31, first: 0 }),
+      frameRate: 60,
+      repeat: -1,
+    });
+  }
 
   createFurnace(identifier, scene, zoneGroup) {
     const positionX = engineAreaWidth - dropZoneWidth;
@@ -51,8 +61,9 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     scene.physics.world.enable(dropZone, 0);
     zoneGroup.add(dropZone);
 
-    const furnaceSprite = scene.add.sprite(positionX, positionY + dropZoneCenterY, 'EngineDoorSprite');
+    const furnaceSprite = scene.add.sprite(positionX, positionY + dropZoneCenterY, 'EngineDoorSpriteSheet');
     this.add(furnaceSprite);
+    furnaceSprite.anims.play('open-engine-door');
 
     return furnaceSprite;
   }
