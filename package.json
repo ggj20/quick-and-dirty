@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
