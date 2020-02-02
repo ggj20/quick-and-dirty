@@ -13,6 +13,7 @@ var settings = {
   debug: true,
   difficulity: 1.1,
   maxShipSpeed: 100,
+  engineTemperaturePerCoalDrop: 1,
   engineTemperatureDecreaseFactor: 0.25 / 10000,
   engineTemperatureLowerBound: 1,
   engineTemperatureUpperBound: 5,

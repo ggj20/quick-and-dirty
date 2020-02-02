@@ -52,6 +52,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
   teleportTool(zone, tool) {
     const { identifier } = zone;
     const { toolType } = tool;
+    const { engineTemperaturePerCoalDrop } = this.scene.game.settings;
 
     const furnace = this.furnaceArray[identifier];
 
@@ -59,7 +60,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       furnace.anims.play('open-engine-door');
       console.log('feed the engine #', identifier, 'with', toolType);
 
-      this.scene.game.state.engineTemperature += 1;
+      this.scene.game.state.engineTemperature += engineTemperaturePerCoalDrop;
 
       tool.destroy();
     }
