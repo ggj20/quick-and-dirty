@@ -13,6 +13,7 @@ import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
+import HeightIndicator from '../entities/Heightindicator.js';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -67,6 +68,7 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 1630, 920, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
+    new HeightIndicator(this, 975, 540);
     this.spawnTools();
     this.createScoreText();
     this.spawnDebugStuff();
