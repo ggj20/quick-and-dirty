@@ -37,6 +37,7 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     const {
       engineTemperatureDecreaseFactor,
       engineTemperatureMaximum,
+      engineTemperatureOptimal,
     } = this.scene.game.settings;
 
     const nextEngineTemperature =
@@ -52,6 +53,11 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       this.scene.game.state.engineTemperature = nextEngineTemperature;
     }
 
+    // Calculate engine efficency, ranges between 0 and 1.25
+    this.scene.game.state.engineEfficency =
+      nextEngineTemperature / engineTemperatureOptimal;
+
+    // Update temperature indicator in scene
     this.updateThermometer();
 
     this.lastUpdate = now;
