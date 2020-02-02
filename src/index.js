@@ -26,6 +26,7 @@ var gameState = {
   speed: 0,
   engineTemperature: 3,
   engineEfficency: 0.75,
+  voltage: 100,
 };
 
 var config = {
