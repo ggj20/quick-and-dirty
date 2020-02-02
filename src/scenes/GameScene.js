@@ -11,6 +11,7 @@ import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
+import EngineFlame from '../entities/EngineFlame';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -43,6 +44,9 @@ class GameScene extends Phaser.Scene {
 		let emitter = this.createRunningEmitter();
       new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
     }
+
+    new EngineFlame(this, 110, 400);
+    new EngineFlame(this, 110, 685);
 
     //debug objects
     this.leak = new Leak(this, 500, 300);
