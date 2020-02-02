@@ -13,7 +13,13 @@ class Player extends Phaser.GameObjects.Container {
 
     this.scene.physics.world.enable(this);
 
-    this.playerText = scene.add.text(-this.playerSprite.width, -this.playerSprite.height, 'Player ' + (this.playerId + 1), {fixedWidth: this.playerSprite.width * 2, align: 'center'});
+	this.playerText = scene.make.text({
+		x: this.playerSprite.width / 2 - 8,
+		y: -this.playerSprite.height,
+		text: 'Player ' + (this.playerId + 1),
+		style: { align: 'center' },
+		origin: { x: 0.5, y: 0 },
+	});
     this.add(this.playerText);
 
     scene.input.gamepad.on('down', this.onButtonPress, this);
