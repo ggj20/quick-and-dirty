@@ -50,5 +50,10 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
     this.add(dropZone);
     scene.physics.world.enable(dropZone, 0);
     zoneGroup.add(dropZone);
+
+    const furnaceSprite = scene.add.sprite(positionX, positionY + dropZoneCenterY, 'EngineDoorSprite');
+    this.add(furnaceSprite);
+
+    return furnaceSprite;
   }
 }
