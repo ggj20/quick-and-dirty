@@ -47,7 +47,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       this.scene.game.state.engineTemperature = nextEngineTemperature;
     }
 
-    console.log(this.scene.game.state.engineTemperature);
+    // console.log(this.scene.game.state.engineTemperature);
+    // TODO: Add and update thermometer as indicator
 
     this.lastUpdate = now;
   }
