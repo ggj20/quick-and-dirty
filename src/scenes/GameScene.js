@@ -94,7 +94,7 @@ class GameScene extends Phaser.Scene {
       x: -80,
       y: 20,
       text: "Score: ",
-      style: { font: "40px Arial", color: "#999", align: "center"},
+      style: { font: "40px Arial", color: "#CCC", align: "center"},
       origin: { x: 0, y: 0.5 },
       add: true
     });
