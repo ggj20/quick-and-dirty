@@ -20,13 +20,13 @@ var mapAreas = {
         {xSource : 1255, xLength: 65, ySource : 960, yLength: 25} // Room 2
     ],
     electricityAreas: [
-    {xSource : 225, xLength: 45, ySource : 215, yLength: 95}, //Room 1
+    {xSource : 235, xLength: 45, ySource : 215, yLength: 95}, //Room 1
     {xSource : 780, xLength: 95, ySource : 80, yLength: 45}, //Room 1
     {xSource : 1255, xLength: 95, ySource : 80, yLength: 45}, //Room 2
     {xSource : 1115, xLength: 95, ySource : 475, yLength: 45}, //Room 2
     {xSource : 385, xLength: 95, ySource : 560, yLength: 45}, //Room 3
     {xSource : 670, xLength: 95, ySource : 960, yLength: 45}, //Room 3
-    {xSource : 993, xLength: 45, ySource : 860, yLength: 95}, //Room 4
+    {xSource : 1000, xLength: 45, ySource : 860, yLength: 95}, //Room 4
     {xSource : 1468, xLength: 95, ySource : 960, yLength: 45}, //Room 4
 ],
 fireAreas:[
