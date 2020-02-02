@@ -20,8 +20,7 @@ class CoalDispenser extends Phaser.GameObjects.Container {
 
   spawn() {
     if(this.occupied == false) {
-      let coal = new Coal(this.scene, this.x, this.y);
-      this.toolGroup.add(coal);
+      let coal = new Coal(this.scene, this.x, this.y, this.toolGroup);
     }
     this.occupied = false;
     this.scene.physics.overlap(this.zone, this.toolGroup, this.handleOverlap, null, this);
