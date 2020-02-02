@@ -1,10 +1,36 @@
 class Damage extends Phaser.GameObjects.Container  {
-    constructor(scene, x, y, texture, damageType, repairDebounce) {
+    constructor(scene, x, y, texture, damageType, repairDebounce,  configCreate =  { start: 0, end: 34, first: 0 }, configRepeat ={ start: 30, end: 33, first: 29 }, frameRate = 17, repeat = false) {
         super(scene, x, y,);
         scene.add.existing(this);
 
-        this.damageSprite = scene.add.image(0, 0, texture);
+        this.damageSprite = scene.add.sprite(0, 0, texture);
         this.add(this.damageSprite);
+
+        this.scene.anims.create({
+            key: 'damage_'+damageType,
+            frames: this.scene.anims.generateFrameNumbers(texture, configCreate),
+            frameRate: frameRate,
+            repeat: repeat,
+          });
+
+        this.scene.anims.create(
+        {
+            key: 'repeat_damage_'+damageType,
+            frames: this.scene.anims.generateFrameNumbers(texture, configRepeat),
+            frameRate: frameRate,
+            repeat: -1,
+        });
+
+        this.damageSprite.on('animationcomplete', function (sprite)
+            {
+                if (sprite.key === 'damage_'+damageType)
+                {
+                    this.damageSprite.anims.play('repeat_damage_'+damageType);
+                }
+            }, this);
+
+        this.damageSprite.anims.play('damage_'+damageType);
+
 
         this.setSize(this.damageSprite.width, this.damageSprite.height);
 
