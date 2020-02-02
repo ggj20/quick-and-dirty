@@ -13,14 +13,18 @@ var settings = {
   debug: true,
   difficulity: 1.1,
   maxShipSpeed: 100,
+  engineTemperaturePerCoalDrop: 1,
   engineTemperatureDecreaseFactor: 0.25 / 10000,
+  engineTemperatureOptimal: 4,
+  engineTemperatureMaximum: 5,
 };
 
 var gameState = {
   score: 0,
   height: 100,
   speed: 0,
-  engineTemperature: 2,
+  engineTemperature: 3,
+  engineEfficency: 0.75,
 };
 
 var config = {
