@@ -60,7 +60,7 @@ class GameScene extends Phaser.Scene {
     new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
 
     // Steam Engine
-    new SteamEngine(this, this.zoneGroup);
+    new SteamEngine(this, this.zoneGroup, this.damageGoup);
 
     // Coal Dispensers
     new CoalDispenser(this, 1630, 160, this.toolGroup);

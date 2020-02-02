@@ -8,10 +8,11 @@ const dropZoneWidth = 50;
 const dropZoneHeight = 125;
 
 export default class SteamEngine extends Phaser.GameObjects.Container {
-  constructor(scene, zoneGroup) {
+  constructor(scene, zoneGroup, damageGroup) {
     super(scene, engineWorldPositionX, engineWorldPositionY);
 
     this.scene = scene;
+    this.damageGroup = damageGroup;
 
     this.generateAnimations(scene);
 
@@ -42,7 +43,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     const nextEngineTemperature =
       this.scene.game.state.engineTemperature -
-      timeDelta * engineTemperatureDecreaseFactor;
+      timeDelta * engineTemperatureDecreaseFactor
+      * this.damageGroup.children.entries.filter((d) => { return d.damageType == 'PIPE_WRENCH'}).length;
 
     // Clip temp between 0 and max-temp
     if (nextEngineTemperature <= 0) {
