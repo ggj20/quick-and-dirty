@@ -5,7 +5,7 @@ export default class Thermometer extends Phaser.GameObjects.Container {
     this.baseY = y;
     this.maxHeight = height;
 
-    this.rect = scene.add.rectangle(x, y, width, height, 0xff0000, 0.5).setOrigin(0, 0);
+    this.rect = scene.add.rectangle(x, y, width, height, 0x000000, 0.5).setOrigin(0, 0);
 
     this.updateHeight();
     setInterval(() => this.updateHeight(), 500);
