@@ -18,12 +18,13 @@ class SteamFurnace extends Phaser.GameObjects.Container {
     this.dropZone = scene.add
       .zone(dropZoneWidth / 2, dropZoneHeight / 2)
       .setSize(dropZoneWidth, dropZoneHeight);
+    this.dropZone.parent = this;
     this.add(this.dropZone);
     scene.physics.world.enable(this.dropZone, 0);
   }
 
   teleportTool(zone, tool) {
-    console.log('teleport to furnace', zone, tool);
+    console.log('teleport to furnace', zone, zone.parent, tool);
   }
 }
 
