@@ -14,6 +14,7 @@ import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
 import HeightIndicator from '../entities/Heightindicator.js';
+import Light from '../entities/Light.js';
 import Thermometer from '../entities/Thermometer';
 import VoltageMeter from '../entities/VoltageMeter';
 
@@ -79,6 +80,10 @@ class GameScene extends Phaser.Scene {
     this.spawnTools();
     this.createScoreText();
     this.spawnDebugStuff();
+    new Light(this, 230, 75);
+    new Light(this, 990, 75);
+    new Light(this, 230, 555);
+    new Light(this, 990, 555);
     this.setUpCamera();
   }
 
