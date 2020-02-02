@@ -5,7 +5,7 @@ import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
 var settings = {
-  playerSpeed: 3,
+  playerSpeed: 70,
   playerCount: 4,
   coalSpawnDelay: 5000,
   damageSpawnDelayInitial: 10000,

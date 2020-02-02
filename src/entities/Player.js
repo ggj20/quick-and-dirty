@@ -160,11 +160,11 @@ class Player extends Phaser.GameObjects.Container {
       return;
     }
 
-    let deltaX = delta * this.speed * this.pad.axes[0].getValue();
-    let deltaY = delta * this.speed * this.pad.axes[1].getValue();
+    let deltaX = this.speed * this.pad.axes[0].getValue();
+    let deltaY = this.speed * this.pad.axes[1].getValue();
 
-    this.body.setVelocityX( deltaX);
-    this.body.setVelocityY ( deltaY);
+    this.body.setVelocityX(deltaX);
+    this.body.setVelocityY(deltaY);
 
     let direction = 'none';
     if(Math.abs(deltaX) + Math.abs(deltaY) == 0) {
@@ -194,9 +194,6 @@ class Player extends Phaser.GameObjects.Container {
 		this.runningEmitter.frequency = 250;
       }
     }
-
-    //this.x += deltaX;
-    //this.y += deltaY;
   }
 }
 
