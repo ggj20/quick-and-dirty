@@ -26,6 +26,7 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.cameras.main.setBackgroundColor('#FFF');
     this.damageGoup = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
