@@ -23,7 +23,13 @@ class BootScene extends Phaser.Scene {
   constructor() {
     super({
       key: 'BootScene'
-    })
+    });
+
+    this.loadingBarConstants = {
+      width: 320,
+      height: 50,
+      padding: 10,
+    };
   }
 
   preload() {
@@ -31,13 +37,27 @@ class BootScene extends Phaser.Scene {
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x444444, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
 
-    this.load.on('progress', function (value) {
+    this.loadingBarConstants.x = (this.game.scale.displaySize.width - this.loadingBarConstants.width) / 2;
+    this.loadingBarConstants.y = (this.game.scale.displaySize.height - this.loadingBarConstants.height) / 2;
+
+    progressBox.fillRect(
+      this.loadingBarConstants.x,
+      this.loadingBarConstants.y,
+      this.loadingBarConstants.width,
+      this.loadingBarConstants.height,
+    );
+
+    this.load.on('progress', (value) => {
       console.log(value);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 300 * value, 30);
+      progressBar.fillRect(
+        this.loadingBarConstants.x + this.loadingBarConstants.padding,
+        this.loadingBarConstants.y + this.loadingBarConstants.padding,
+        (this.loadingBarConstants.width - 2 * this.loadingBarConstants.padding) * value,
+        this.loadingBarConstants.height - 2 * this.loadingBarConstants.padding,
+      );
     });
 
     this.load.on('fileprogress', function (file) {
