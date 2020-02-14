@@ -86,6 +86,18 @@ class GameScene extends Phaser.Scene {
     new Light(this, 230, 555);
     new Light(this, 990, 555);
     this.setUpCamera();
+
+    this.game.airconsole.onMessage = this.onMessage.bind(this);
+  }
+
+  onMessage(from, data) {
+    if(data.element == 'dpad') {
+      this.getPlayerById(from).applyDirection(data.data.key, data.data.pressed)
+    } else if(data.element == 'use'){
+      this.getPlayerById(from).useTool();
+    } else if(data.element == 'pickUpDrop'){
+      this.getPlayerById(from).pickUpDropTool();
+    }
   }
 
   createScoreText() {
