@@ -231,6 +231,10 @@ class GameScene extends Phaser.Scene {
     return this.playerGroup.children.entries[Math.floor(Math.random() * this.playerGroup.children.entries.length)];
   }
 
+  getPlayerById(id) {
+    return this.playerGroup.children.entries.filter(player => player.playerId == id)[0];
+  }
+
   spawnTools() {
     let p = null;
     p = this.getRandomPlayer();
