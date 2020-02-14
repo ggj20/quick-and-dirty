@@ -283,6 +283,7 @@ class GameScene extends Phaser.Scene {
     // Calc height based on Holes
     this.game.state.height -= this.game.settings.heightChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
     if(this.game.state.height <= 0) {
+      this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
     }
     if(this.game.state.height > 100) {
@@ -292,6 +293,7 @@ class GameScene extends Phaser.Scene {
     // Calc voltage based on sparcles
     this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
     if(this.game.state.voltage <= 0) {
+      this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
     }
     if(this.game.state.voltage > 100) {
