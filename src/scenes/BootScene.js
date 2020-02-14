@@ -86,8 +86,8 @@ class BootScene extends Phaser.Scene {
     this.load.image('GameOverSprite', GameOverSprite);
     this.load.image('EngineFlameParticle', EngineFlameParticle);
     this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
-	this.load.image('ParallaxBgClouds', ParallaxBgClouds);
-	this.load.image('ParallaxBgForest', ParallaxBgForest);
+    this.load.image('ParallaxBgClouds', ParallaxBgClouds);
+    this.load.image('ParallaxBgForest', ParallaxBgForest);
   }
 
   create() {
