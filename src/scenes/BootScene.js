@@ -19,6 +19,11 @@ import ParallaxBgClouds from "../assets/parallax-bg-clouds.png";
 import ParallaxBgForest from "../assets/parallax-bg-forest.png";
 import GameOverSprite from "../assets/game-over.jpg";
 
+import ElectricSoundMP3 from "../assets/sounds/electric.mp3";
+import ElectricSoundOGG from "../assets/sounds/electric.ogg";
+import FireSoundMP3 from "../assets/sounds/fire.mp3";
+import FireSoundOGG from "../assets/sounds/fire.ogg";
+
 class BootScene extends Phaser.Scene {
   constructor() {
     super({
@@ -88,6 +93,9 @@ class BootScene extends Phaser.Scene {
     this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
     this.load.image('ParallaxBgClouds', ParallaxBgClouds);
     this.load.image('ParallaxBgForest', ParallaxBgForest);
+
+    this.load.audio('ElectricSound', [ElectricSoundMP3, ElectricSoundOGG]);
+    this.load.audio('FireSound', [FireSoundMP3, FireSoundOGG]);
   }
 
   create() {
