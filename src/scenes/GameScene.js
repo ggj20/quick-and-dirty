@@ -49,10 +49,9 @@ class GameScene extends Phaser.Scene {
     ]
 
 
-    for(let i = 0; i < this.game.settings.playerCount; i++) {
-    let emitter = this.createRunningEmitter();
-      let player = new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
-      this.playerGroup.add(player);
+    for(let [i, player] of this.game.players.entries()) {
+      let emitter = this.createRunningEmitter();
+      this.playerGroup.add(new Player(this, this.rooms[i][0], this.rooms[i][1], player.id, this.toolGroup, this.damageGoup, this.zoneGroup, emitter));
     }
     this.physics.add.collider(this.playerGroup, this. damageGoup);
 
