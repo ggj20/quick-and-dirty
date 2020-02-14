@@ -13,13 +13,13 @@ class Player extends Phaser.GameObjects.Container {
 
     this.scene.physics.world.enable(this);
 
-	this.playerText = scene.make.text({
-		x: this.playerSprite.width / 2 - 8,
-		y: -this.playerSprite.height,
-		text: 'Player ' + (this.playerId + 1),
-		style: { align: 'center' },
-		origin: { x: 0.5, y: 0 },
-	});
+    this.playerText = scene.make.text({
+      x: this.playerSprite.width / 2 - 8,
+      y: -this.playerSprite.height,
+      text: 'Player ' + (this.playerId + 1),
+      style: { align: 'center' },
+      origin: { x: 0.5, y: 0 },
+    });
     this.add(this.playerText);
 
     scene.physics.world.enable(this);
@@ -37,10 +37,10 @@ class Player extends Phaser.GameObjects.Container {
       this.debugDrawRoom(pos1, pos2);
     }
 
-	this.runningEmitter = runningEmitter;
-	this.runningEmitter.follow = this;
-	this.runningEmitter.followOffset.x = this.playerSprite.width / 2 - 8;
-	this.runningEmitter.followOffset.y = this.playerSprite.height / 2 - 6;
+    this.runningEmitter = runningEmitter;
+    this.runningEmitter.follow = this;
+    this.runningEmitter.followOffset.x = this.playerSprite.width / 2 - 8;
+    this.runningEmitter.followOffset.y = this.playerSprite.height / 2 - 6;
   }
 
   pickUpDropTool() {
@@ -187,7 +187,7 @@ class Player extends Phaser.GameObjects.Container {
       if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
         this.playerSprite.flipX = direction == 'left';
         this.playerSprite.anims.play(animation);
-		this.runningEmitter.frequency = 150;
+        this.runningEmitter.frequency = 150;
       }
     }
   }

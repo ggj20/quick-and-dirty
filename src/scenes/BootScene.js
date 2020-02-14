@@ -49,7 +49,6 @@ class BootScene extends Phaser.Scene {
     );
 
     this.load.on('progress', (value) => {
-      console.log(value);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(
@@ -58,10 +57,6 @@ class BootScene extends Phaser.Scene {
         (this.loadingBarConstants.width - 2 * this.loadingBarConstants.padding) * value,
         this.loadingBarConstants.height - 2 * this.loadingBarConstants.padding,
       );
-    });
-
-    this.load.on('fileprogress', function (file) {
-        console.log(file.src);
     });
 
     this.load.on('complete', function () {
@@ -86,8 +81,8 @@ class BootScene extends Phaser.Scene {
     this.load.image('GameOverSprite', GameOverSprite);
     this.load.image('EngineFlameParticle', EngineFlameParticle);
     this.load.spritesheet('EngineDoorSpriteSheet', EngineDoorSpriteSheet, { frameWidth: 88, frameHeight: 122, endFrame: 32 });
-	this.load.image('ParallaxBgClouds', ParallaxBgClouds);
-	this.load.image('ParallaxBgForest', ParallaxBgForest);
+    this.load.image('ParallaxBgClouds', ParallaxBgClouds);
+    this.load.image('ParallaxBgForest', ParallaxBgForest);
   }
 
   create() {
