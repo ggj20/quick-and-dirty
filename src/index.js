@@ -57,3 +57,4 @@ var config = {
 var game = new Phaser.Game(config);
 game.settings = settings;
 game.state = gameState;
+game.airconsole = new AirConsole();
