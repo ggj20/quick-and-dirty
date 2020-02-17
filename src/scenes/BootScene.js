@@ -35,6 +35,8 @@ import SteamSoundMP3 from '../assets/sounds/steam.mp3';
 import SteamSoundOGG from '../assets/sounds/steam.ogg';
 import WrenchSoundMP3 from '../assets/sounds/wrench.mp3';
 import WrenchSoundOGG from '../assets/sounds/wrench.ogg';
+import BeepSoundMP3 from '../assets/sounds/beep.mp3';
+import BeepSoundOGG from '../assets/sounds/beep.ogg';
 
 
 class BootScene extends Phaser.Scene {
@@ -115,6 +117,7 @@ class BootScene extends Phaser.Scene {
     this.load.audio('SolderingIronSound', [SolderingIronSoundMP3, SolderingIronSoundOGG]);
     this.load.audio('SteamSound', [SteamSoundMP3, SteamSoundOGG]);
     this.load.audio('WrenchSound', [WrenchSoundMP3, WrenchSoundOGG]);
+    this.load.audio('BeepSound', [BeepSoundMP3, BeepSoundOGG]);
   }
 
   create() {
