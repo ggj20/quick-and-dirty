@@ -23,6 +23,19 @@ import ElectricSoundMP3 from "../assets/sounds/electric.mp3";
 import ElectricSoundOGG from "../assets/sounds/electric.ogg";
 import FireSoundMP3 from "../assets/sounds/fire.mp3";
 import FireSoundOGG from "../assets/sounds/fire.ogg";
+import FireExtinguisherSoundMP3 from '../assets/sounds/fire-extinguisher.mp3';
+import FireExtinguisherSoundOGG from '../assets/sounds/fire-extinguisher.ogg';
+import HammerSoundMP3 from '../assets/sounds/hammer.mp3';
+import HammerSoundOGG from '../assets/sounds/hammer.ogg';
+import HoleSoundMP3 from '../assets/sounds/hole.mp3';
+import HoleSoundOGG from '../assets/sounds/hole.ogg';
+import SolderingIronSoundMP3 from '../assets/sounds/soldering-iron.mp3';
+import SolderingIronSoundOGG from '../assets/sounds/soldering-iron.ogg';
+import SteamSoundMP3 from '../assets/sounds/steam.mp3';
+import SteamSoundOGG from '../assets/sounds/steam.ogg';
+import WrenchSoundMP3 from '../assets/sounds/wrench.mp3';
+import WrenchSoundOGG from '../assets/sounds/wrench.ogg';
+
 
 class BootScene extends Phaser.Scene {
   constructor() {
