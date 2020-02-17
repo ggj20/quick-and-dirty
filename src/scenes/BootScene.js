@@ -109,6 +109,12 @@ class BootScene extends Phaser.Scene {
 
     this.load.audio('ElectricSound', [ElectricSoundMP3, ElectricSoundOGG]);
     this.load.audio('FireSound', [FireSoundMP3, FireSoundOGG]);
+    this.load.audio('FireExtinguisherSound', [FireExtinguisherSoundMP3, FireExtinguisherSoundOGG]);
+    this.load.audio('HammerSound', [HammerSoundMP3, HammerSoundOGG]);
+    this.load.audio('HoleSound', [HoleSoundMP3, HoleSoundOGG]);
+    this.load.audio('SolderingIronSound', [SolderingIronSoundMP3, SolderingIronSoundOGG]);
+    this.load.audio('SteamSound', [SteamSoundMP3, SteamSoundOGG]);
+    this.load.audio('WrenchSound', [WrenchSoundMP3, WrenchSoundOGG]);
   }
 
   create() {
