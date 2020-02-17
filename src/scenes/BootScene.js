@@ -37,6 +37,14 @@ import WrenchSoundMP3 from '../assets/sounds/wrench.mp3';
 import WrenchSoundOGG from '../assets/sounds/wrench.ogg';
 import BeepSoundMP3 from '../assets/sounds/beep.mp3';
 import BeepSoundOGG from '../assets/sounds/beep.ogg';
+import CharacterWalkSoundMP3 from '../assets/sounds/character-walk.mp3';
+import CharacterWalkSoundOGG from '../assets/sounds/character-walk.ogg';
+import EngineAddCoalSoundMP3 from '../assets/sounds/engine-add-coal.mp3';
+import EngineAddCoalSoundOGG from '../assets/sounds/engine-add-coal.ogg';
+import ItemDropSoundMP3 from '../assets/sounds/item-drop.mp3';
+import ItemDropSoundOGG from '../assets/sounds/item-drop.ogg';
+import ItemPickUpSoundMP3 from '../assets/sounds/item-pick-up.mp3';
+import ItemPickUpSoundOGG from '../assets/sounds/item-pick-up.ogg';
 
 
 class BootScene extends Phaser.Scene {
@@ -118,6 +126,10 @@ class BootScene extends Phaser.Scene {
     this.load.audio('SteamSound', [SteamSoundMP3, SteamSoundOGG]);
     this.load.audio('WrenchSound', [WrenchSoundMP3, WrenchSoundOGG]);
     this.load.audio('BeepSound', [BeepSoundMP3, BeepSoundOGG]);
+    this.load.audio('CharacterWalkSound', [CharacterWalkSoundMP3, CharacterWalkSoundOGG]);
+    this.load.audio('EngineAddCoalSound', [EngineAddCoalSoundMP3, EngineAddCoalSoundOGG]);
+    this.load.audio('ItemDropSound', [ItemDropSoundMP3, ItemDropSoundOGG]);
+    this.load.audio('ItemPickUpSound', [ItemPickUpSoundMP3, ItemPickUpSoundOGG]);
   }
 
   create() {
