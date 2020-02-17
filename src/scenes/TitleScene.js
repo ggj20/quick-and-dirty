@@ -12,7 +12,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    this.sound.add('FireSound');
+    this.sound.add('BeepSound');
 
     this.make.text({
       x: this.game.config.width/2,
@@ -65,7 +65,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   onButtonPress(pad, button, index) {
-    this.sound.play('FireSound');
+    this.sound.play('BeepSound');
     this.playerTexts[pad.index].setColor('#00CC00');
     this.readyCount++;
     this.readyStates[pad.index] = true;
