@@ -4,6 +4,7 @@ import mapAreas from '../scenes/MapConfig';
 class Fire extends Damage {
     constructor(scene, x, y, timeOut = 5000) {
         super(scene, x, y, 'FireSpriteSheet', 'EXTINGUISHER', 100,  { start: 0, end: 24 }, { start: 1, end: 24 }, 17);
+        scene.sound.play('FireSound');
         setTimeout(() => this.spreadFire(timeOut), timeOut);
     }
 

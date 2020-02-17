@@ -5,6 +5,7 @@ class SolderingIron extends Tool {
         super(scene, x, y, 'SolderingIronSprite', 'SOLDERING_IRON', toolGroup);
     }
     use() {
+      scene.sound.play('SolderingIronSound');
         //ToDo animation
     }
 }

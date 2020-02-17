@@ -5,6 +5,7 @@ class Extinguisher extends Tool {
         super(scene, x, y, 'ExtinguisherSprite', 'EXTINGUISHER', toolGroup);
     }
     use() {
+      scene.sound.play('FireExtinguisherSound');
         //ToDo animation
     }
 }
