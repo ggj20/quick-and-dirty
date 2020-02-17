@@ -3,9 +3,10 @@ import Tool from './Tool';
 class Hammer extends Tool {
     constructor(scene, x, y, toolGroup) {
         super(scene, x, y, 'HammerSprite', 'HAMMER', toolGroup);
+        this.scene = scene;
     }
     use() {
-      scene.sound.play('HammerSound');
+      this.scene.sound.play('HammerSound');
         //ToDo animation
     }
 }
