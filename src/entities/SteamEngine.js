@@ -71,6 +71,8 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
       furnace.anims.play('open-engine-door');
       console.log('feed the engine #', identifier, 'with', toolType);
 
+      this.scene.sound.play('EngineAddCoalSound');
+
       this.scene.game.state.engineTemperature += engineTemperaturePerCoalDrop;
 
       tool.destroy();

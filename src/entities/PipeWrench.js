@@ -5,6 +5,7 @@ class PipeWrench extends Tool {
         super(scene, x, y, 'PipeWrenchSprite', 'PIPE_WRENCH', toolGroup);
     }
     use() {
+      scene.sound.play('WrenchSound');
         //ToDo animation
     }
 }

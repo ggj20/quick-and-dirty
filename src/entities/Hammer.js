@@ -5,6 +5,7 @@ class Hammer extends Tool {
         super(scene, x, y, 'HammerSprite', 'HAMMER', toolGroup);
     }
     use() {
+      scene.sound.play('HammerSound');
         //ToDo animation
     }
 }

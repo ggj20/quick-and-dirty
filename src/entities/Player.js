@@ -75,8 +75,11 @@ class Player extends Phaser.GameObjects.Container {
   }
 
   dropTool() {
-    this.scene.add.existing(this.activeTool)
-    this.remove(this.activeTool)
+    if(this.activeTool) {
+      this.scene.sound.play('ItemDropSound');
+    }
+    this.scene.add.existing(this.activeTool);
+    this.remove(this.activeTool);
     this.activeTool.body.setSize();
     this.activeTool.body.setOffset(0, 0);
     this.activeTool.setPosition (this.x + this.body.width / 2, this.y + 20);
@@ -98,8 +101,9 @@ class Player extends Phaser.GameObjects.Container {
 
   handleToolPickup(player, tool) {
 	  if (this.activeTool == null) {
-	    this.add(tool);
-	    this.activeTool = tool;
+      this.add(tool);
+      this.scene.sound.play('ItemPickUpSound');
+      this.activeTool = tool;
       this.activeTool.setPosition(this.body.width/2, -20);
       this.activeTool.body.setSize(this.body.width * 1.5,this.body.height*2)
       this.activeTool.body.setOffset(-this.body.width* 0.10 ,  this.body.height * 0.66)
