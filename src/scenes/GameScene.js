@@ -49,10 +49,9 @@ class GameScene extends Phaser.Scene {
     ]
 
 
-    for(let i = 0; i < this.game.settings.playerCount; i++) {
-    let emitter = this.createRunningEmitter();
-      let player = new Player(this, this.rooms[i][0], this.rooms[i][1], i, this.toolGroup, this.damageGoup, this.zoneGroup, emitter);
-      this.playerGroup.add(player);
+    for(let [i, player] of this.game.players.entries()) {
+      let emitter = this.createRunningEmitter();
+      this.playerGroup.add(new Player(this, this.rooms[i][0], this.rooms[i][1], player.id, this.toolGroup, this.damageGoup, this.zoneGroup, emitter));
     }
     this.physics.add.collider(this.playerGroup, this. damageGoup);
 
@@ -87,6 +86,18 @@ class GameScene extends Phaser.Scene {
     new Light(this, 230, 555);
     new Light(this, 990, 555);
     this.setUpCamera();
+
+    this.game.airconsole.onMessage = this.onMessage.bind(this);
+  }
+
+  onMessage(from, data) {
+    if(data.element == 'dpad') {
+      this.getPlayerById(from).applyDirection(data.data.key, data.data.pressed)
+    } else if(data.element == 'use'){
+      this.getPlayerById(from).useTool();
+    } else if(data.element == 'pickUpDrop'){
+      this.getPlayerById(from).pickUpDropTool();
+    }
   }
 
   createScoreText() {
@@ -232,6 +243,10 @@ class GameScene extends Phaser.Scene {
     return this.playerGroup.children.entries[Math.floor(Math.random() * this.playerGroup.children.entries.length)];
   }
 
+  getPlayerById(id) {
+    return this.playerGroup.children.entries.filter(player => player.playerId == id)[0];
+  }
+
   spawnTools() {
     let p = null;
     p = this.getRandomPlayer();
@@ -268,6 +283,7 @@ class GameScene extends Phaser.Scene {
     // Calc height based on Holes
     this.game.state.height -= this.game.settings.heightChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
     if(this.game.state.height <= 0) {
+      this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
     }
     if(this.game.state.height > 100) {
@@ -277,6 +293,7 @@ class GameScene extends Phaser.Scene {
     // Calc voltage based on sparcles
     this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
     if(this.game.state.voltage <= 0) {
+      this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
     }
     if(this.game.state.voltage > 100) {

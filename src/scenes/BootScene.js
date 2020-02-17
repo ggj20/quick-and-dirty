@@ -77,7 +77,6 @@ class BootScene extends Phaser.Scene {
     );
 
     this.load.on('progress', (value) => {
-      console.log(value);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(
@@ -86,10 +85,6 @@ class BootScene extends Phaser.Scene {
         (this.loadingBarConstants.width - 2 * this.loadingBarConstants.padding) * value,
         this.loadingBarConstants.height - 2 * this.loadingBarConstants.padding,
       );
-    });
-
-    this.load.on('fileprogress', function (file) {
-        console.log(file.src);
     });
 
     this.load.on('complete', function () {

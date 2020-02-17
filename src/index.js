@@ -4,9 +4,11 @@ import TitleScene from './scenes/TitleScene';
 import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
+const params = Object.assign(...location.search.substr(1).split('&').map(e => e.split('=')).map(([key, val]) => ({[key]: val})))
+
 var settings = {
   playerSpeed: 200,
-  playerCount: 4,
+  playerCount: params.playerCount || 4,
   coalSpawnDelay: 5000,
   damageSpawnDelayInitial: 10000,
   damageSpawnDelayMin: 3000,
@@ -57,3 +59,4 @@ var config = {
 var game = new Phaser.Game(config);
 game.settings = settings;
 game.state = gameState;
+game.airconsole = new AirConsole();

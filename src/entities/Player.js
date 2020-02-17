@@ -13,16 +13,15 @@ class Player extends Phaser.GameObjects.Container {
 
     this.scene.physics.world.enable(this);
 
-	this.playerText = scene.make.text({
-		x: this.playerSprite.width / 2 - 8,
-		y: -this.playerSprite.height,
-		text: 'Player ' + (this.playerId + 1),
-		style: { align: 'center' },
-		origin: { x: 0.5, y: 0 },
-	});
+    this.playerText = scene.make.text({
+      x: this.playerSprite.width / 2 - 8,
+      y: -this.playerSprite.height,
+      text: 'Player ' + (this.playerId + 1),
+      style: { align: 'center' },
+      origin: { x: 0.5, y: 0 },
+    });
     this.add(this.playerText);
 
-    scene.input.gamepad.on('down', this.onButtonPress, this);
     scene.physics.world.enable(this);
     this.body.setSize(this.playerSprite.width * 0.8, this.playerSprite.height / 2);
 
@@ -38,28 +37,39 @@ class Player extends Phaser.GameObjects.Container {
       this.debugDrawRoom(pos1, pos2);
     }
 
-	this.runningEmitter = runningEmitter;
-	this.runningEmitter.follow = this;
-	this.runningEmitter.followOffset.x = this.playerSprite.width / 2 - 8;
-	this.runningEmitter.followOffset.y = this.playerSprite.height / 2 - 6;
+    this.runningEmitter = runningEmitter;
+    this.runningEmitter.follow = this;
+    this.runningEmitter.followOffset.x = this.playerSprite.width / 2 - 8;
+    this.runningEmitter.followOffset.y = this.playerSprite.height / 2 - 6;
   }
 
-  onButtonPress(pad, button, index) {
-    if(pad.index != this.playerId) {
-      return; // Ignore other controllers
+  pickUpDropTool() {
+    if(this.activeTool == null) {
+      this.pickupTool(this.scene);
+    } else {
+      this.dropTool();
     }
-    else if(button.index == 2) { // X
-      if(this.activeTool != null) {
-        this.useTool();
-      }
+  }
+
+  applyDirection(dir, pressed) {
+    if(dir == 'left' && pressed == true) {
+      this.body.setVelocityX(-this.speed);
+    } else if(dir == 'right' && pressed == true) {
+      this.body.setVelocityX(this.speed);
+    } else if(dir == 'up' && pressed == true) {
+      this.body.setVelocityY(-this.speed);
+    } else if(dir == 'down' && pressed == true) {
+      this.body.setVelocityY(this.speed);
+    } else if(dir == 'left' && pressed == false && this.body.velocity.x < 0) {
+      this.body.setVelocityX(0);
+    } else if(dir == 'right' && pressed == false && this.body.velocity.x > 0) {
+      this.body.setVelocityX(0);
+    } else if(dir == 'up' && pressed == false && this.body.velocity.y < 0) {
+      this.body.setVelocityY(0);
+    } else if(dir == 'down' && pressed == false && this.body.velocity.y > 0) {
+      this.body.setVelocityY(0);
     }
-    else if(button.index == 0) { // A
-      if(this.activeTool == null) {
-        this.pickupTool(this.scene);
-      } else {
-        this.dropTool();
-      }
-    }
+    this.updateAnimation();
   }
 
   useTool() {
@@ -155,32 +165,14 @@ class Player extends Phaser.GameObjects.Container {
     });
   }
 
-  debugDrawRoom(pos1, pos2) {
-    var graphics = this.scene.add.graphics();
-    graphics.lineStyle(4, 0x00ff00, 0.5);
-    graphics.strokeRect(pos1[0], pos1[1], pos2[0], pos2[1]);
-
-  }
-
-  preUpdate(time, delta) {
-    if(!this.pad) {
-      this.pad = this.scene.input.gamepad.getPad(this.playerId);
-      return;
-    }
-
-    let deltaX = this.speed * this.pad.axes[0].getValue();
-    let deltaY = this.speed * this.pad.axes[1].getValue();
-
-    this.body.setVelocityX(deltaX);
-    this.body.setVelocityY(deltaY);
-
+  updateAnimation() {
     let direction = 'none';
-    if(Math.abs(deltaX) + Math.abs(deltaY) == 0) {
+    if(Math.abs(this.body.velocity.x) + Math.abs(this.body.velocity.y) == 0) {
       direction = 'none';
-    } else if(Math.abs(deltaX) > Math.abs(deltaY)) {
-      direction = deltaX < 0 ? 'left' : 'right';
+    } else if(Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+      direction = this.body.velocity.x < 0 ? 'left' : 'right';
     } else {
-      direction = deltaY < 0 ? 'up' : 'down';
+      direction = this.body.velocity.y < 0 ? 'up' : 'down';
     }
 
     let animation = false;
@@ -199,9 +191,19 @@ class Player extends Phaser.GameObjects.Container {
       if(!this.playerSprite.anims.isPlaying || this.playerSprite.anims.currentAnim.key !== animation) {
         this.playerSprite.flipX = direction == 'left';
         this.playerSprite.anims.play(animation);
-		this.runningEmitter.frequency = 150;
+        this.runningEmitter.frequency = 150;
       }
     }
+  }
+
+  debugDrawRoom(pos1, pos2) {
+    var graphics = this.scene.add.graphics();
+    graphics.lineStyle(4, 0x00ff00, 0.5);
+    graphics.strokeRect(pos1[0], pos1[1], pos2[0], pos2[1]);
+
+  }
+
+  preUpdate(time, delta) {
   }
 }
 

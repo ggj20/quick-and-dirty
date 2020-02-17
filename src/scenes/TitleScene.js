@@ -48,15 +48,14 @@ class TitleScene extends Phaser.Scene {
       add: true
     });
 
-    this.readyStates = [];
     this.playerTexts = [];
+    this.game.players = [];
 
     for(let i = 0; i < this.game.settings.playerCount; i++) {
       this.playerTexts.push(this.createPlayerText(i));
-      this.readyStates.push(false);
     }
 
-    this.input.gamepad.on('down', this.onButtonPress, this);
+    this.game.airconsole.onMessage = this.onMessage.bind(this);
 
     // directly jump to game if debug true
     if(this.game.settings.debug) {
@@ -64,15 +63,19 @@ class TitleScene extends Phaser.Scene {
     }
   }
 
-  onButtonPress(pad, button, index) {
-    this.sound.play('BeepSound');
-    this.playerTexts[pad.index].setColor('#00CC00');
-    this.readyCount++;
-    this.readyStates[pad.index] = true;
+  onMessage(from, data) {
+    console.log(from, data);
+    if(data.element == 'ready' && data.data.pressed == true) {
+      this.sound.play('BeepSound');
+      this.game.players.push({id: from, ready: true});
+      this.game.airconsole.message(from, {show_view_id: 'view-1'});
+      this.playerTexts[this.game.players.length-1].setColor('#00CC00');
+    }
 
     // Test if all players are ready
-    if(this.readyStates.reduce((a, b) => {return a && b}, true)) {
+    if(this.game.players.length == this.game.settings.playerCount) {
       this.scene.start('GameScene');
+      this.game.airconsole.broadcast({show_view_id: 'view-2'});
     }
   }
 
