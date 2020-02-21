@@ -9,7 +9,7 @@ class Player extends Phaser.GameObjects.Container {
     this.direction = new Phaser.Math.Vector2(0, 0,);
 
     this.generateAnimations();
-    this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet').setOrigin(0.1, 0.5);
+    this.playerSprite = scene.add.sprite(0, 0, 'Character1SpriteSheet').setOrigin(0.1, 0.5);
     this.add(this.playerSprite);
 
     this.scene.physics.world.enable(this);
@@ -138,37 +138,37 @@ class Player extends Phaser.GameObjects.Container {
   generateAnimations() {
     this.scene.anims.create({
       key: 'walk-up',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 0, end: 23, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 0, end: 23, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
       key: 'walk-up-equipped',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 24, end: 47, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 24, end: 47, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
       key: 'walk-down-equipped',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 48, end: 71, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 48, end: 71, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
       key: 'walk-side',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 72, end: 95, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 72, end: 95, first: 0 }),
       frameRate: 45,
       repeat: -1,
     });
     this.scene.anims.create({
       key: 'walk-side-equipped',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 96, end: 119, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 96, end: 119, first: 0 }),
       frameRate: 45,
       repeat: -1,
     });
     this.scene.anims.create({
       key: 'walk-down',
-      frames: this.scene.anims.generateFrameNumbers('PlayerSpriteSheet', { start: 120, end: 143, first: 0 }),
+      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 120, end: 143, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });

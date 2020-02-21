@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-import PlayerSpriteSheet from "../assets/player.png";
+import Character1SpriteSheet from "../assets/character1.png";
 import EngineDoorSpriteSheet from "../assets/engine-door.png";
 import HammerSprite from "../assets/hammer.png";
 import ExtinguisherSprite from "../assets/extinguisher.png";
@@ -92,7 +92,7 @@ class BootScene extends Phaser.Scene {
       progressBox.destroy();
       console.log('complete');
     });
-    this.load.spritesheet('PlayerSpriteSheet', PlayerSpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
+    this.load.spritesheet('Character1SpriteSheet', Character1SpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
     this.load.spritesheet('LeakSpriteSheet', LeakSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('ElectroSpriteSheet', ElectroSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('HoleSpriteSheet', HoleSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
