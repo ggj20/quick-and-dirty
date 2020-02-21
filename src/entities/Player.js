@@ -6,6 +6,7 @@ class Player extends Phaser.GameObjects.Container {
     this.playerId = playerId;
 
     this.speed = this.scene.game.settings.playerSpeed;
+    this.direction = new Phaser.Math.Vector2(0, 0,);
 
     this.generateAnimations();
     this.playerSprite = scene.add.sprite(0, 0, 'PlayerSpriteSheet').setOrigin(0.1, 0.5);
@@ -53,21 +54,27 @@ class Player extends Phaser.GameObjects.Container {
 
   applyDirection(dir, pressed) {
     if(dir == 'left' && pressed == true) {
-      this.body.setVelocityX(-this.speed);
+      this.direction.x = -1;
     } else if(dir == 'right' && pressed == true) {
-      this.body.setVelocityX(this.speed);
+      this.direction.x = 1;
     } else if(dir == 'up' && pressed == true) {
-      this.body.setVelocityY(-this.speed);
+      this.direction.y = -1;
     } else if(dir == 'down' && pressed == true) {
-      this.body.setVelocityY(this.speed);
-    } else if(dir == 'left' && pressed == false && this.body.velocity.x < 0) {
-      this.body.setVelocityX(0);
-    } else if(dir == 'right' && pressed == false && this.body.velocity.x > 0) {
-      this.body.setVelocityX(0);
-    } else if(dir == 'up' && pressed == false && this.body.velocity.y < 0) {
-      this.body.setVelocityY(0);
-    } else if(dir == 'down' && pressed == false && this.body.velocity.y > 0) {
-      this.body.setVelocityY(0);
+      this.direction.y = 1;
+    } else if(dir == 'left' && pressed == false && this.direction.x < 0) {
+      this.direction.x = 0;
+    } else if(dir == 'right' && pressed == false && this.direction.x > 0) {
+      this.direction.x = 0;
+    } else if(dir == 'up' && pressed == false && this.direction.y < 0) {
+      this.direction.y = 0;
+    } else if(dir == 'down' && pressed == false && this.direction.y > 0) {
+      this.direction.y = 0;
+    }
+
+    if(this.direction.length() == 0) {
+      this.body.velocity.set(0);
+    } else {
+      this.scene.physics.velocityFromAngle(Phaser.Math.RadToDeg(this.direction.angle()), this.speed, this.body.velocity);
     }
     this.updateAnimation();
   }
