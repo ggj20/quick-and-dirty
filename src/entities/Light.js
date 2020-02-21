@@ -13,6 +13,19 @@ class Light extends Phaser.GameObjects.Container {
       this.shadow.alpha = 0;
     } else {
       this.shadow.alpha = 1 - (this.scene.game.state.voltage / 100);
+  }
+
+  getAlphaLevel(voltage) {
+    const ranges = [
+      [80, 0],
+      [70, 0.5],
+      [50, 0.8],
+      [0, 1.0],
+    ]
+    for(let step of ranges) {
+      if(voltage >= step[0]) {
+        return step[1];
+      }
     }
     setTimeout(this.update.bind(this), 1000);
   }
