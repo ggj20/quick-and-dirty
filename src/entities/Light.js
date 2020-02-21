@@ -9,7 +9,7 @@ class Light extends Phaser.GameObjects.Container {
   }
 
   update() {
-    if(Math.random() < this.scene.game.state.voltage / 100) {
+    if((Math.random() * 0.75) < this.scene.game.state.voltage / 100) {
       this.shadow.alpha = 0;
     } else {
       this.shadow.alpha = this.getAlphaLevel(this.scene.game.state.voltage);
