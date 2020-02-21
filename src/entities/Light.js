@@ -5,7 +5,7 @@ class Light extends Phaser.GameObjects.Container {
     this.shadow = scene.add.image(0, 0, 'ShadowSprite').setOrigin(0, 0);
     this.add(this.shadow);
     this.shadow.alpha = 0;
-    setTimeout(this.update.bind(this), 1000);
+    setTimeout(this.update.bind(this), 2000);
   }
 
   update() {
@@ -13,6 +13,7 @@ class Light extends Phaser.GameObjects.Container {
       this.shadow.alpha = 0;
     } else {
       this.shadow.alpha = 1 - (this.scene.game.state.voltage / 100);
+    setTimeout(this.update.bind(this), 2000);
   }
 
   getAlphaLevel(voltage) {
@@ -27,7 +28,6 @@ class Light extends Phaser.GameObjects.Container {
         return step[1];
       }
     }
-    setTimeout(this.update.bind(this), 1000);
   }
 }
 
