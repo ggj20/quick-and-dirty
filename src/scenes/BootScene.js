@@ -1,6 +1,9 @@
 import Phaser from 'phaser';
 
 import Character1SpriteSheet from "../assets/character1.png";
+import Character2SpriteSheet from "../assets/character2.png";
+import Character3SpriteSheet from "../assets/character3.png";
+import Character4SpriteSheet from "../assets/character4.png";
 import EngineDoorSpriteSheet from "../assets/engine-door.png";
 import HammerSprite from "../assets/hammer.png";
 import ExtinguisherSprite from "../assets/extinguisher.png";
@@ -93,6 +96,9 @@ class BootScene extends Phaser.Scene {
       console.log('complete');
     });
     this.load.spritesheet('Character1SpriteSheet', Character1SpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
+    this.load.spritesheet('Character2SpriteSheet', Character2SpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
+    this.load.spritesheet('Character3SpriteSheet', Character3SpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
+    this.load.spritesheet('Character4SpriteSheet', Character4SpriteSheet, { frameWidth: 60, frameHeight: 82, endFrame: 144 });
     this.load.spritesheet('LeakSpriteSheet', LeakSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('ElectroSpriteSheet', ElectroSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
     this.load.spritesheet('HoleSpriteSheet', HoleSpriteSheet, { frameWidth: 60, frameHeight: 60, endFrame: 34 });
