@@ -1,7 +1,9 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroupColliding, damageGroupNotColliding, zoneGroup, runningEmitter) {
+  constructor(scene, pos1, pos2, characterSpriteSheetNr, playerId, toolGroup, damageGroupColliding, damageGroupNotColliding, zoneGroup, runningEmitter) {
     super(scene, 0, 0);
     scene.add.existing(this);
+    this.characterSpriteSheetNr = characterSpriteSheetNr;
+    this.spriteSheet = 'Character' + characterSpriteSheetNr + 'SpriteSheet';
 
     this.playerId = playerId;
 
@@ -9,7 +11,7 @@ class Player extends Phaser.GameObjects.Container {
     this.direction = new Phaser.Math.Vector2(0, 0,);
 
     this.generateAnimations();
-    this.playerSprite = scene.add.sprite(0, 0, 'Character1SpriteSheet').setOrigin(0.1, 0.5);
+    this.playerSprite = scene.add.sprite(0, 0, this.spriteSheet).setOrigin(0.1, 0.5);
     this.add(this.playerSprite);
 
     this.scene.physics.world.enable(this);
@@ -17,7 +19,7 @@ class Player extends Phaser.GameObjects.Container {
     this.playerText = scene.make.text({
       x: this.playerSprite.width / 2 - 8,
       y: -this.playerSprite.height,
-      text: 'Player ' + (this.playerId + 1),
+      text: 'Player ' + (characterSpriteSheetNr),
       style: { align: 'center' },
       origin: { x: 0.5, y: 0 },
     });
@@ -137,38 +139,38 @@ class Player extends Phaser.GameObjects.Container {
 
   generateAnimations() {
     this.scene.anims.create({
-      key: 'walk-up',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 0, end: 23, first: 0 }),
+      key: 'walk-up' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 0, end: 23, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
-      key: 'walk-up-equipped',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 24, end: 47, first: 0 }),
+      key: 'walk-up-equipped' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 24, end: 47, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
-      key: 'walk-down-equipped',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 48, end: 71, first: 0 }),
+      key: 'walk-down-equipped' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 48, end: 71, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
     this.scene.anims.create({
-      key: 'walk-side',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 72, end: 95, first: 0 }),
+      key: 'walk-side' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 72, end: 95, first: 0 }),
       frameRate: 45,
       repeat: -1,
     });
     this.scene.anims.create({
-      key: 'walk-side-equipped',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 96, end: 119, first: 0 }),
+      key: 'walk-side-equipped' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 96, end: 119, first: 0 }),
       frameRate: 45,
       repeat: -1,
     });
     this.scene.anims.create({
-      key: 'walk-down',
-      frames: this.scene.anims.generateFrameNumbers('Character1SpriteSheet', { start: 120, end: 143, first: 0 }),
+      key: 'walk-down' + this.characterSpriteSheetNr,
+      frames: this.scene.anims.generateFrameNumbers(this.spriteSheet, { start: 120, end: 143, first: 0 }),
       frameRate: 60,
       repeat: -1,
     });
@@ -186,11 +188,11 @@ class Player extends Phaser.GameObjects.Container {
 
     let animation = false;
     if(direction == 'down') {
-      animation = this.activeTool == null ? 'walk-down' : 'walk-down-equipped';
+      animation = this.activeTool == null ? 'walk-down' + this.characterSpriteSheetNr : 'walk-down-equipped' + this.characterSpriteSheetNr;
     } else if(direction == 'up') {
-      animation = this.activeTool == null ? 'walk-up' : 'walk-up-equipped';
+      animation = this.activeTool == null ? 'walk-up' + this.characterSpriteSheetNr : 'walk-up-equipped' + this.characterSpriteSheetNr;
     } else if(direction == 'right' || direction == 'left') {
-      animation = this.activeTool == null ? 'walk-side' : 'walk-side-equipped';
+      animation = this.activeTool == null ? 'walk-side' + this.characterSpriteSheetNr : 'walk-side-equipped' + this.characterSpriteSheetNr;
     }
 
     if(animation == false) {
