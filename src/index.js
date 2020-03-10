@@ -39,6 +39,9 @@ var config = {
   width: 1920,
   height: 1080,
   backgroundColor: '#333',
+  scale: {
+    mode: Phaser.Scale.FIT,
+  },
   physics: {
     default: 'arcade',
     arcade: {
