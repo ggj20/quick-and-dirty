@@ -64,7 +64,6 @@ class TitleScene extends Phaser.Scene {
   }
 
   onMessage(from, data) {
-    console.log(from, data);
     if(data.element == 'ready' && data.data.pressed == true) {
       this.sound.play('BeepSound');
       this.game.players.push({id: from, ready: true});
