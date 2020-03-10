@@ -248,15 +248,21 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnTools() {
+    function randomX() {
+      return Math.random() * 500 - 250;
+    }
+    function randomY() {
+      return Math.random() * 250 - 125;
+    }
     let p = null;
     p = this.getRandomPlayer();
-    new Hammer(this, p.x, p.y+100, this.toolGroup);
+    new Hammer(this, p.x + randomX(), p.y + randomY(), this.toolGroup);
     p = this.getRandomPlayer();
-    new Extinguisher(this, p.x, p.y+100, this.toolGroup);
+    new Extinguisher(this, p.x + randomX(), p.y + randomY(), this.toolGroup);
     p = this.getRandomPlayer();
-    new PipeWrench(this, p.x, p.y+100, this.toolGroup);
+    new PipeWrench(this, p.x + randomX(), p.y + randomY(), this.toolGroup);
     p = this.getRandomPlayer();
-    new SolderingIron(this, p.x, p.y+100, this.toolGroup);
+    new SolderingIron(this, p.x + randomX(), p.y + randomY(), this.toolGroup);
   }
 
   createRunningEmitter() {
