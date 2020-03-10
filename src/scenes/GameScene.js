@@ -32,7 +32,8 @@ class GameScene extends Phaser.Scene {
 
   create() {
     this.cameras.main.setBackgroundColor('#FFF');
-    this.damageGoup = this.add.group();
+    this.damageGoupColliding = this.add.group();
+    this.damageGoupNotColliding = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
     this.playerGroup = this.add.group()
@@ -51,9 +52,9 @@ class GameScene extends Phaser.Scene {
 
     for(let [i, player] of this.game.players.entries()) {
       let emitter = this.createRunningEmitter();
-      this.playerGroup.add(new Player(this, this.rooms[i][0], this.rooms[i][1], player.id, this.toolGroup, this.damageGoup, this.zoneGroup, emitter));
+      this.playerGroup.add(new Player(this, this.rooms[i][0], this.rooms[i][1], player.id, this.toolGroup, this.damageGoupColliding, this.damageGoupNotColliding, this.zoneGroup, emitter));
     }
-    this.physics.add.collider(this.playerGroup, this. damageGoup);
+    this.physics.add.collider(this.playerGroup, this.damageGoupColliding);
 
     // Engine Flames
     new EngineFlame(this, 110, 400);
@@ -67,7 +68,7 @@ class GameScene extends Phaser.Scene {
 
     // Steam Engine
     new Thermometer(this, 136, 416, 21, 252);
-    new SteamEngine(this, this.zoneGroup, this.damageGoup);
+    new SteamEngine(this, this.zoneGroup, this.damageGoupColliding);
 
     // Voltage indicator
     new VoltageMeter(this, 167, 416, 21, 252);
@@ -124,28 +125,16 @@ class GameScene extends Phaser.Scene {
       return;
     }
 
-    this.leak = new Leak(this, 400, 200);
-    this.physics.world.enable(this.leak);
-    this.leak.body.setImmovable();
-    this.damageGoup.add(this.leak);
+    new Leak(this, 400, 200, this.damageGoupNotColliding);
     new PipeWrench(this, 400, 300, this.toolGroup);
 
-    this.fire = new Fire(this, 500, 200);
-    this.physics.world.enable(this.fire);
-    this.fire.body.setImmovable();
-    this.damageGoup.add(this.fire);
+    new Fire(this, 500, 200, this.damageGoupColliding);
     new Extinguisher(this, 500, 300, this.toolGroup);
 
-    this.hole = new Hole(this, 600, 200);
-    this.physics.world.enable(this.hole);
-    this.hole.body.setImmovable();
-    this.damageGoup.add(this.hole);
+    new Hole(this, 600, 200, this.damageGoupColliding);
     new Hammer(this, 600, 300, this.toolGroup);
 
-    this.electro = new Electro(this, 700, 200);
-    this.physics.world.enable(this.electro);
-    this.electro.body.setImmovable();
-    this.damageGoup.add(this.electro);
+    new Electro(this, 700, 200, this.damageGoupNotColliding);
     new SolderingIron(this, 700, 300, this.toolGroup);
 
     new CoalDispenser(this, 300, 200, this.toolGroup);
@@ -185,10 +174,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength);
     var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength);
 
-    var leak = new Leak(this, xCoordinate, yCoordinate);
-    this.physics.world.enable(leak);
-    leak.body.setImmovable();
-    this.damageGoup.add(leak);
+    new Leak(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
   }
 
   spawnElectricityDamage(){
@@ -201,10 +187,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength);
     var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength);
 
-    var leak = new Electro(this, xCoordinate, yCoordinate);
-    this.physics.world.enable(leak);
-    leak.body.setImmovable();
-    this.damageGoup.add(leak);
+    new Electro(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
   }
 
   spawnHoleDamage(){
@@ -217,10 +200,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength);
     var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength);
 
-    var leak = new Hole(this, xCoordinate, yCoordinate);
-    this.physics.world.enable(leak);
-    leak.body.setImmovable();
-    this.damageGoup.add(leak);
+    new Hole(this, xCoordinate, yCoordinate, this.damageGoupColliding);
   }
 
   spawnFIreDamage(){
@@ -233,10 +213,7 @@ class GameScene extends Phaser.Scene {
     var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength);
     var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength);
 
-    var leak = new Fire(this, xCoordinate, yCoordinate);
-    this.physics.world.enable(leak);
-    leak.body.setImmovable();
-    this.damageGoup.add(leak);
+    new Fire(this, xCoordinate, yCoordinate, this.damageGoupColliding);
   }
 
   getRandomPlayer() {
@@ -287,7 +264,7 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText("Score: " + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    this.game.state.height -= this.game.settings.heightChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
+    this.game.state.height -= this.game.settings.heightChange * (this.damageGoupColliding.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
     if(this.game.state.height <= 0) {
       this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
@@ -297,7 +274,7 @@ class GameScene extends Phaser.Scene {
     }
 
     // Calc voltage based on sparcles
-    this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoup.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
+    this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoupNotColliding.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
     if(this.game.state.voltage <= 0) {
       this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');

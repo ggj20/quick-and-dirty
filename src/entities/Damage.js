@@ -1,7 +1,10 @@
 class Damage extends Phaser.GameObjects.Container  {
-    constructor(scene, x, y, texture, damageType, repairDebounce,  configCreate =  { start: 0, end: 34, first: 0 }, configRepeat ={ start: 30, end: 33, first: 29 }, frameRate = 17, repeat = false) {
-        super(scene, x, y,);
+    constructor(scene, x, y, group, texture, damageType, repairDebounce,  configCreate =  { start: 0, end: 34, first: 0 }, configRepeat ={ start: 30, end: 33, first: 29 }, frameRate = 17, repeat = false) {
+        super(scene, x, y);
         scene.add.existing(this);
+        scene.physics.world.enable(this);
+        this.body.setImmovable();
+        group.add(this);
 
         this.damageSprite = scene.add.sprite(0, 0, texture);
         this.add(this.damageSprite);

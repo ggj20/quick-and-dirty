@@ -1,5 +1,5 @@
 class Player extends Phaser.GameObjects.Container {
-  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroup, zoneGroup, runningEmitter) {
+  constructor(scene, pos1, pos2, playerId, toolGroup, damageGroupColliding, damageGroupNotColliding, zoneGroup, runningEmitter) {
     super(scene, 0, 0);
     scene.add.existing(this);
 
@@ -30,7 +30,8 @@ class Player extends Phaser.GameObjects.Container {
     this.body.setBoundsRectangle(new Phaser.Geom.Rectangle(pos1[0], pos1[1], pos2[0], pos2[1]));
     this.setPosition(pos1[0]+pos2[0]/2 - this.playerSprite.width/2, pos1[1]+pos2[1]/2 - this.playerSprite.height/2);
     this.toolGroup = toolGroup;
-    this.damageGroup = damageGroup;
+    this.damageGroupColliding = damageGroupColliding;
+    this.damageGroupNotColliding = damageGroupNotColliding;
     this.zoneGroup = zoneGroup;
 
     this.activeTool = null;
@@ -81,7 +82,8 @@ class Player extends Phaser.GameObjects.Container {
 
   useTool() {
     if (this.activeTool != null) {
-      this.scene.physics.overlap(this.activeTool, this.damageGroup, this.handleToolUse, null, this );
+      this.scene.physics.overlap(this.activeTool, this.damageGroupColliding, this.handleToolUse, null, this );
+      this.scene.physics.overlap(this.activeTool, this.damageGroupNotColliding, this.handleToolUse, null, this );
     }
   }
 

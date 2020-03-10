@@ -2,10 +2,11 @@ import Damage from './Damage';
 import mapAreas from '../scenes/MapConfig';
 
 class Fire extends Damage {
-    constructor(scene, x, y, timeOut = 5000) {
-        super(scene, x, y, 'FireSpriteSheet', 'EXTINGUISHER', 100,  { start: 0, end: 24 }, { start: 1, end: 24 }, 17);
+    constructor(scene, x, y, group, timeOut = 5000) {
+        super(scene, x, y, group, 'FireSpriteSheet', 'EXTINGUISHER', 100,  { start: 0, end: 24 }, { start: 1, end: 24 }, 17);
         scene.sound.play('FireSound');
         setTimeout(() => this.spreadFire(timeOut), timeOut);
+        this.group = group;
     }
 
     spreadFire(timeOut) {
@@ -19,10 +20,7 @@ class Fire extends Damage {
             mapAreas.fireAreas.forEach(element => {
                 if (element.xSource < x && (element.xSource+ element.xLength)> x){
                     if (element.ySource < y && (element.ySource+ element.yLength)> y){
-                        let newFire = new Fire(this.scene,x , y, newTimeout);
-                        this.scene.physics.world.enable(newFire);
-                        newFire.body.setImmovable();
-                        this.scene.damageGoup.add(newFire);
+                        let newFire = new Fire(this.scene,x , y, this.group, newTimeout);
                     }
                 }
             });
