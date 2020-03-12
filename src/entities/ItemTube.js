@@ -11,6 +11,8 @@ class ItemTube extends Phaser.GameObjects.Container {
     colGroup.add(this.tube1);
     colGroup.add(this.tube2);
 
+    this.scene = scene;
+
     this.createEmitter();
   }
 
@@ -18,9 +20,11 @@ class ItemTube extends Phaser.GameObjects.Container {
     if(zone == this.tube1) {
       tool.setPosition(this.tube2.x, this.tube2.y);
       this.spawnParticleEffect(this.tube2.x, this.tube2.y)
+      this.scene.sound.play('TubeSound');
     } else {
       tool.setPosition(this.tube1.x, this.tube1.y);
       this.spawnParticleEffect(this.tube1.x, this.tube1.y)
+      this.scene.sound.play('TubeSound');
     }
   }
 
