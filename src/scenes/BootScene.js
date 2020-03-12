@@ -49,6 +49,8 @@ import ItemDropSoundMP3 from '../assets/sounds/item-drop.mp3';
 import ItemDropSoundOGG from '../assets/sounds/item-drop.ogg';
 import ItemPickUpSoundMP3 from '../assets/sounds/item-pick-up.mp3';
 import ItemPickUpSoundOGG from '../assets/sounds/item-pick-up.ogg';
+import TubeSoundMP3 from '../assets/sounds/tube.mp3';
+import TubeSoundOGG from '../assets/sounds/tube.ogg';
 
 
 class BootScene extends Phaser.Scene {
@@ -133,6 +135,7 @@ class BootScene extends Phaser.Scene {
     this.load.audio('EngineAddCoalSound', [EngineAddCoalSoundMP3, EngineAddCoalSoundOGG]);
     this.load.audio('ItemDropSound', [ItemDropSoundMP3, ItemDropSoundOGG]);
     this.load.audio('ItemPickUpSound', [ItemPickUpSoundMP3, ItemPickUpSoundOGG]);
+    this.load.audio('TubeSound', [TubeSoundMP3, TubeSoundOGG]);
   }
 
   create() {
