@@ -9,7 +9,17 @@ class GameOverScene extends Phaser.Scene {
 
   preload() {}
 
+  clearAllTimeouts() {
+    const lastTimeoutId = setTimeout(() => {}, 0);
+
+    for (let id = 0; id <= lastTimeoutId; id++) {
+      clearTimeout(id);
+    }
+  }
+
   create() {
+    this.clearAllTimeouts();
+
     this.add.image(0, 0, 'GameOverSprite').setOrigin(0, 0);
     this.make.text({
       x: this.game.config.width - 800,
