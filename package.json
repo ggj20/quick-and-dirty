@@ -1,7 +1,7 @@
 {
-  "name": "phaser3-project-template",
-  "version": "1.1.0",
-  "description": "A Phaser 3 Project Template",
+  "name": "quick-and-dirty",
+  "version": "1.0.0",
+  "description": "Quick & Dirty game",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
