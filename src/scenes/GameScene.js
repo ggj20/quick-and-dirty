@@ -221,7 +221,7 @@ class GameScene extends Phaser.Scene {
         this.spawnHoleDamage();
         break;
       case 3:
-        this.spawnFIreDamage();
+        this.spawnFireDamage();
         break;
     }
     timer = Math.max(
@@ -288,7 +288,7 @@ class GameScene extends Phaser.Scene {
     new Hole(this, xCoordinate, yCoordinate, this.damageGoupColliding);
   }
 
-  spawnFIreDamage() {
+  spawnFireDamage() {
     if (mapAreas.fireAreas.length == 0) {
       return;
     }
