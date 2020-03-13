@@ -17,6 +17,21 @@ class GameOverScene extends Phaser.Scene {
     }
   }
 
+  onMessage(from, data) {
+    switch (data.element) {
+      case 'tryAgain':
+        return this.playGameAgain();
+      default:
+        return console.log('Unknown command from airconsole', from, data);
+    }
+  }
+
+  playGameAgain() {
+    console.log('Play again, loading game scene.');
+    this.scene.start('GameScene');
+    this.game.airconsole.broadcast({ show_view_id: 'view-2' });
+  }
+
   create() {
     this.clearAllTimeouts();
 
@@ -38,6 +53,8 @@ class GameOverScene extends Phaser.Scene {
       origin: { x: 0, y: 0.5 },
       add: true,
     });
+
+    this.game.airconsole.onMessage = this.onMessage.bind(this);
   }
 }
 
