@@ -31,10 +31,11 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    console.log('loading game');
+    console.log('game:preload');
   }
 
   create() {
+    console.log('game:create');
     this.sound.pauseOnBlur = false;
 
     this.cameras.main.setBackgroundColor('#FFF');
@@ -205,7 +206,7 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnRandomDamage(timer) {
-    console.log('added damage: ' + timer);
+    console.log('Spawn random damage: ' + timer);
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
@@ -352,6 +353,7 @@ class GameScene extends Phaser.Scene {
 
   gameOver() {
     this.game.airconsole.broadcast({ show_view_id: 'view-3' });
+    this.scene.restart();
     this.scene.start('GameOverScene');
   }
 
