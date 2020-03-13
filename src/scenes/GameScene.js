@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
+// Map Config
+import mapAreas from './MapConfig';
+// Entities
 import Player from '../entities/Player';
 import ItemTube from '../entities/ItemTube';
 import SteamEngine from '../entities/SteamEngine';
-import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
 import Light from '../entities/Light.js';
