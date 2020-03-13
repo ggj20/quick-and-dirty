@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 // Configs
-import { gameState as initialGameState } from '../index';
 import mapAreas from './MapConfig';
 // Entities
 import Player from '../entities/Player';
@@ -35,14 +34,8 @@ class GameScene extends Phaser.Scene {
     console.log('loading game');
   }
 
-  resetGameState() {
-    this.game.state = initialGameState;
-  }
-
   create() {
     this.sound.pauseOnBlur = false;
-
-    this.resetGameState();
 
     this.cameras.main.setBackgroundColor('#FFF');
     this.damageGoupColliding = this.add.group();

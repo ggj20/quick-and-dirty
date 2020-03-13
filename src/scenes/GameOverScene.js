@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+import { gameState as initialGameState } from '../index';
+
 class GameOverScene extends Phaser.Scene {
   constructor() {
     super({
@@ -28,6 +30,9 @@ class GameOverScene extends Phaser.Scene {
 
   playGameAgain() {
     console.log('Play again, loading game scene.');
+
+    this.game.state = initialGameState;
+
     this.scene.start('GameScene');
     this.game.airconsole.broadcast({ show_view_id: 'view-2' });
   }
