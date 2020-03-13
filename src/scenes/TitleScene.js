@@ -15,31 +15,6 @@ class TitleScene extends Phaser.Scene {
     this.sound.add('BeepSound');
     this.add.image(0, 0, 'InstructionsSprite').setOrigin(0, 0);
 
-    this.make.text({
-      x: 100,
-      y: 850,
-      text: "Left Stick: Move",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
-    this.make.text({
-      x: 100,
-      y: 900,
-      text: "A: Drop / Pick up Tool",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
-    this.make.text({
-      x: 100,
-      y: 950,
-      text: "X: Use Tool",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
-
     this.playerTexts = [];
     this.game.players = [];
 
