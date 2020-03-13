@@ -13,40 +13,7 @@ class TitleScene extends Phaser.Scene {
 
   create() {
     this.sound.add('BeepSound');
-
-    this.make.text({
-      x: this.game.config.width/2,
-      y: 100,
-      text: "Press any button to start",
-      style: { font: "65px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0.5, y: 0.5 },
-      add: true
-    });
-
-    this.make.text({
-      x: 100,
-      y: 850,
-      text: "Left Stick: Move",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
-    this.make.text({
-      x: 100,
-      y: 900,
-      text: "A: Drop / Pick up Tool",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
-    this.make.text({
-      x: 100,
-      y: 950,
-      text: "X: Use Tool",
-      style: { font: "35px Arial", fill: "#CCC", align: "center"},
-      origin: { x: 0, y: 0.5 },
-      add: true
-    });
+    this.add.image(0, 0, 'InstructionsSprite').setOrigin(0, 0);
 
     this.playerTexts = [];
     this.game.players = [];
@@ -69,6 +36,9 @@ class TitleScene extends Phaser.Scene {
       this.game.players.push({id: from, ready: true});
       this.game.airconsole.message(from, {show_view_id: 'view-1'});
       this.playerTexts[this.game.players.length-1].setColor('#00CC00');
+      this.playerTexts[this.game.players.length-1].setText(
+        this.playerTexts[this.game.players.length-1].text.replace('⏳', '✔️')
+      );
     }
 
     // Test if all players are ready
@@ -81,9 +51,9 @@ class TitleScene extends Phaser.Scene {
   createPlayerText(playerId) {
     return this.make.text({
       x: 100,
-      y: 400 + 100 * playerId,
-      text: "🎮 Player " + (playerId + 1),
-      style: { font: "50px Arial", fill: "#CCC", align: "left"},
+      y: 170 + 80 * playerId,
+      text: "📱 Player " + (playerId + 1) + " ⏳",
+      style: { font: "50px Arial", fill: "#EEE", align: "left"},
       add: true
     });
   }
