@@ -1,4 +1,4 @@
-class HeightIndicator extends Phaser.GameObjects.Container {
+class AltitudeIndicator extends Phaser.GameObjects.Container {
   constructor(scene, x, y) {
     super(scene, x, y);
     scene.add.existing(this);
@@ -8,10 +8,10 @@ class HeightIndicator extends Phaser.GameObjects.Container {
 
   preUpdate(time, delta) {
     this.line = new Phaser.Geom.Line(this.x, this.y, this.x, this.y-40);
-    this.line = Phaser.Geom.Line.RotateAroundXY(this.line, this.x, this.y, 6.283185307 * (1- this.scene.game.state.height / 100));
+    this.line = Phaser.Geom.Line.RotateAroundXY(this.line, this.x, this.y, 6.283185307 * (1- this.scene.game.state.altitude / 100));
     this.graphics.clear();
     this.graphics.strokeLineShape(this.line);
   }
 }
 
-export default HeightIndicator;
+export default AltitudeIndicator;

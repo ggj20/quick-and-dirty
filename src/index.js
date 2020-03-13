@@ -19,14 +19,14 @@ var settings = {
   engineTemperatureDecreaseFactor: 0.65 / 10000,
   engineTemperatureOptimal: 4,
   engineTemperatureMaximum: 5,
-  heightChange: 10 / 1000,
+  altitudeChange: 10 / 1000,
   fireSpreadChance: 0.2,
   voltageChange: 10 / 1000,
 };
 
 var gameState = {
   score: 0,
-  height: 100,
+  altitude: 100,
   speed: 0,
   engineTemperature: 3,
   engineEfficency: 0.75,

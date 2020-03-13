@@ -13,7 +13,7 @@ import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
-import HeightIndicator from '../entities/Heightindicator.js';
+import AltitudeIndicator from '../entities/AltitudeIndicator.js';
 import Light from '../entities/Light.js';
 import Thermometer from '../entities/Thermometer';
 import VoltageMeter from '../entities/VoltageMeter';
@@ -80,7 +80,7 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 1630, 920, this.toolGroup);
 
     setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
-    new HeightIndicator(this, 974, 540);
+    new AltitudeIndicator(this, 974, 540);
     this.spawnTools();
     this.createScoreText();
     this.spawnDebugStuff();
@@ -266,13 +266,13 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText("Score: " + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    this.game.state.height -= this.game.settings.heightChange * (this.damageGoupColliding.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
-    if(this.game.state.height <= 0) {
+    this.game.state.altitude -= this.game.settings.altitudeChange * (this.damageGoupColliding.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
+    if(this.game.state.altitude <= 0) {
       this.game.airconsole.broadcast({show_view_id: 'view-3'});
       this.scene.start('GameOverScene');
     }
-    if(this.game.state.height > 100) {
-      this.game.state.height = 100;
+    if(this.game.state.altitude > 100) {
+      this.game.state.altitude = 100;
     }
 
     // Calc voltage based on sparcles
