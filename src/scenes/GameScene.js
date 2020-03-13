@@ -1,21 +1,23 @@
 import Phaser from 'phaser';
 import Player from '../entities/Player';
-import Hammer from '../entities/tools/Hammer';
-import Extinguisher from '../entities/tools/Extinguisher';
-import SolderingIron from '../entities/tools/SolderingIron';
-import PipeWrench from '../entities/tools/PipeWrench.js';
-import Leak from '../entities/Leak';
-import Fire from '../entities/Fire';
-import Hole from '../entities/Hole';
-import Electro from '../entities/Electro';
 import ItemTube from '../entities/ItemTube';
 import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
 import Light from '../entities/Light.js';
-
-import AltitudeIndicator from '../indicators/AltitudeIndicator.js';
+// Tools
+import Hammer from '../tools/Hammer';
+import Extinguisher from '../tools/Extinguisher';
+import SolderingIron from '../tools/SolderingIron';
+import PipeWrench from '../tools/PipeWrench';
+// Damages
+import Leak from '../damages/Leak';
+import Fire from '../damages/Fire';
+import Hole from '../damages/Hole';
+import Electro from '../damages/Electro';
+// Indicators
+import AltitudeIndicator from '../indicators/AltitudeIndicator';
 import Thermometer from '../indicators/Thermometer';
 import VoltageMeter from '../indicators/VoltageMeter';
 

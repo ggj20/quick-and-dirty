@@ -1,4 +1,4 @@
-import Tool from '../Tool';
+import Tool from './Tool';
 
 class Hammer extends Tool {
   constructor(scene, x, y, toolGroup) {
