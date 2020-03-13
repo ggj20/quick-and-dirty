@@ -1,4 +1,4 @@
-import Tool from './Tool';
+import Tool from '../tools/Tool';
 
 class Coal extends Tool {
     constructor(scene, x, y, toolGroup) {
