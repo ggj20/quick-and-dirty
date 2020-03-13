@@ -30,7 +30,7 @@ var settings = {
   voltageChange: 10 / 1000,
 };
 
-var gameState = {
+export const gameState = {
   score: 0,
   altitude: 100,
   speed: 0,
