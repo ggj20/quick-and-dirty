@@ -356,6 +356,8 @@ class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    const { settings } = this.game;
+
     // Calc Speed
     this.game.state.speed =
       this.game.state.engineEfficency * this.game.settings.maxShipSpeed;
@@ -363,7 +365,6 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText('Score: ' + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    const { settings } = this.game;
     const numberOfHoles = this.damageGoupColliding.children.entries.filter(
       d => d.damageType == 'HAMMER',
     ).length;
@@ -378,12 +379,11 @@ class GameScene extends Phaser.Scene {
     }
 
     // Calc voltage based on sparcles
-    this.game.state.voltage -=
-      this.game.settings.voltageChange *
-      (this.damageGoupNotColliding.children.entries.filter(d => {
-        return d.damageType == 'SOLDERING_IRON';
-      }).length -
-        1);
+    const voltageDamageCount = this.damageGoupNotColliding.children.entries.filter(
+      d => d.damageType == 'SOLDERING_IRON',
+    ).length;
+    const voltageDelta = settings.voltageChange * (voltageDamageCount - 1);
+    this.game.state.voltage -= voltageDelta;
     if (this.game.state.voltage <= 0) {
       this.gameOver();
     }
