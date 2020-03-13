@@ -13,6 +13,7 @@ class TitleScene extends Phaser.Scene {
 
   create() {
     this.sound.add('BeepSound');
+    this.add.image(0, 0, 'InstructionsSprite').setOrigin(0, 0);
 
     this.make.text({
       x: this.game.config.width/2,
