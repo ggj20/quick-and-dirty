@@ -139,6 +139,7 @@ class BootScene extends Phaser.Scene {
   }
 
   create() {
+    this.sound.pauseOnBlur = false;
     console.log('complete Boot, changing to TitleScene');
     this.scene.start('TitleScene');
   }

@@ -31,6 +31,8 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.sound.pauseOnBlur = false;
+
     this.cameras.main.setBackgroundColor('#FFF');
     this.damageGoupColliding = this.add.group();
     this.damageGoupNotColliding = this.add.group();
