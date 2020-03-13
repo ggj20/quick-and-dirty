@@ -350,6 +350,11 @@ class GameScene extends Phaser.Scene {
     });
   }
 
+  gameOver() {
+    this.game.airconsole.broadcast({ show_view_id: 'view-3' });
+    this.scene.start('GameOverScene');
+  }
+
   update(time, delta) {
     // Calc Speed
     this.game.state.speed =
@@ -366,8 +371,7 @@ class GameScene extends Phaser.Scene {
 
     this.game.state.altitude -= altitudeDelta;
     if (this.game.state.altitude <= 0) {
-      this.game.airconsole.broadcast({ show_view_id: 'view-3' });
-      this.scene.start('GameOverScene');
+      this.gameOver();
     }
     if (this.game.state.altitude > 100) {
       this.game.state.altitude = 100;
@@ -381,8 +385,7 @@ class GameScene extends Phaser.Scene {
       }).length -
         1);
     if (this.game.state.voltage <= 0) {
-      this.game.airconsole.broadcast({ show_view_id: 'view-3' });
-      this.scene.start('GameOverScene');
+      this.gameOver();
     }
     if (this.game.state.voltage > 100) {
       this.game.state.voltage = 100;
