@@ -266,12 +266,18 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText("Score: " + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    this.game.state.altitude -= this.game.settings.altitudeChange * (this.damageGoupColliding.children.entries.filter((d) => { return d.damageType == 'HAMMER'}).length -1);
-    if(this.game.state.altitude <= 0) {
-      this.game.airconsole.broadcast({show_view_id: 'view-3'});
+    const { settings } = this.game;
+    const numberOfHoles = this.damageGoupColliding.children.entries.filter(
+      d => d.damageType == 'HAMMER',
+    ).length;
+    const altitudeDelta = settings.altitudeChange * (numberOfHoles - 1);
+
+    this.game.state.altitude -= altitudeDelta;
+    if (this.game.state.altitude <= 0) {
+      this.game.airconsole.broadcast({ show_view_id: 'view-3' });
       this.scene.start('GameOverScene');
     }
-    if(this.game.state.altitude > 100) {
+    if (this.game.state.altitude > 100) {
       this.game.state.altitude = 100;
     }
 
