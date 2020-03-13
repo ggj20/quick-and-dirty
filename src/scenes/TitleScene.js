@@ -36,6 +36,9 @@ class TitleScene extends Phaser.Scene {
       this.game.players.push({id: from, ready: true});
       this.game.airconsole.message(from, {show_view_id: 'view-1'});
       this.playerTexts[this.game.players.length-1].setColor('#00CC00');
+      this.playerTexts[this.game.players.length-1].setText(
+        this.playerTexts[this.game.players.length-1].text.replace('⏳', '✔️')
+      );
     }
 
     // Test if all players are ready
@@ -48,8 +51,8 @@ class TitleScene extends Phaser.Scene {
   createPlayerText(playerId) {
     return this.make.text({
       x: 100,
-      text: "📱 Player " + (playerId + 1),
       y: 170 + 80 * playerId,
+      text: "📱 Player " + (playerId + 1) + " ⏳",
       style: { font: "50px Arial", fill: "#EEE", align: "left"},
       add: true
     });
