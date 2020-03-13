@@ -13,10 +13,11 @@ import SteamEngine from '../entities/SteamEngine';
 import mapAreas from './MapConfig';
 import CoalDispenser from '../entities/CoalDispenser';
 import EngineFlame from '../entities/EngineFlame';
-import AltitudeIndicator from '../entities/AltitudeIndicator.js';
 import Light from '../entities/Light.js';
-import Thermometer from '../entities/Thermometer';
-import VoltageMeter from '../entities/VoltageMeter';
+
+import AltitudeIndicator from '../indicators/AltitudeIndicator.js';
+import Thermometer from '../indicators/Thermometer';
+import VoltageMeter from '../indicators/VoltageMeter';
 
 
 class GameScene extends Phaser.Scene {
