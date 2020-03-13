@@ -40,8 +40,11 @@ export default class SteamEngine extends Phaser.GameObjects.Container {
 
     const nextEngineTemperature =
       this.scene.game.state.engineTemperature -
-      timeDelta * engineTemperatureDecreaseFactor
-      * this.damageGroup.children.entries.filter((d) => { return d.damageType == 'PIPE_WRENCH'}).length;
+      timeDelta *
+        engineTemperatureDecreaseFactor *
+        this.damageGroup.children.entries.filter(d => {
+          return d.damageType == 'PIPE_WRENCH';
+        }).length;
 
     // Clip temp between 0 and max-temp
     if (nextEngineTemperature <= 0) {

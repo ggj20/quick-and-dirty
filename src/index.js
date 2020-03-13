@@ -4,7 +4,13 @@ import TitleScene from './scenes/TitleScene';
 import GameScene from './scenes/GameScene';
 import GameOverScene from './scenes/GameOverScene';
 
-const params = Object.assign(...location.search.substr(1).split('&').map(e => e.split('=')).map(([key, val]) => ({[key]: val})))
+const params = Object.assign(
+  ...location.search
+    .substr(1)
+    .split('&')
+    .map(e => e.split('='))
+    .map(([key, val]) => ({ [key]: val })),
+);
 
 var settings = {
   playerSpeed: 200,
@@ -46,17 +52,12 @@ var config = {
     default: 'arcade',
     arcade: {
       debug: settings.debug,
-    }
+    },
   },
   input: {
-    gamepad: true
+    gamepad: true,
   },
-  scene: [
-    BootScene,
-    TitleScene,
-    GameScene,
-    GameOverScene,
-  ]
+  scene: [BootScene, TitleScene, GameScene, GameOverScene],
 };
 
 var game = new Phaser.Game(config);

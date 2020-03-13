@@ -3,8 +3,8 @@ import Phaser from 'phaser';
 class TitleScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'TitleScene'
-    })
+      key: 'TitleScene',
+    });
   }
 
   preload() {
@@ -20,33 +20,33 @@ class TitleScene extends Phaser.Scene {
     this.playerTexts = [];
     this.game.players = [];
 
-    for(let i = 0; i < this.game.settings.playerCount; i++) {
+    for (let i = 0; i < this.game.settings.playerCount; i++) {
       this.playerTexts.push(this.createPlayerText(i));
     }
 
     this.game.airconsole.onMessage = this.onMessage.bind(this);
 
     // directly jump to game if debug true
-    if(this.game.settings.debug) {
+    if (this.game.settings.debug) {
       this.scene.start('GameScene');
     }
   }
 
   onMessage(from, data) {
-    if(data.element == 'ready' && data.data.pressed == true) {
+    if (data.element == 'ready' && data.data.pressed == true) {
       this.sound.play('BeepSound');
-      this.game.players.push({id: from, ready: true});
-      this.game.airconsole.message(from, {show_view_id: 'view-1'});
-      this.playerTexts[this.game.players.length-1].setColor('#00CC00');
-      this.playerTexts[this.game.players.length-1].setText(
-        this.playerTexts[this.game.players.length-1].text.replace('⏳', '✔️')
+      this.game.players.push({ id: from, ready: true });
+      this.game.airconsole.message(from, { show_view_id: 'view-1' });
+      this.playerTexts[this.game.players.length - 1].setColor('#00CC00');
+      this.playerTexts[this.game.players.length - 1].setText(
+        this.playerTexts[this.game.players.length - 1].text.replace('⏳', '✔️'),
       );
     }
 
     // Test if all players are ready
-    if(this.game.players.length == this.game.settings.playerCount) {
+    if (this.game.players.length == this.game.settings.playerCount) {
       this.scene.start('GameScene');
-      this.game.airconsole.broadcast({show_view_id: 'view-2'});
+      this.game.airconsole.broadcast({ show_view_id: 'view-2' });
     }
   }
 
@@ -54,9 +54,9 @@ class TitleScene extends Phaser.Scene {
     return this.make.text({
       x: 100,
       y: 170 + 80 * playerId,
-      text: "📱 Player " + (playerId + 1) + " ⏳",
-      style: { font: "50px Arial", fill: "#EEE", align: "left"},
-      add: true
+      text: '📱 Player ' + (playerId + 1) + ' ⏳',
+      style: { font: '50px Arial', fill: '#EEE', align: 'left' },
+      add: true,
     });
   }
 }

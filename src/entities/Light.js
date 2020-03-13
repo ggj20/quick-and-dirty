@@ -9,7 +9,7 @@ class Light extends Phaser.GameObjects.Container {
   }
 
   update() {
-    if((Math.random() * 0.75) < this.scene.game.state.voltage / 100) {
+    if (Math.random() * 0.75 < this.scene.game.state.voltage / 100) {
       this.shadow.alpha = 0;
     } else {
       this.shadow.alpha = this.getAlphaLevel(this.scene.game.state.voltage);
@@ -23,9 +23,9 @@ class Light extends Phaser.GameObjects.Container {
       [70, 0.5],
       [50, 0.8],
       [0, 1.0],
-    ]
-    for(let step of ranges) {
-      if(voltage >= step[0]) {
+    ];
+    for (let step of ranges) {
+      if (voltage >= step[0]) {
         return step[1];
       }
     }

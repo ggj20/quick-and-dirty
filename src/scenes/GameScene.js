@@ -23,12 +23,11 @@ import AltitudeIndicator from '../indicators/AltitudeIndicator';
 import Thermometer from '../indicators/Thermometer';
 import VoltageMeter from '../indicators/VoltageMeter';
 
-
 class GameScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'GameScene'
-    })
+      key: 'GameScene',
+    });
   }
 
   preload() {
@@ -43,23 +42,69 @@ class GameScene extends Phaser.Scene {
     this.damageGoupNotColliding = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
-    this.playerGroup = this.add.group()
+    this.playerGroup = this.add.group();
 
-	this.parallaxBgForest = this.add.tileSprite(this.game.config.width/2, this.game.config.height/2, 2880*3, 1620*3, 'ParallaxBgForest').setOrigin(0.5, 0.5);
-	this.parallaxBgClouds = this.add.tileSprite(this.game.config.width/2, this.game.config.height/2, 2880*3, 1620*3, 'ParallaxBgClouds').setOrigin(0.5, 0.5);
-    this.shipSprite = this.add.image(this.game.config.width/2, this.game.config.height/2, 'ShipSprite').setOrigin(0.5, 0.5);
+    this.parallaxBgForest = this.add
+      .tileSprite(
+        this.game.config.width / 2,
+        this.game.config.height / 2,
+        2880 * 3,
+        1620 * 3,
+        'ParallaxBgForest',
+      )
+      .setOrigin(0.5, 0.5);
+    this.parallaxBgClouds = this.add
+      .tileSprite(
+        this.game.config.width / 2,
+        this.game.config.height / 2,
+        2880 * 3,
+        1620 * 3,
+        'ParallaxBgClouds',
+      )
+      .setOrigin(0.5, 0.5);
+    this.shipSprite = this.add
+      .image(
+        this.game.config.width / 2,
+        this.game.config.height / 2,
+        'ShipSprite',
+      )
+      .setOrigin(0.5, 0.5);
 
     this.rooms = [
-      [[275, 128], [630, 350]],
-      [[1040, 128], [630, 350]],
-      [[275, 605], [630, 350]],
-      [[1040, 605], [630, 350]],
-    ]
+      [
+        [275, 128],
+        [630, 350],
+      ],
+      [
+        [1040, 128],
+        [630, 350],
+      ],
+      [
+        [275, 605],
+        [630, 350],
+      ],
+      [
+        [1040, 605],
+        [630, 350],
+      ],
+    ];
 
-
-    for(let [i, player] of this.game.players.entries()) {
+    for (let [i, player] of this.game.players.entries()) {
       let emitter = this.createRunningEmitter();
-      this.playerGroup.add(new Player(this, this.rooms[i][0], this.rooms[i][1], i+1, player.id, this.toolGroup, this.damageGoupColliding, this.damageGoupNotColliding, this.zoneGroup, emitter));
+      this.playerGroup.add(
+        new Player(
+          this,
+          this.rooms[i][0],
+          this.rooms[i][1],
+          i + 1,
+          player.id,
+          this.toolGroup,
+          this.damageGoupColliding,
+          this.damageGoupNotColliding,
+          this.zoneGroup,
+          emitter,
+        ),
+      );
     }
     this.physics.add.collider(this.playerGroup, this.damageGoupColliding);
 
@@ -68,10 +113,15 @@ class GameScene extends Phaser.Scene {
     new EngineFlame(this, 110, 685);
 
     // Tubes
-    new ItemTube(this, {x: 880, y:300}, {x: 1065, y: 300}, this.zoneGroup); // Top
-    new ItemTube(this, {x: 590, y: 450}, {x: 590, y: 630}, this.zoneGroup); // Left
-    new ItemTube(this, {x: 1355, y: 450}, {x: 1355, y: 630}, this.zoneGroup); // Right
-    new ItemTube(this, {x: 880, y: 775}, {x: 1065, y: 775}, this.zoneGroup); // Bottom
+    new ItemTube(this, { x: 880, y: 300 }, { x: 1065, y: 300 }, this.zoneGroup); // Top
+    new ItemTube(this, { x: 590, y: 450 }, { x: 590, y: 630 }, this.zoneGroup); // Left
+    new ItemTube(
+      this,
+      { x: 1355, y: 450 },
+      { x: 1355, y: 630 },
+      this.zoneGroup,
+    ); // Right
+    new ItemTube(this, { x: 880, y: 775 }, { x: 1065, y: 775 }, this.zoneGroup); // Bottom
 
     // Steam Engine
     new Thermometer(this, 136, 416, 21, 252);
@@ -84,7 +134,10 @@ class GameScene extends Phaser.Scene {
     new CoalDispenser(this, 1630, 160, this.toolGroup);
     new CoalDispenser(this, 1630, 920, this.toolGroup);
 
-    setTimeout(this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial), this.game.settings.damageSpawnDelayInitial);
+    setTimeout(
+      this.spawnRandomDamage(this.game.settings.damageSpawnDelayInitial),
+      this.game.settings.damageSpawnDelayInitial,
+    );
     new AltitudeIndicator(this, 974, 540);
     this.spawnTools();
     this.createScoreText();
@@ -99,36 +152,40 @@ class GameScene extends Phaser.Scene {
   }
 
   onMessage(from, data) {
-    if(data.element == 'dpad') {
-      this.getPlayerById(from).applyDirection(data.data.key, data.data.pressed)
-    } else if(data.element == 'use'){
+    if (data.element == 'dpad') {
+      this.getPlayerById(from).applyDirection(data.data.key, data.data.pressed);
+    } else if (data.element == 'use') {
       this.getPlayerById(from).useTool();
-    } else if(data.element == 'pickUpDrop'){
+    } else if (data.element == 'pickUpDrop') {
       this.getPlayerById(from).pickUpDropTool();
     }
   }
 
   createScoreText() {
-    this.scoreText =  this.make.text({
+    this.scoreText = this.make.text({
       x: -80,
       y: 20,
-      text: "Score: ",
-      style: { font: "40px Arial", color: "#CCC", align: "center"},
+      text: 'Score: ',
+      style: { font: '40px Arial', color: '#CCC', align: 'center' },
       origin: { x: 0, y: 0.5 },
-      add: true
+      add: true,
     });
-    this.scoreText.setShadow(3, 3, "#333333", 2, true, true);
+    this.scoreText.setShadow(3, 3, '#333333', 2, true, true);
   }
 
   setUpCamera() {
     const fadeTime = 6000;
     this.cameras.main.setZoom(0.4);
     this.cameras.main.zoomTo(1.0, fadeTime);
-    this.cameras.main.pan(this.game.config.width/2 -100, this.game.config.height/2, fadeTime);
+    this.cameras.main.pan(
+      this.game.config.width / 2 - 100,
+      this.game.config.height / 2,
+      fadeTime,
+    );
   }
 
   spawnDebugStuff() {
-    if(this.game.settings.debug == false) {
+    if (this.game.settings.debug == false) {
       return;
     }
 
@@ -148,14 +205,14 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnRandomDamage(timer) {
-    console.log("added damage: "+timer);
+    console.log('added damage: ' + timer);
     // todo select player
     //chance manipulate possibility to spawn specific effect dependant to already spawned effects
     //detect  damage to spawn
     var damageIndicator = Math.floor(Math.random() * 4);
-    switch(damageIndicator) {
+    switch (damageIndicator) {
       case 0:
-          this.spawnPipeDamage();
+        this.spawnPipeDamage();
         break;
       case 1:
         this.spawnElectricityDamage();
@@ -167,68 +224,97 @@ class GameScene extends Phaser.Scene {
         this.spawnFIreDamage();
         break;
     }
-    timer = Math.max(timer - this.game.settings.difficulity, this.game.settings.damageSpawnDelayMin);
+    timer = Math.max(
+      timer - this.game.settings.difficulity,
+      this.game.settings.damageSpawnDelayMin,
+    );
     setTimeout(() => this.spawnRandomDamage(timer), timer);
   }
 
-  spawnPipeDamage(){
-    if(mapAreas.pipeAreas.length == 0) {
+  spawnPipeDamage() {
+    if (mapAreas.pipeAreas.length == 0) {
       return;
     }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.pipeAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.pipeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength);
-    var yCoordinate =  mapAreas.pipeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength);
+    var xCoordinate =
+      mapAreas.pipeAreas[areaSelector].xSource +
+      Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].xLength);
+    var yCoordinate =
+      mapAreas.pipeAreas[areaSelector].ySource +
+      Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength);
 
     new Leak(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
   }
 
-  spawnElectricityDamage(){
-    if(mapAreas.electricityAreas.length == 0) {
+  spawnElectricityDamage() {
+    if (mapAreas.electricityAreas.length == 0) {
       return;
     }
     // area slector
-    var areaSelector = Math.floor(Math.random() * mapAreas.electricityAreas.length);
+    var areaSelector = Math.floor(
+      Math.random() * mapAreas.electricityAreas.length,
+    );
     // cooridnate selector
-    var xCoordinate =  mapAreas.electricityAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].xLength);
-    var yCoordinate =  mapAreas.electricityAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.electricityAreas[areaSelector].yLength);
+    var xCoordinate =
+      mapAreas.electricityAreas[areaSelector].xSource +
+      Math.floor(
+        Math.random() * mapAreas.electricityAreas[areaSelector].xLength,
+      );
+    var yCoordinate =
+      mapAreas.electricityAreas[areaSelector].ySource +
+      Math.floor(
+        Math.random() * mapAreas.electricityAreas[areaSelector].yLength,
+      );
 
     new Electro(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
   }
 
-  spawnHoleDamage(){
-    if(mapAreas.holeAreas.length == 0) {
+  spawnHoleDamage() {
+    if (mapAreas.holeAreas.length == 0) {
       return;
     }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.holeAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.holeAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength);
-    var yCoordinate =  mapAreas.holeAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength);
+    var xCoordinate =
+      mapAreas.holeAreas[areaSelector].xSource +
+      Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].xLength);
+    var yCoordinate =
+      mapAreas.holeAreas[areaSelector].ySource +
+      Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength);
 
     new Hole(this, xCoordinate, yCoordinate, this.damageGoupColliding);
   }
 
-  spawnFIreDamage(){
-    if(mapAreas.fireAreas.length == 0) {
+  spawnFIreDamage() {
+    if (mapAreas.fireAreas.length == 0) {
       return;
     }
     // area slector
     var areaSelector = Math.floor(Math.random() * mapAreas.fireAreas.length);
     // cooridnate selector
-    var xCoordinate =  mapAreas.fireAreas[areaSelector].xSource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength);
-    var yCoordinate =  mapAreas.fireAreas[areaSelector].ySource + Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength);
+    var xCoordinate =
+      mapAreas.fireAreas[areaSelector].xSource +
+      Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].xLength);
+    var yCoordinate =
+      mapAreas.fireAreas[areaSelector].ySource +
+      Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength);
 
     new Fire(this, xCoordinate, yCoordinate, this.damageGoupColliding);
   }
 
   getRandomPlayer() {
-    return this.playerGroup.children.entries[Math.floor(Math.random() * this.playerGroup.children.entries.length)];
+    return this.playerGroup.children.entries[
+      Math.floor(Math.random() * this.playerGroup.children.entries.length)
+    ];
   }
 
   getPlayerById(id) {
-    return this.playerGroup.children.entries.filter(player => player.playerId == id)[0];
+    return this.playerGroup.children.entries.filter(
+      player => player.playerId == id,
+    )[0];
   }
 
   spawnTools() {
@@ -250,9 +336,9 @@ class GameScene extends Phaser.Scene {
   }
 
   createRunningEmitter() {
-	  return this.add.particles('SteamParticle').createEmitter({
-		  x: 0,
-		  y: 0,
+    return this.add.particles('SteamParticle').createEmitter({
+      x: 0,
+      y: 0,
       speed: { min: 0, max: 0 },
       angle: { min: 0, max: 0 },
       scale: { start: 0.6, end: 0.1 },
@@ -260,15 +346,16 @@ class GameScene extends Phaser.Scene {
       frequency: -1,
       active: true,
       lifespan: 600,
-      tint: 0xDDDDDD,
-	  });
+      tint: 0xdddddd,
+    });
   }
 
   update(time, delta) {
     // Calc Speed
-    this.game.state.speed = this.game.state.engineEfficency * this.game.settings.maxShipSpeed;
+    this.game.state.speed =
+      this.game.state.engineEfficency * this.game.settings.maxShipSpeed;
     this.game.state.score += 0.0001 * delta * this.game.state.speed;
-    this.scoreText.setText("Score: " + Math.round(this.game.state.score));
+    this.scoreText.setText('Score: ' + Math.round(this.game.state.score));
 
     // Calc height based on Holes
     const { settings } = this.game;
@@ -287,18 +374,23 @@ class GameScene extends Phaser.Scene {
     }
 
     // Calc voltage based on sparcles
-    this.game.state.voltage -= this.game.settings.voltageChange * (this.damageGoupNotColliding.children.entries.filter((d) => { return d.damageType == 'SOLDERING_IRON'}).length -1);
-    if(this.game.state.voltage <= 0) {
-      this.game.airconsole.broadcast({show_view_id: 'view-3'});
+    this.game.state.voltage -=
+      this.game.settings.voltageChange *
+      (this.damageGoupNotColliding.children.entries.filter(d => {
+        return d.damageType == 'SOLDERING_IRON';
+      }).length -
+        1);
+    if (this.game.state.voltage <= 0) {
+      this.game.airconsole.broadcast({ show_view_id: 'view-3' });
       this.scene.start('GameOverScene');
     }
-    if(this.game.state.voltage > 100) {
+    if (this.game.state.voltage > 100) {
       this.game.state.voltage = 100;
     }
 
-	// Move parallax background based on speed (clouds still move when standing still)
-	this.parallaxBgClouds.tilePositionX += 0.2 * this.game.state.speed - 0.5;
-	this.parallaxBgForest.tilePositionX += 0.1 * this.game.state.speed;
+    // Move parallax background based on speed (clouds still move when standing still)
+    this.parallaxBgClouds.tilePositionX += 0.2 * this.game.state.speed - 0.5;
+    this.parallaxBgForest.tilePositionX += 0.1 * this.game.state.speed;
   }
 }
 
