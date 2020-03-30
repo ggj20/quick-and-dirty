@@ -46,19 +46,20 @@ class GameOverScene extends Phaser.Scene {
     this.clearAllTimeouts();
 
     this.add.image(0, 0, 'GameOverSprite').setOrigin(0, 0);
+
     this.make.text({
-      x: this.game.config.width - 800,
-      y: 750,
-      text: 'Game Over',
-      style: { font: '85px Arial', fill: '#C22', align: 'center' },
+      x: 1480,
+      y: 900,
+      text: 'Your Score',
+      style: { font: '65px Arial', fill: '#CCC', align: 'center' },
       origin: { x: 0, y: 0.5 },
       add: true,
     });
 
     this.make.text({
-      x: this.game.config.width - 800,
-      y: 850,
-      text: 'Your Score: ' + Math.round(this.game.state.score),
+      x: 1480,
+      y: 980,
+      text: Math.round(this.game.state.score),
       style: { font: '65px Arial', fill: '#CCC', align: 'center' },
       origin: { x: 0, y: 0.5 },
       add: true,
