@@ -23,6 +23,8 @@ import AltitudeIndicator from '../indicators/AltitudeIndicator';
 import Thermometer from '../indicators/Thermometer';
 import VoltageMeter from '../indicators/VoltageMeter';
 import WarningsIndicator from '../indicators/WarningsIndicator';
+// Utils
+import countDamagesByToolType from '../utils/count-damages-by-tool-type';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -360,12 +362,6 @@ class GameScene extends Phaser.Scene {
     this.scene.start('GameOverScene');
   }
 
-  countDamagesByToolType(toolType) {
-    return this.damageGoupColliding.children.entries.filter(
-      d => d.damageType === toolType,
-    ).length;
-  }
-
   update(time, delta) {
     const { settings } = this.game;
 
@@ -376,7 +372,7 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText('Score: ' + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    const numberOfHoles = this.countDamagesByToolType('HAMMER');
+    const numberOfHoles = countDamagesByToolType(this.scene, 'HAMMER');
     const altitudeDelta = settings.altitudeChange * (numberOfHoles - 1);
 
     this.game.state.altitude -= altitudeDelta;
@@ -388,7 +384,10 @@ class GameScene extends Phaser.Scene {
     }
 
     // Calc voltage based on sparcles
-    const voltageDamageCount = this.countDamagesByToolType('SOLDERING_IRON');
+    const voltageDamageCount = countDamagesByToolType(
+      this.scene,
+      'SOLDERING_IRON',
+    );
     const voltageDelta = settings.voltageChange * (voltageDamageCount - 1);
     this.game.state.voltage -= voltageDelta;
     if (this.game.state.voltage <= 0) {
