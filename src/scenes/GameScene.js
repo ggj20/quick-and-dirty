@@ -22,6 +22,7 @@ import Electro from '../damages/Electro';
 import AltitudeIndicator from '../indicators/AltitudeIndicator';
 import Thermometer from '../indicators/Thermometer';
 import VoltageMeter from '../indicators/VoltageMeter';
+import WarningsIndicator from '../indicators/WarningsIndicator';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -140,6 +141,8 @@ class GameScene extends Phaser.Scene {
       this.game.settings.damageSpawnDelayInitial,
     );
     new AltitudeIndicator(this, 974, 540);
+
+    new WarningsIndicator(this, 0, 0);
 
     if (this.game.settings.debug) {
       this.spawnDebugStuff();
