@@ -6,6 +6,8 @@ const sizeY = 150;
 
 const getPositionY = index => offsetY + index * sizeY;
 
+let blinkTrigger = false;
+
 export default class WarningsIndicator extends Phaser.GameObjects.Container {
   constructor(scene, x, y) {
     super(scene, x, y);
@@ -42,16 +44,30 @@ export default class WarningsIndicator extends Phaser.GameObjects.Container {
   }
 
   update() {
+    // Switch blink trigger state
+    blinkTrigger = !blinkTrigger;
+
     const { voltage, altitude } = this.scene.game.state;
     const fireCount = countDamagesByToolType(this.scene, 'EXTINGUISHER');
     const holeCount = countDamagesByToolType(this.scene, 'HAMMER');
     const leakCount = countDamagesByToolType(this.scene, 'PIPE_WRENCH');
     const sparkCount = countDamagesByToolType(this.scene, 'SOLDERING_IRON');
 
-    this.warningIndicatorAltitude.alpha = holeCount - 3;
-    this.warningIndicatorElectricity.alpha = sparkCount - 3;
+    this.warningIndicatorAltitude.alpha = holeCount - 2;
+    this.warningIndicatorElectricity.alpha = sparkCount - 2;
     this.warningIndicatorFire.alpha = fireCount - 5;
-    this.warningIndicatorSteam.alpha = leakCount - 3;
+    this.warningIndicatorSteam.alpha = leakCount - 2;
+
+    // Blink if you get close to losing - ALARM!
+    if (altitude < 37.5) {
+      this.warningIndicatorAltitude.alpha = blinkTrigger;
+    }
+    if (voltage < 50) {
+      this.warningIndicatorElectricity.alpha = blinkTrigger;
+    }
+    if (fireCount > 15) {
+      this.warningIndicatorFire.alpha = blinkTrigger;
+    }
 
     if (this.scene.game.settings.debug) {
       console.log('---');
