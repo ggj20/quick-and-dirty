@@ -140,9 +140,13 @@ class GameScene extends Phaser.Scene {
       this.game.settings.damageSpawnDelayInitial,
     );
     new AltitudeIndicator(this, 974, 540);
-    this.spawnTools();
+
+    if (this.game.settings.debug) {
+      this.spawnDebugStuff();
+    } else {
+      this.spawnTools();
+    }
     this.createScoreText();
-    this.spawnDebugStuff();
     new Light(this, 230, 75);
     new Light(this, 990, 75);
     new Light(this, 230, 555);
@@ -186,10 +190,6 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnDebugStuff() {
-    if (this.game.settings.debug == false) {
-      return;
-    }
-
     new Leak(this, 400, 200, this.damageGoupNotColliding);
     new PipeWrench(this, 400, 300, this.toolGroup);
 
