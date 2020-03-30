@@ -22,6 +22,11 @@ import ParallaxBgClouds from '../assets/parallax-bg-clouds.png';
 import ParallaxBgForest from '../assets/parallax-bg-forest.png';
 import GameOverSprite from '../assets/game-over.jpg';
 import InstructionsSprite from '../assets/instructions.png';
+// Warning icons
+import WarningAltitudeIcon from '../assets/warning-altitude.png';
+import WarningElectricityIcon from '../assets/warning-electricity.png';
+import WarningFireIcon from '../assets/warning-fire.png';
+import WarningSteamIcon from '../assets/warning-steam.png';
 
 import ElectricSoundMP3 from '../assets/sounds/electric.mp3';
 import ElectricSoundOGG from '../assets/sounds/electric.ogg';
@@ -161,6 +166,11 @@ class BootScene extends Phaser.Scene {
     });
     this.load.image('ParallaxBgClouds', ParallaxBgClouds);
     this.load.image('ParallaxBgForest', ParallaxBgForest);
+
+    this.load.image('WarningAltitudeIcon', WarningAltitudeIcon);
+    this.load.image('WarningElectricityIcon', WarningElectricityIcon);
+    this.load.image('WarningFireIcon', WarningFireIcon);
+    this.load.image('WarningSteamIcon', WarningSteamIcon);
 
     this.load.audio('ElectricSound', [ElectricSoundMP3, ElectricSoundOGG]);
     this.load.audio('FireSound', [FireSoundMP3, FireSoundOGG]);
