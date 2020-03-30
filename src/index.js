@@ -30,6 +30,7 @@ var settings = {
   voltageChange: 10 / 1000,
 };
 
+// There is a copy at src/scenes/GameOverScene.js
 const gameState = {
   score: 0,
   altitude: 100,
