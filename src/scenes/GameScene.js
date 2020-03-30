@@ -372,7 +372,7 @@ class GameScene extends Phaser.Scene {
     this.scoreText.setText('Score: ' + Math.round(this.game.state.score));
 
     // Calc height based on Holes
-    const numberOfHoles = countDamagesByToolType(this.scene, 'HAMMER');
+    const numberOfHoles = countDamagesByToolType(this, 'HAMMER');
     const altitudeDelta = settings.altitudeChange * (numberOfHoles - 1);
 
     this.game.state.altitude -= altitudeDelta;
@@ -384,10 +384,7 @@ class GameScene extends Phaser.Scene {
     }
 
     // Calc voltage based on sparcles
-    const voltageDamageCount = countDamagesByToolType(
-      this.scene,
-      'SOLDERING_IRON',
-    );
+    const voltageDamageCount = countDamagesByToolType(this, 'SOLDERING_IRON');
     const voltageDelta = settings.voltageChange * (voltageDamageCount - 1);
     this.game.state.voltage -= voltageDelta;
     if (this.game.state.voltage <= 0) {
