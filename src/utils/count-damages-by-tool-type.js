@@ -2,9 +2,9 @@ const countDamagesByToolType = (scene, toolType) => {
   const filterByToolType = array =>
     array.filter(d => d.damageType === toolType);
 
-  const { damageGoupColliding, damageGroupNotColliding } = scene;
+  const { damageGroupColliding, damageGroupNotColliding } = scene;
 
-  const { entries: collidingEntries } = damageGoupColliding.children;
+  const { entries: collidingEntries } = damageGroupColliding.children;
   const collidingCount = filterByToolType(collidingEntries).length;
 
   const { entries: notCollidingEntries } = damageGroupNotColliding.children;

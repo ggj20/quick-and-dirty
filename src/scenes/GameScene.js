@@ -42,7 +42,7 @@ class GameScene extends Phaser.Scene {
     this.sound.pauseOnBlur = false;
 
     this.cameras.main.setBackgroundColor('#FFF');
-    this.damageGoupColliding = this.add.group();
+    this.damageGroupColliding = this.add.group();
     this.damageGroupNotColliding = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
@@ -103,14 +103,14 @@ class GameScene extends Phaser.Scene {
           i + 1,
           player.id,
           this.toolGroup,
-          this.damageGoupColliding,
+          this.damageGroupColliding,
           this.damageGroupNotColliding,
           this.zoneGroup,
           emitter,
         ),
       );
     }
-    this.physics.add.collider(this.playerGroup, this.damageGoupColliding);
+    this.physics.add.collider(this.playerGroup, this.damageGroupColliding);
 
     // Engine Flames
     new EngineFlame(this, 110, 400);
@@ -129,7 +129,7 @@ class GameScene extends Phaser.Scene {
 
     // Steam Engine
     new Thermometer(this, 136, 416, 21, 252);
-    new SteamEngine(this, this.zoneGroup, this.damageGoupColliding);
+    new SteamEngine(this, this.zoneGroup, this.damageGroupColliding);
 
     // Voltage indicator
     new VoltageMeter(this, 167, 416, 21, 252);
@@ -198,10 +198,10 @@ class GameScene extends Phaser.Scene {
     new Leak(this, 400, 200, this.damageGroupNotColliding);
     new PipeWrench(this, 400, 300, this.toolGroup);
 
-    new Fire(this, 500, 200, this.damageGoupColliding);
+    new Fire(this, 500, 200, this.damageGroupColliding);
     new Extinguisher(this, 500, 300, this.toolGroup);
 
-    new Hole(this, 600, 200, this.damageGoupColliding);
+    new Hole(this, 600, 200, this.damageGroupColliding);
     new Hammer(this, 600, 300, this.toolGroup);
 
     new Electro(this, 700, 200, this.damageGroupNotColliding);
@@ -291,7 +291,7 @@ class GameScene extends Phaser.Scene {
       mapAreas.holeAreas[areaSelector].ySource +
       Math.floor(Math.random() * mapAreas.holeAreas[areaSelector].yLength);
 
-    new Hole(this, xCoordinate, yCoordinate, this.damageGoupColliding);
+    new Hole(this, xCoordinate, yCoordinate, this.damageGroupColliding);
   }
 
   spawnFireDamage() {
@@ -308,7 +308,7 @@ class GameScene extends Phaser.Scene {
       mapAreas.fireAreas[areaSelector].ySource +
       Math.floor(Math.random() * mapAreas.fireAreas[areaSelector].yLength);
 
-    new Fire(this, xCoordinate, yCoordinate, this.damageGoupColliding);
+    new Fire(this, xCoordinate, yCoordinate, this.damageGroupColliding);
   }
 
   getRandomPlayer() {
