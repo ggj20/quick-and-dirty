@@ -9,9 +9,13 @@ export default class WarningsIndicator extends Phaser.GameObjects.Container {
   }
 
   countDamagesByToolType(toolType) {
-    return this.scene.damageGoupColliding.children.entries.filter(
-      d => d.damageType === toolType,
-    ).length;
+    const performCount = array =>
+      array.filter(d => d.damageType === toolType).length;
+    const { damageGoupColliding, damageGroupNotColliding } = this.scene;
+    return (
+      performCount(damageGoupColliding.children.entries) +
+      performCount(damageGroupNotColliding.children.entries)
+    );
   }
 
   update() {
