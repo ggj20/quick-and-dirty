@@ -41,7 +41,7 @@ class GameScene extends Phaser.Scene {
 
     this.cameras.main.setBackgroundColor('#FFF');
     this.damageGoupColliding = this.add.group();
-    this.damageGoupNotColliding = this.add.group();
+    this.damageGroupNotColliding = this.add.group();
     this.toolGroup = this.add.group();
     this.zoneGroup = this.add.group();
     this.playerGroup = this.add.group();
@@ -102,7 +102,7 @@ class GameScene extends Phaser.Scene {
           player.id,
           this.toolGroup,
           this.damageGoupColliding,
-          this.damageGoupNotColliding,
+          this.damageGroupNotColliding,
           this.zoneGroup,
           emitter,
         ),
@@ -193,7 +193,7 @@ class GameScene extends Phaser.Scene {
   }
 
   spawnDebugStuff() {
-    new Leak(this, 400, 200, this.damageGoupNotColliding);
+    new Leak(this, 400, 200, this.damageGroupNotColliding);
     new PipeWrench(this, 400, 300, this.toolGroup);
 
     new Fire(this, 500, 200, this.damageGoupColliding);
@@ -202,7 +202,7 @@ class GameScene extends Phaser.Scene {
     new Hole(this, 600, 200, this.damageGoupColliding);
     new Hammer(this, 600, 300, this.toolGroup);
 
-    new Electro(this, 700, 200, this.damageGoupNotColliding);
+    new Electro(this, 700, 200, this.damageGroupNotColliding);
     new SolderingIron(this, 700, 300, this.toolGroup);
 
     new CoalDispenser(this, 300, 200, this.toolGroup);
@@ -249,7 +249,7 @@ class GameScene extends Phaser.Scene {
       mapAreas.pipeAreas[areaSelector].ySource +
       Math.floor(Math.random() * mapAreas.pipeAreas[areaSelector].yLength);
 
-    new Leak(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
+    new Leak(this, xCoordinate, yCoordinate, this.damageGroupNotColliding);
   }
 
   spawnElectricityDamage() {
@@ -272,7 +272,7 @@ class GameScene extends Phaser.Scene {
         Math.random() * mapAreas.electricityAreas[areaSelector].yLength,
       );
 
-    new Electro(this, xCoordinate, yCoordinate, this.damageGoupNotColliding);
+    new Electro(this, xCoordinate, yCoordinate, this.damageGroupNotColliding);
   }
 
   spawnHoleDamage() {
