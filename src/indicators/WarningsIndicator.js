@@ -53,10 +53,12 @@ export default class WarningsIndicator extends Phaser.GameObjects.Container {
     this.warningIndicatorFire.alpha = fireCount - 5;
     this.warningIndicatorSteam.alpha = leakCount - 3;
 
-    console.log('---');
-    console.log('fire', fireCount);
-    console.log('altitude', holeCount, altitude);
-    console.log('steam', leakCount);
-    console.log('voltage', sparkCount, voltage);
+    if (this.scene.game.settings.debug) {
+      console.log('---');
+      console.log('fire', fireCount);
+      console.log('altitude', holeCount, altitude);
+      console.log('steam', leakCount);
+      console.log('voltage', sparkCount, voltage);
+    }
   }
 }
